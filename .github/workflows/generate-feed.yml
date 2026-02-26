@@ -28,15 +28,13 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-          # Ensure we're up to date with remote before committing/pushing
-          git fetch origin main
-          git checkout main
-          git reset --hard origin/main
-
           git add feeds/png-latest-news.xml
-          git commit -m "Auto update RSS feed" || echo "No changes"
 
-          # Pull/rebase (safe even if no changes)
+          # Only commit if file actually changed
+          git diff --cached --quiet || git commit -m "Auto update RSS feed"
+
+          # Pull latest main to avoid non-fast-forward
           git pull --rebase origin main || true
 
-          git push origin main
+          # Force-with-lease is safe for automation (prevents accidental overwrite)
+          git push --force-with-lease origin main
