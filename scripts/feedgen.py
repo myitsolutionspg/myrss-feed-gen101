@@ -113,7 +113,7 @@ def parse_atom(root: ET.Element, source_name: str):
             if first is not None and first.attrib.get("href"):
                 link = first.attrib["href"]
 
-        guid = safe_text(entry.findtext(f"{ns}id")) or link
+        guid = link
         published = safe_text(entry.findtext(f"{ns}published")) or safe_text(entry.findtext(f"{ns}updated"))
         pub_rfc = to_rfc2822(published) or utc_now_rfc2822()
 
@@ -192,9 +192,25 @@ def parse_rss_or_atom(xml_bytes: bytes, source_name: str):
     # RSS (root can be <rss> or sometimes <rdf:RDF>)
     return parse_rss(root, source_name)
 
-# ---------------- build output ----------------
-def build_rss(config: dict, items: list):
-    rss = ET.Element("rss", {"version": "2.0"})
+    if image_url:
+    ET.SubElement(
+        it,
+        "enclosure",
+        {
+            "url": image_url,
+            "type": guess_image_mime(image_url),
+        },
+    )
+
+    # ---------------- build output ----------------
+    def build_rss(config: dict, items: list):
+        rss = ET.Element(
+        "rss",
+        {
+            "version": "2.0",
+            "xmlns:atom": "http://www.w3.org/2005/Atom",
+        },
+    )
     channel = ET.SubElement(rss, "channel")
 
     ET.SubElement(channel, "title").text = safe_text(config.get("title"))
@@ -222,8 +238,16 @@ def build_rss(config: dict, items: list):
         if image_url:
             ET.SubElement(it, "enclosure", {
                 "url": image_url,
-                "type": "image/jpeg"
-            })
+                def guess_image_mime(url: str) -> str:
+                u = (url or "").lower()
+                if u.endswith(".png"):
+                    return "image/png"
+                if u.endswith(".webp"):
+                    return "image/webp"
+                if u.endswith(".gif"):
+                    return "image/gif"
+                return "image/jpeg"
+                        })
 
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
