@@ -2,10 +2,20 @@
   "title": "PNG Latest News - Master Feed",
   "site_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/",
   "feed_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/png-latest-news.xml",
-  "max_items_total": 60,
+  "max_items_total": 120,
   "sources": [
-  { "name": "Post Courier", "url": "https://www.postcourier.com.pg/feed/" },
-  { "name": "Loop PNG", "url": "https://www.looppng.com/rss.xml" },
-  { "name": "PNG Haus Bung", "url": "https://pnghausbung.com/feed/" }
- ]
+    { "name": "Act Now PNG", "url": "https://actnowpng.org/rss.xml" },
+    { "name": "Bougainville News", "url": "https://bougainvillenews.com/feed/" },
+    { "name": "Business Advantage PNG", "url": "https://www.businessadvantagepng.com/feed/" },
+    { "name": "Education News PNG", "url": "https://edunewspng.com/feed/" },
+    { "name": "Inside PNG", "url": "https://insidepng.com/feed/" },
+    { "name": "One Papua New Guinea", "url": "https://www.onepng.com/feeds/posts/default?alt=rss" },
+    { "name": "Pawa TV", "url": "https://watchpawatv.com/feed" },
+    { "name": "PNG Buzz", "url": "https://pngbuzz.com/feed" },
+    { "name": "PNG Facts", "url": "https://news.pngfacts.com/feeds/posts/default?alt=rss" },
+    { "name": "Post Courier", "url": "https://www.postcourier.com.pg/feed/" },
+    { "name": "The PNG Bulletin", "url": "https://thepngbulletin.com/feed/" },
+    { "name": "The PNG Sun", "url": "https://www.thepngsun.com/feed/" },
+    { "name": "Wantok Niuspepa", "url": "https://wantokniuspepa.com/index.php?format=feed&type=rss" }
+  ]
 }
