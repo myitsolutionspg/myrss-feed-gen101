@@ -28,13 +28,16 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
+          # Ensure we are on latest main
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+          # Re-generate stage (file already generated)
           git add feeds/png-latest-news.xml
 
-          # Only commit if file actually changed
+          # Commit only if there are staged changes
           git diff --cached --quiet || git commit -m "Auto update RSS feed"
 
-          # Pull latest main to avoid non-fast-forward
-          git pull --rebase origin main || true
-
-          # Force-with-lease is safe for automation (prevents accidental overwrite)
+          # Push safely even if another run updated main
           git push --force-with-lease origin main
