@@ -4,9 +4,8 @@
   "feed_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/png-latest-news.xml",
   "max_items_total": 60,
   "sources": [
-    {
-      "name": "Example Feed 1",
-      "url": "https://example.com/rss.xml"
-    }
-  ]
+  { "name": "Post Courier", "url": "https://www.postcourier.com.pg/feed/" },
+  { "name": "Loop PNG", "url": "https://www.looppng.com/rss.xml" },
+  { "name": "PNG Haus Bung", "url": "https://pnghausbung.com/feed/" }
+ ]
 }
