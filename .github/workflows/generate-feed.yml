@@ -31,9 +31,21 @@ jobs:
       - name: Generate feed
         run: python scripts/feedgen.py
 
-      - name: Commit & push (safe)
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
         with:
-          commit_message: "Auto update RSS feed"
-          branch: main
-          file_pattern: feeds/png-latest-news.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Auto update RSS feed"
+          title: "Auto update RSS feed"
+          body: "Automated update of feeds/png-latest-news.xml"
+          branch: bot/rss-update
+          delete-branch: true
+          add-paths: |
+            feeds/png-latest-news.xml
+
+      - name: Auto-merge Pull Request
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
