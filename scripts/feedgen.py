@@ -40,7 +40,11 @@ def get(url: str, timeout=30) -> bytes:
         },
     )
     with urlopen(req, timeout=timeout) as r:
-        return r.read()
+        ct = r.headers.get("Content-Type", "")
+        data = r.read()
+        # Print small debug line for Actions logs (safe)
+        print(f"[FETCH] {url} :: status={getattr(r, 'status', 'n/a')} ct={ct} bytes={len(data)} head={data[:60]!r}")
+        return data
 
 def hash_id(*parts: str) -> str:
     h = hashlib.sha256()
