@@ -5,9 +5,10 @@ on:
     - cron: "*/30 * * * *"
   workflow_dispatch:
 
+# Prevent scheduled runs overlapping and fighting each other
 concurrency:
   group: generate-rss-feed
-  cancel-in-progress: true  
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -15,9 +16,12 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # important for rebase/push stability
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -27,21 +31,9 @@ jobs:
       - name: Generate feed
         run: python scripts/feedgen.py
 
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-
-          # Ensure we are on latest main
-          git fetch origin main
-          git checkout main
-          git reset --hard origin/main
-
-          # Re-generate stage (file already generated)
-          git add feeds/png-latest-news.xml
-
-          # Commit only if there are staged changes
-          git diff --cached --quiet || git commit -m "Auto update RSS feed"
-
-          # Push safely even if another run updated main
-          git push --force-with-lease origin main
+      - name: Commit & push (safe)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto update RSS feed"
+          branch: main
+          file_pattern: feeds/png-latest-news.xml
