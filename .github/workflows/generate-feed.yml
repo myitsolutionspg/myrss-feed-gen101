@@ -5,7 +5,6 @@ on:
     - cron: "*/30 * * * *"
   workflow_dispatch:
 
-# Prevent scheduled runs overlapping and fighting each other
 concurrency:
   group: generate-rss-feed
   cancel-in-progress: true
@@ -17,12 +16,11 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # important for rebase/push stability
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -47,13 +45,6 @@ jobs:
 
       - name: Enable PR auto-merge
         if: steps.cpr.outputs.pull-request-number != ''
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
-
-      - name: Auto-merge Pull Request
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
