@@ -6,6 +6,22 @@ from email.utils import format_datetime
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import xml.etree.ElementTree as ET
+import re
+from html import unescape
+
+def clean_html(text):
+    if not text:
+        return ""
+    # extract first image
+    img_match = re.search(r'<img[^>]+src="([^"]+)"', text)
+    image_url = img_match.group(1) if img_match else None
+
+    # remove all html tags
+    clean = re.sub(r"<[^>]+>", "", text)
+    clean = unescape(clean)
+    clean = re.sub(r"\s+", " ", clean).strip()
+
+    return clean[:300], image_url
 
 # ---------------- helpers ----------------
 def utc_now_rfc2822():
@@ -194,10 +210,20 @@ def build_rss(config: dict, items: list):
         ET.SubElement(it, "guid").text = safe_text(x["guid"])
         ET.SubElement(it, "pubDate").text = safe_text(x["pubDate"])
 
-        desc = safe_text(x.get("description"))
+        raw_desc = safe_text(x.get("description"))
+        clean_desc, image_url = clean_html(raw_desc)
+        
         src = safe_text(x.get("source"))
-        combined = f"[{src}] {desc}" if src else desc
+        combined = f"[{src}] {clean_desc}" if src else clean_desc
+        
         ET.SubElement(it, "description").text = combined
+        
+        # Add enclosure if image found
+        if image_url:
+            ET.SubElement(it, "enclosure", {
+                "url": image_url,
+                "type": "image/jpeg"
+            })
 
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
