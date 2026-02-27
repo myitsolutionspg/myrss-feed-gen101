@@ -219,6 +219,9 @@ def parse_rss_or_atom(xml_bytes: bytes, source_name: str) -> list[dict]:
         return parse_atom(root, source_name)
     return parse_rss(root, source_name)
 
+limit = int(src.get("max_items", 10))
+items = items[:limit]
+
 # ---------------- build output ----------------
 def build_rss(config: dict, items: list[dict]) -> bytes:
     # Register atom namespace so ElementTree writes atom:link cleanly
