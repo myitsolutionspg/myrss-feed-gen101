@@ -126,8 +126,6 @@ function initApp() {
 
   const baseShow = $("apiBaseShow");
   baseShow.textContent = base || "(not set)";
-  const baseShow = $("apiBaseShow");
-  baseShow.textContent = getApiBase() || "(not set)";
   $("btnLogout")?.addEventListener("click", () => {
     clearAuth();
     location.href = "./index.html";
