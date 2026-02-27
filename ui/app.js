@@ -96,7 +96,7 @@ function initIndex() {
       $("logOut").textContent = pretty(out);
 
       // go to app
-      location.href = "app.html";
+      location.href = "./app.html";
     } catch (e) {
       $("logOut").textContent = String(e.message || e);
     }
