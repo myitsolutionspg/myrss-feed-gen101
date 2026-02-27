@@ -303,7 +303,7 @@ def main() -> None:
             data = get(url)
             items = parse_rss_or_atom(data, name)
     
-            limit = int(src.get("max_items", 10))
+            limit = int(src.get("max_items", 15))
             items = items[:limit]
     
             if items:
