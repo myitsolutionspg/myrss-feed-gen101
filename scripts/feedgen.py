@@ -268,15 +268,16 @@ def build_rss(config: dict, items: list[dict]) -> bytes:
         combined = f"[{src}] {clean_desc}" if src else clean_desc
         ET.SubElement(it, "description").text = combined
 
-        ET.SubElement(
-            it,
-            "enclosure",
-            {
-                "url": image_url,
-                "type": guess_image_mime(image_url),
-                "length": "0",
-            },
-        )
+        if image_url:
+            ET.SubElement(
+                it,
+                "enclosure",
+                {
+                    "url": image_url,
+                    "type": guess_image_mime(image_url),
+                    "length": "0",
+                },
+            )
 
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
