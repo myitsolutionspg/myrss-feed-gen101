@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>myRSS Feed Gen | App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="top bar">
+      <div>
+        <h1>myRSS Feed Gen</h1>
+        <p class="muted">Saved feeds and scraper.</p>
+      </div>
+      <div class="right">
+        <button id="btnLogout" class="btn">Logout</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Connection</h2>
+      <div class="flex">
+        <div class="grow">
+          <div class="muted small">Worker Base URL</div>
+          <div id="apiBaseShow" class="mono"></div>
+        </div>
+        <button id="btnPing" class="btn">Ping API</button>
+      </div>
+      <pre id="pingOut" class="out"></pre>
+    </section>
+
+    <section class="grid2">
+      <div class="card">
+        <h2>Saved Feeds</h2>
+
+        <div class="stack">
+          <label class="row">
+            <span>Title</span>
+            <input id="feedTitle" type="text" placeholder="PNG Bulletin" />
+          </label>
+          <label class="row">
+            <span>Feed URL</span>
+            <input id="feedUrl" type="url" placeholder="https://example.com/feed/" />
+          </label>
+          <button id="btnAddFeed" class="btn primary">Add feed</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="flex">
+          <h3 class="h3">Your feeds</h3>
+          <button id="btnRefreshFeeds" class="btn">Refresh</button>
+        </div>
+        <ul id="feedsList" class="list"></ul>
+        <pre id="feedsOut" class="out"></pre>
+      </div>
+
+      <div class="card">
+        <h2>Scrape Website</h2>
+
+        <label class="row">
+          <span>URL</span>
+          <input id="scrapeUrl" type="url" placeholder="https://thepngbulletin.com/" />
+        </label>
+        <button id="btnScrape" class="btn primary">Scrape</button>
+
+        <div class="divider"></div>
+
+        <div class="flex">
+          <h3 class="h3">Results</h3>
+          <button id="btnClearResults" class="btn">Clear</button>
+        </div>
+
+        <div id="results" class="results"></div>
+        <pre id="scrapeOut" class="out"></pre>
+      </div>
+    </section>
+
+    <footer class="foot muted small">
+      Tip: The token is stored in localStorage on this device only.
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
