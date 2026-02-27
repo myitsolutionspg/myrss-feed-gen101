@@ -110,6 +110,16 @@ function initIndex() {
 }
 
 function initApp() {
+  // Hard gate: require API base + token or go back to login
+  const base = getApiBase();
+  const token = getToken();
+  if (!base || !token) {
+    location.href = "./index.html";
+    return;
+  }
+
+  const baseShow = $("apiBaseShow");
+  baseShow.textContent = base || "(not set)";
   const baseShow = $("apiBaseShow");
   baseShow.textContent = getApiBase() || "(not set)";
   $("btnLogout")?.addEventListener("click", () => {
