@@ -12,10 +12,10 @@
     { "name": "One Papua New Guinea", "url": "https://www.onepng.com/feeds/posts/default?alt=rss" , "max_items": 8 },
     { "name": "Pawa TV", "url": "https://watchpawatv.com/feed" , "max_items": 8 },
     { "name": "PNG Buzz", "url": "https://pngbuzz.com/feed" , "max_items": 8 },
-    { "name": "PNG Facts", "url": "https://news.pngfacts.com/feeds/posts/default?alt=rss" , "max_items": 6 },
-    { "name": "Post Courier", "url": "https://www.postcourier.com.pg/feed/" , "max_items": 6 },
-    { "name": "The PNG Bulletin", "url": "https://thepngbulletin.com/feed/" , "max_items": 6 },
-    { "name": "The PNG Sun", "url": "https://www.thepngsun.com/feed/" , "max_items": 6 },
-    { "name": "Wantok Niuspepa", "url": "https://wantokniuspepa.com/index.php?format=feed&type=rss" , "max_items": 6 }
+    { "name": "PNG Facts", "url": "https://news.pngfacts.com/feeds/posts/default?alt=rss" , "max_items": 12 },
+    { "name": "Post Courier", "url": "https://www.postcourier.com.pg/feed/" , "max_items": 12 },
+    { "name": "The PNG Bulletin", "url": "https://thepngbulletin.com/feed/" , "max_items": 12 },
+    { "name": "The PNG Sun", "url": "https://www.thepngsun.com/feed/" , "max_items": 12 },
+    { "name": "Wantok Niuspepa", "url": "https://wantokniuspepa.com/index.php?format=feed&type=rss" , "max_items": 8 }
   ]
 }
