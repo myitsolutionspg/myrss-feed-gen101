@@ -105,7 +105,7 @@ function initIndex() {
   // If already logged in, jump
   if (getToken()) {
     // stay polite: only auto-jump if API base is set
-    if (getApiBase()) location.href = "app.html";
+    if (getApiBase()) location.href = "./app.html";
   }
 }
 
@@ -124,7 +124,7 @@ function initApp() {
   baseShow.textContent = getApiBase() || "(not set)";
   $("btnLogout")?.addEventListener("click", () => {
     clearAuth();
-    location.href = "index.html";
+    location.href = "./index.html";
   });
 
   $("btnPing")?.addEventListener("click", async () => {
