@@ -2,29 +2,17 @@ import json
 import sys
 import hashlib
 import datetime
-from email.utils import format_datetime
+import re
+from html import unescape
+from email.utils import format_datetime, parsedate_to_datetime
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import xml.etree.ElementTree as ET
-import re
-from html import unescape
 
-def clean_html(text):
-    if not text:
-        return ""
-    # extract first image
-    img_match = re.search(r'<img[^>]+src="([^"]+)"', text)
-    image_url = img_match.group(1) if img_match else None
-
-    # remove all html tags
-    clean = re.sub(r"<[^>]+>", "", text)
-    clean = unescape(clean)
-    clean = re.sub(r"\s+", " ", clean).strip()
-
-    return clean[:300], image_url
+ATOM_NS = "http://www.w3.org/2005/Atom"
 
 # ---------------- helpers ----------------
-def utc_now_rfc2822():
+def utc_now_rfc2822() -> str:
     return format_datetime(datetime.datetime.now(datetime.timezone.utc))
 
 def safe_text(s) -> str:
@@ -33,8 +21,7 @@ def safe_text(s) -> str:
     return str(s).strip()
 
 def localname(tag: str) -> str:
-    # "{ns}name" -> "name"
-    if tag is None:
+    if not tag:
         return ""
     if "}" in tag:
         return tag.split("}", 1)[1]
@@ -43,12 +30,13 @@ def localname(tag: str) -> str:
 def child_text_by_local(parent: ET.Element, name: str) -> str:
     if parent is None:
         return ""
+    want = name.lower()
     for ch in list(parent):
-        if localname(ch.tag).lower() == name.lower():
+        if localname(ch.tag).lower() == want:
             return safe_text(ch.text)
     return ""
 
-def get(url: str, timeout=30) -> bytes:
+def get(url: str, timeout: int = 30) -> bytes:
     req = Request(
         url,
         headers={
@@ -58,8 +46,7 @@ def get(url: str, timeout=30) -> bytes:
     with urlopen(req, timeout=timeout) as r:
         ct = r.headers.get("Content-Type", "")
         data = r.read()
-        # Print small debug line for Actions logs (safe)
-        print(f"[FETCH] {url} :: status={getattr(r, 'status', 'n/a')} ct={ct} bytes={len(data)} head={data[:60]!r}")
+        print(f"[FETCH] {url} :: status={getattr(r,'status','n/a')} ct={ct} bytes={len(data)} head={data[:60]!r}")
         return data
 
 def hash_id(*parts: str) -> str:
@@ -69,21 +56,18 @@ def hash_id(*parts: str) -> str:
         h.update(b"\n")
     return h.hexdigest()
 
-def to_rfc2822(dt_str: str):
+def to_rfc2822(dt_str: str) -> str | None:
     s = (dt_str or "").strip()
     if not s:
         return None
 
-    # Already RFC2822-ish
+    # If already RFC2822-ish, keep it
     if "," in s and ("GMT" in s or "+" in s or "-" in s):
         return s
 
     # Try ISO 8601
     try:
-        if s.endswith("Z"):
-            s2 = s[:-1] + "+00:00"
-        else:
-            s2 = s
+        s2 = s[:-1] + "+00:00" if s.endswith("Z") else s
         d = datetime.datetime.fromisoformat(s2)
         if d.tzinfo is None:
             d = d.replace(tzinfo=datetime.timezone.utc)
@@ -91,10 +75,52 @@ def to_rfc2822(dt_str: str):
     except Exception:
         return None
 
+def parse_rfc2822_to_dt(pub_rfc: str) -> datetime.datetime:
+    try:
+        d = parsedate_to_datetime(pub_rfc)
+        if d.tzinfo is None:
+            d = d.replace(tzinfo=datetime.timezone.utc)
+        return d.astimezone(datetime.timezone.utc)
+    except Exception:
+        return datetime.datetime(1970, 1, 1, tzinfo=datetime.timezone.utc)
+
+def guess_image_mime(url: str) -> str:
+    u = (url or "").lower()
+    if u.endswith(".png"):
+        return "image/png"
+    if u.endswith(".webp"):
+        return "image/webp"
+    if u.endswith(".gif"):
+        return "image/gif"
+    if u.endswith(".svg"):
+        return "image/svg+xml"
+    return "image/jpeg"
+
+def clean_html(text: str) -> tuple[str, str | None]:
+    """
+    Returns (clean_text, first_image_url)
+    Important: unescape FIRST, then strip tags. This avoids turning &lt;p&gt; into real <p> later.
+    """
+    if not text:
+        return "", None
+
+    raw = unescape(text)
+
+    img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', raw, flags=re.I)
+    image_url = img_match.group(1) if img_match else None
+
+    # strip tags (do it twice defensively)
+    clean = re.sub(r"<[^>]+>", " ", raw)
+    clean = re.sub(r"<[^>]+>", " ", clean)
+
+    clean = re.sub(r"\s+", " ", clean).strip()
+
+    # keep descriptions short
+    return clean[:300], image_url
+
 # ---------------- parsing ----------------
-def parse_atom(root: ET.Element, source_name: str):
-    items = []
-    # Detect default namespace
+def parse_atom(root: ET.Element, source_name: str) -> list[dict]:
+    items: list[dict] = []
     ns = ""
     if root.tag.startswith("{"):
         ns = root.tag.split("}")[0] + "}"
@@ -113,7 +139,6 @@ def parse_atom(root: ET.Element, source_name: str):
             if first is not None and first.attrib.get("href"):
                 link = first.attrib["href"]
 
-        guid = link
         published = safe_text(entry.findtext(f"{ns}published")) or safe_text(entry.findtext(f"{ns}updated"))
         pub_rfc = to_rfc2822(published) or utc_now_rfc2822()
 
@@ -126,19 +151,18 @@ def parse_atom(root: ET.Element, source_name: str):
                 {
                     "title": title,
                     "link": link,
-                    "guid": guid,
+                    # OUTPUT GUID MUST BE URL FOR VALIDATORS/READERS
+                    "guid": link,
                     "pubDate": pub_rfc,
                     "description": desc,
                     "source": source_name,
                 }
             )
-
     return items
 
-def parse_rss(root: ET.Element, source_name: str):
-    items = []
+def parse_rss(root: ET.Element, source_name: str) -> list[dict]:
+    items: list[dict] = []
 
-    # Find <channel> namespace-agnostic
     channel = None
     for el in root.iter():
         if localname(el.tag).lower() == "channel":
@@ -147,17 +171,14 @@ def parse_rss(root: ET.Element, source_name: str):
     if channel is None:
         return items
 
-    # Find <item> namespace-agnostic
     for it in channel.iter():
         if localname(it.tag).lower() != "item":
             continue
 
         title = child_text_by_local(it, "title")
         link = child_text_by_local(it, "link")
-        guid = child_text_by_local(it, "guid") or link
         pub = child_text_by_local(it, "pubDate")
 
-        # description or content:encoded (namespace-agnostic)
         desc = child_text_by_local(it, "description")
         if not desc:
             for ch in list(it):
@@ -172,7 +193,8 @@ def parse_rss(root: ET.Element, source_name: str):
                 {
                     "title": title,
                     "link": link,
-                    "guid": guid,
+                    # OUTPUT GUID MUST BE URL FOR VALIDATORS/READERS
+                    "guid": link,
                     "pubDate": pub_rfc,
                     "description": desc,
                     "source": source_name,
@@ -181,77 +203,75 @@ def parse_rss(root: ET.Element, source_name: str):
 
     return items
 
-def parse_rss_or_atom(xml_bytes: bytes, source_name: str):
+def parse_rss_or_atom(xml_bytes: bytes, source_name: str) -> list[dict]:
     root = ET.fromstring(xml_bytes)
     root_name = localname(root.tag).lower()
-
-    # Atom
     if root_name == "feed":
         return parse_atom(root, source_name)
-
-    # RSS (root can be <rss> or sometimes <rdf:RDF>)
     return parse_rss(root, source_name)
 
-    if image_url:
-    ET.SubElement(
-        it,
-        "enclosure",
-        {
-            "url": image_url,
-            "type": guess_image_mime(image_url),
-        },
-    )
+# ---------------- build output ----------------
+def build_rss(config: dict, items: list[dict]) -> bytes:
+    # Register atom namespace so ElementTree writes atom:link cleanly
+    ET.register_namespace("atom", ATOM_NS)
 
-    # ---------------- build output ----------------
-    def build_rss(config: dict, items: list):
-        rss = ET.Element(
-        "rss",
-        {
-            "version": "2.0",
-            "xmlns:atom": "http://www.w3.org/2005/Atom",
-        },
-    )
+    rss = ET.Element("rss", {"version": "2.0"})
     channel = ET.SubElement(rss, "channel")
 
-    ET.SubElement(channel, "title").text = safe_text(config.get("title"))
-    ET.SubElement(channel, "link").text = safe_text(config.get("site_url"))
+    title = safe_text(config.get("title"))
+    site_url = safe_text(config.get("site_url"))
+    feed_url = safe_text(config.get("feed_url"))
+
+    ET.SubElement(channel, "title").text = title
+    ET.SubElement(channel, "link").text = site_url
     ET.SubElement(channel, "description").text = "Aggregated feed generated by myrss-feed-gen101"
     ET.SubElement(channel, "language").text = "en"
     ET.SubElement(channel, "lastBuildDate").text = utc_now_rfc2822()
 
+    # atom:link rel="self" (validator recommendation)
+    if feed_url:
+        ET.SubElement(
+            channel,
+            f"{{{ATOM_NS}}}link",
+            {
+                "href": feed_url,
+                "rel": "self",
+                "type": "application/rss+xml",
+            },
+        )
+
     for x in items:
         it = ET.SubElement(channel, "item")
-        ET.SubElement(it, "title").text = safe_text(x["title"])
-        ET.SubElement(it, "link").text = safe_text(x["link"])
-        ET.SubElement(it, "guid").text = safe_text(x["guid"])
-        ET.SubElement(it, "pubDate").text = safe_text(x["pubDate"])
+        link = safe_text(x.get("link"))
+        ET.SubElement(it, "title").text = safe_text(x.get("title"))
+        ET.SubElement(it, "link").text = link
+
+        # GUID: always a full URL for maximum compatibility
+        ET.SubElement(it, "guid").text = link
+
+        pub = safe_text(x.get("pubDate"))
+        ET.SubElement(it, "pubDate").text = pub
 
         raw_desc = safe_text(x.get("description"))
         clean_desc, image_url = clean_html(raw_desc)
-        
+
         src = safe_text(x.get("source"))
         combined = f"[{src}] {clean_desc}" if src else clean_desc
-        
         ET.SubElement(it, "description").text = combined
-        
-        # Add enclosure if image found
+
         if image_url:
-            ET.SubElement(it, "enclosure", {
-                "url": image_url,
-                def guess_image_mime(url: str) -> str:
-                u = (url or "").lower()
-                if u.endswith(".png"):
-                    return "image/png"
-                if u.endswith(".webp"):
-                    return "image/webp"
-                if u.endswith(".gif"):
-                    return "image/gif"
-                return "image/jpeg"
-                        })
+            ET.SubElement(
+                it,
+                "enclosure",
+                {
+                    "url": image_url,
+                    "type": guess_image_mime(image_url),
+                },
+            )
 
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
-def main():
+def main() -> None:
     cfg_path = "feeds/sources.json"
     out_path = "feeds/png-latest-news.xml"
 
@@ -261,8 +281,9 @@ def main():
     max_total = int(cfg.get("max_items_total", 120))
     sources = cfg.get("sources", [])
 
-    all_items = []
+    all_items: list[dict] = []
     ok_sources = 0
+
     for src in sources:
         name = safe_text(src.get("name")) or "Source"
         url = safe_text(src.get("url"))
@@ -277,11 +298,10 @@ def main():
             print(f"[INFO] {name}: {len(items)} items")
         except (HTTPError, URLError, ET.ParseError) as e:
             print(f"[WARN] Source failed: {name} {url} :: {e}", file=sys.stderr)
-            continue
 
     # De-dupe
-    seen = set()
-    uniq = []
+    seen: set[str] = set()
+    uniq: list[dict] = []
     for it in all_items:
         key = hash_id(it.get("guid", ""), it.get("link", ""))
         if key in seen:
@@ -289,8 +309,8 @@ def main():
         seen.add(key)
         uniq.append(it)
 
-    # Best-effort sort (newest first) using pubDate string
-    uniq.sort(key=lambda x: x.get("pubDate", ""), reverse=True)
+    # Proper sort: newest first by parsed datetime
+    uniq.sort(key=lambda x: parse_rfc2822_to_dt(safe_text(x.get("pubDate"))), reverse=True)
     uniq = uniq[:max_total]
 
     rss_bytes = build_rss(cfg, uniq)
