@@ -85,7 +85,7 @@ def parse_rfc2822_to_dt(pub_rfc: str) -> datetime.datetime:
         return datetime.datetime(1970, 1, 1, tzinfo=datetime.timezone.utc)
 
 def guess_image_mime(url: str) -> str:
-    u = (url or "").lower()
+    u = (url or "").lower().split("?", 1)[0]
     if u.endswith(".png"):
         return "image/png"
     if u.endswith(".webp"):
