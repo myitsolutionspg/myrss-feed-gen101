@@ -56,9 +56,15 @@ async function api(path, { method="GET", body=null, auth=false } = {}) {
 
 // ===== Page wiring =====
 document.addEventListener("DOMContentLoaded", () => {
-  const page = location.pathname.split("/").pop() || "index.html";
-  if (page === "index.html" || page === "") initIndex();
-  if (page === "app.html") initApp();
+  const p = location.pathname;
+  const page = p.split("/").pop(); // "", "index.html", "app.html", etc.
+
+  // /ui/ ends with "", treat as index
+  const isIndex = (page === "" || page === "index.html");
+  const isApp = (page === "app.html");
+
+  if (isIndex) initIndex();
+  if (isApp) initApp();
 });
 
 function initIndex() {
