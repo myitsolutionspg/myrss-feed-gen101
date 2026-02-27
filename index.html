@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>myRSS Feed Gen | Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <h1>myRSS Feed Gen</h1>
+      <p class="muted">Login or create an account to save feeds and scrape sites.</p>
+    </header>
+
+    <section class="card">
+      <h2>API</h2>
+      <label class="row">
+        <span>Worker Base URL</span>
+        <input id="apiBase" type="url" placeholder="https://myrss-api.melkyw.workers.dev" />
+      </label>
+      <p class="muted small">Tip: set this once, it will be saved in your browser.</p>
+    </section>
+
+    <section class="grid2">
+      <div class="card">
+        <h2>Register</h2>
+        <label class="row">
+          <span>Email</span>
+          <input id="regEmail" type="email" placeholder="you@example.com" />
+        </label>
+        <label class="row">
+          <span>Password</span>
+          <input id="regPass" type="password" placeholder="Min 8 characters" />
+        </label>
+        <button id="btnRegister" class="btn primary">Create account</button>
+        <pre id="regOut" class="out"></pre>
+      </div>
+
+      <div class="card">
+        <h2>Login</h2>
+        <label class="row">
+          <span>Email</span>
+          <input id="logEmail" type="email" placeholder="you@example.com" />
+        </label>
+        <label class="row">
+          <span>Password</span>
+          <input id="logPass" type="password" placeholder="Your password" />
+        </label>
+        <button id="btnLogin" class="btn primary">Login</button>
+        <pre id="logOut" class="out"></pre>
+      </div>
+    </section>
+
+    <footer class="foot muted small">
+      Built for your Cloudflare Worker API.
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
