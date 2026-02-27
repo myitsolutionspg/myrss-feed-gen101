@@ -313,19 +313,43 @@ def main() -> None:
         except (HTTPError, URLError, ET.ParseError) as e:
             print(f"[WARN] Source failed: {name} {url} :: {e}", file=sys.stderr)
 
-    # De-dupe
-    seen: set[str] = set()
-    uniq: list[dict] = []
-    for it in all_items:
-        key = hash_id(it.get("guid", ""), it.get("link", ""))
-        if key in seen:
-            continue
-        seen.add(key)
-        uniq.append(it)
-
-    # Proper sort: newest first by parsed datetime
-    uniq.sort(key=lambda x: parse_rfc2822_to_dt(safe_text(x.get("pubDate"))), reverse=True)
-    uniq = uniq[:max_total]
+        # De-dupe (keep first occurrence)
+        seen: set[str] = set()
+        uniq: list[dict] = []
+        for it in all_items:
+            key = hash_id(it.get("guid", ""), it.get("link", ""))
+            if key in seen:
+                continue
+            seen.add(key)
+            uniq.append(it)
+        
+        # Group by source, sort each source newest-first
+        by_source: dict[str, list[dict]] = {}
+        for it in uniq:
+            src = safe_text(it.get("source")) or "Unknown"
+            by_source.setdefault(src, []).append(it)
+        
+        for src, arr in by_source.items():
+            arr.sort(key=lambda x: parse_rfc2822_to_dt(safe_text(x.get("pubDate"))), reverse=True)
+        
+        # Round-robin merge across sources (balanced feed)
+        sources_order = sorted(by_source.keys(), key=str.lower)  # stable order
+        merged: list[dict] = []
+        idx = 0
+        while len(merged) < max_total:
+            progressed = False
+            for src in sources_order:
+                arr = by_source.get(src, [])
+                if idx < len(arr):
+                    merged.append(arr[idx])
+                    progressed = True
+                    if len(merged) >= max_total:
+                        break
+            if not progressed:
+                break
+            idx += 1
+        
+        uniq = merged
 
     rss_bytes = build_rss(cfg, uniq)
     with open(out_path, "wb") as f:
