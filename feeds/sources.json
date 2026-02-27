@@ -2,7 +2,7 @@
   "title": "PNG Latest News - Master Feed",
   "site_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/",
   "feed_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/png-latest-news.xml",
-  "max_items_total": 120,
+  "max_items_total": 150,
   "sources": [
     { "name": "Act Now PNG", "url": "https://actnowpng.org/rss.xml" , "max_items": 15 },
     { "name": "Bougainville News", "url": "https://bougainvillenews.com/feed/" , "max_items": 15 },
