@@ -6,16 +6,16 @@
   "sources": [
     { "name": "Act Now PNG", "url": "https://actnowpng.org/rss.xml" , "max_items": 15 },
     { "name": "Bougainville News", "url": "https://bougainvillenews.com/feed/" , "max_items": 15 },
-    { "name": "Business Advantage PNG", "url": "https://www.businessadvantagepng.com/feed/" }, "max_items": 15 },
-    { "name": "Education News PNG", "url": "https://edunewspng.com/feed/" }, "max_items": 15 },
-    { "name": "Inside PNG", "url": "https://insidepng.com/feed/" }, "max_items": 15 },
-    { "name": "One Papua New Guinea", "url": "https://www.onepng.com/feeds/posts/default?alt=rss" }, "max_items": 15 },
-    { "name": "Pawa TV", "url": "https://watchpawatv.com/feed" }, "max_items": 15 },
-    { "name": "PNG Buzz", "url": "https://pngbuzz.com/feed" }, "max_items": 15 },
-    { "name": "PNG Facts", "url": "https://news.pngfacts.com/feeds/posts/default?alt=rss" }, "max_items": 15 },
-    { "name": "Post Courier", "url": "https://www.postcourier.com.pg/feed/" }, "max_items": 15 },
-    { "name": "The PNG Bulletin", "url": "https://thepngbulletin.com/feed/" }, "max_items": 15 },
-    { "name": "The PNG Sun", "url": "https://www.thepngsun.com/feed/" }, "max_items": 15 },
-    { "name": "Wantok Niuspepa", "url": "https://wantokniuspepa.com/index.php?format=feed&type=rss" }, "max_items": 15 }
+    { "name": "Business Advantage PNG", "url": "https://www.businessadvantagepng.com/feed/" , "max_items": 15 },
+    { "name": "Education News PNG", "url": "https://edunewspng.com/feed/" , "max_items": 15 },
+    { "name": "Inside PNG", "url": "https://insidepng.com/feed/" , "max_items": 15 },
+    { "name": "One Papua New Guinea", "url": "https://www.onepng.com/feeds/posts/default?alt=rss" , "max_items": 15 },
+    { "name": "Pawa TV", "url": "https://watchpawatv.com/feed" , "max_items": 15 },
+    { "name": "PNG Buzz", "url": "https://pngbuzz.com/feed" , "max_items": 15 },
+    { "name": "PNG Facts", "url": "https://news.pngfacts.com/feeds/posts/default?alt=rss" , "max_items": 15 },
+    { "name": "Post Courier", "url": "https://www.postcourier.com.pg/feed/" , "max_items": 15 },
+    { "name": "The PNG Bulletin", "url": "https://thepngbulletin.com/feed/" , "max_items": 15 },
+    { "name": "The PNG Sun", "url": "https://www.thepngsun.com/feed/" , "max_items": 15 },
+    { "name": "Wantok Niuspepa", "url": "https://wantokniuspepa.com/index.php?format=feed&type=rss" , "max_items": 15 }
   ]
 }
