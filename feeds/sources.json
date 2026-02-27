@@ -4,8 +4,8 @@
   "feed_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/png-latest-news.xml",
   "max_items_total": 120,
   "sources": [
-    { "name": "Act Now PNG", "url": "https://actnowpng.org/rss.xml" }, "max_items": 15 },
-    { "name": "Bougainville News", "url": "https://bougainvillenews.com/feed/" }, "max_items": 15 },
+    { "name": "Act Now PNG", "url": "https://actnowpng.org/rss.xml" , "max_items": 15 },
+    { "name": "Bougainville News", "url": "https://bougainvillenews.com/feed/" , "max_items": 15 },
     { "name": "Business Advantage PNG", "url": "https://www.businessadvantagepng.com/feed/" }, "max_items": 15 },
     { "name": "Education News PNG", "url": "https://edunewspng.com/feed/" }, "max_items": 15 },
     { "name": "Inside PNG", "url": "https://insidepng.com/feed/" }, "max_items": 15 },
