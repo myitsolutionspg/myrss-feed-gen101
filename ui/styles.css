@@ -118,3 +118,12 @@ input{
 .result a{color:#93c5fd;text-decoration:none}
 .result a:hover{text-decoration:underline}
 .foot{margin-top:10px}
+
+.feedRow{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  justify-content:space-between;
+}
+.feedLeft{flex:1; min-width:0;}
+.feedRight{flex:0 0 auto;}
