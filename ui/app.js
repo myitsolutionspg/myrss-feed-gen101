@@ -261,41 +261,44 @@ async function scrapeNow() {
   outEl.textContent = "";
   results.innerHTML = "";
 
+  // Reset "Save as Feed" state per scrape
+  lastScrapedInputUrl = "";
+  lastDetectedFeedUrl = "";
+  lastDetectedFeedTitle = "";
+
+  const btnSave = $("btnSaveScrapedAsFeed");
+  if (btnSave) {
+    btnSave.disabled = true;
+    btnSave.textContent = "Save as Feed";
+  }
+
   try {
     const url = $("scrapeUrl").value.trim();
-    const out = await api("/api/scrape", { method:"POST", body:{ url }, auth:true });
-
-    const btnSave = $("btnSaveScrapedAsFeed");
-    const detected = detectFeedUrl(url, out);
-    
-    lastDetectedFeedUrl = detected || "";
-    lastDetectedFeedTitle = guessTitleFromUrl(url);
-    
-    if (btnSave) {
-      btnSave.disabled = !lastDetectedFeedUrl;
-      btnSave.textContent = lastDetectedFeedUrl ? `Save Feed (${lastDetectedFeedUrl})` : "Save as Feed (no feed detected)";
-    }
-
-    // Reset "Save as Feed" state per scrape
     lastScrapedInputUrl = url;
-    lastDetectedFeedUrl = "";
-    lastDetectedFeedTitle = "";
-    const btnSave = $("btnSaveScrapedAsFeed");
-    if (btnSave) { btnSave.disabled = true; btnSave.textContent = "Save as Feed"; }
+
+    const out = await api("/api/scrape", { method: "POST", body: { url }, auth: true });
 
     // Detect a feed URL we can save
     const detected = detectFeedUrl(url, out);
     if (detected) {
       lastDetectedFeedUrl = detected;
       lastDetectedFeedTitle = guessTitleFromUrl(url);
-      if (btnSave) { btnSave.disabled = false; btnSave.textContent = "Save as Feed"; }
+
+      if (btnSave) {
+        btnSave.disabled = false;
+        btnSave.textContent = `Save Feed (${detected})`;
+      }
     } else {
-      if (btnSave) { btnSave.disabled = true; btnSave.textContent = "Save as Feed (no feed detected)"; }
+      if (btnSave) {
+        btnSave.disabled = true;
+        btnSave.textContent = "Save as Feed (no feed detected)";
+      }
     }
 
     // XML passthrough
     if (out.kind === "xml") {
-      outEl.textContent = "Returned XML (showing first 2000 chars):\n\n" + String(out.text || "").slice(0, 2000);
+      outEl.textContent =
+        "Returned XML (showing first 2000 chars):\n\n" + String(out.text || "").slice(0, 2000);
       return;
     }
 
@@ -316,7 +319,6 @@ async function scrapeNow() {
       img.decoding = "async";
       img.referrerPolicy = "no-referrer";
 
-      // If image missing, hide thumbnail box
       if (it.image && typeof it.image === "string" && it.image.startsWith("http")) {
         img.src = it.image;
       } else {
