@@ -178,7 +178,6 @@ async function initApp() {
   // Load initial
   refreshFeeds().catch(() => {});
 }
-
 async function refreshFeeds() {
   const list = $("feedsList");
   const outEl = $("feedsOut");
