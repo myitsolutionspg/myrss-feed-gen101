@@ -115,26 +115,40 @@ function initIndex() {
   }
 }
 
-function initApp() {
-  // Hard gate: require API base + token or go back to login
+async function initApp() {
+  // Hard gate: require API base + token
   const base = getApiBase();
   const token = getToken();
+
   if (!base || !token) {
-    location.href = "./index.html";
+    location.replace("./index.html");
     return;
   }
 
+  // Show base immediately
   const baseShow = $("apiBaseShow");
-  baseShow.textContent = base || "(not set)";
+  if (baseShow) baseShow.textContent = base;
+
+  // Validate token by pinging a protected endpoint
+  // If it fails, force logout and redirect to login
+  try {
+    await api("/api/feeds", { method: "GET", auth: true });
+  } catch (e) {
+    clearAuth();
+    location.replace("./index.html");
+    return;
+  }
+
+  // Wire UI after auth passes
   $("btnLogout")?.addEventListener("click", () => {
     clearAuth();
-    location.href = "./index.html";
+    location.replace("./index.html");
   });
 
   $("btnPing")?.addEventListener("click", async () => {
     $("pingOut").textContent = "";
     try {
-      const out = await api("/", { method:"GET" });
+      const out = await api("/", { method: "GET" });
       $("pingOut").textContent = pretty(out);
     } catch (e) {
       $("pingOut").textContent = String(e.message || e);
@@ -146,7 +160,7 @@ function initApp() {
     try {
       const title = $("feedTitle").value.trim();
       const url = $("feedUrl").value.trim();
-      const out = await api("/api/feeds", { method:"POST", body:{ title, url }, auth:true });
+      const out = await api("/api/feeds", { method: "POST", body: { title, url }, auth: true });
       $("feedsOut").textContent = pretty(out);
       await refreshFeeds();
     } catch (e) {
