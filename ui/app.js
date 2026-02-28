@@ -209,6 +209,21 @@ async function refreshFeeds() {
         </div>
       `;
       list.appendChild(li);
+
+      const btn = li.querySelector("[data-copy]");
+      btn?.addEventListener("click", async () => {
+        const u = btn.getAttribute("data-copy") || "";
+        try {
+          await navigator.clipboard.writeText(u);
+          const hint = li.querySelector("[data-copyhint]");
+          if (hint) hint.textContent = "Copied.";
+          setTimeout(() => { if (hint) hint.textContent = ""; }, 1200);
+        } catch {
+          const hint = li.querySelector("[data-copyhint]");
+          if (hint) hint.textContent = "Copy failed.";
+        }
+      });
+      
     }
   } catch (e) {
     outEl.textContent = String(e.message || e);
