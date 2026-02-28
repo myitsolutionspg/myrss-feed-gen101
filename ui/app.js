@@ -220,7 +220,8 @@ async function refreshFeeds() {
           setTimeout(() => { if (hint) hint.textContent = ""; }, 1200);
         } catch {
           const hint = li.querySelector("[data-copyhint]");
-          if (hint) hint.textContent = "Copy failed.";
+          if (hint) hint.textContent = "Copy blocked. Showing URL to copy.";
+          window.prompt("Copy this URL:", u);
         }
       });
       
