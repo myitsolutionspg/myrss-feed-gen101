@@ -1,10 +1,5 @@
 <!doctype html>
 <html lang="en">
-  <script>
-  if (location.hostname.startsWith("www.") && location.hostname.endsWith(".github.io")) {
-    location.replace(location.href.replace("://www.", "://"));
-  }
-</script>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -88,5 +83,12 @@
   </main>
 
   <script src="./app.js"></script>
+
+  <script>
+    if (location.hostname.startsWith("www.") && location.hostname.endsWith(".github.io")) {
+      location.replace(location.href.replace("://www.", "://"));
+    }
+  </script>
+  
 </body>
 </html>
