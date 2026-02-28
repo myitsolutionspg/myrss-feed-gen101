@@ -172,19 +172,23 @@ async function initApp() {
     }
   });
 
-    $("btnSaveScrapedAsFeed")?.addEventListener("click", async () => {
-    $("feedsOut").textContent = "";
+   $("btnSaveScrapedAsFeed")?.addEventListener("click", async () => {
+    const outEl = $("feedsOut");
+    if (outEl) outEl.textContent = "";
+  
     try {
-      if (!lastDetectedFeedUrl) throw new Error("No feed URL detected yet. Scrape first.");
-      const out = await api("/api/feeds", {
+      if (!lastDetectedFeedUrl) throw new Error("No feed URL detected yet. Click Scrape first.");
+  
+      const res = await api("/api/feeds", {
         method: "POST",
         body: { title: lastDetectedFeedTitle || "Saved Feed", url: lastDetectedFeedUrl },
         auth: true
       });
-      $("feedsOut").textContent = pretty(out);
+  
+      if (outEl) outEl.textContent = pretty(res);
       await refreshFeeds();
     } catch (e) {
-      $("feedsOut").textContent = String(e.message || e);
+      if (outEl) outEl.textContent = String(e.message || e);
     }
   });
 
@@ -260,6 +264,17 @@ async function scrapeNow() {
   try {
     const url = $("scrapeUrl").value.trim();
     const out = await api("/api/scrape", { method:"POST", body:{ url }, auth:true });
+
+    const btnSave = $("btnSaveScrapedAsFeed");
+    const detected = detectFeedUrl(url, out);
+    
+    lastDetectedFeedUrl = detected || "";
+    lastDetectedFeedTitle = guessTitleFromUrl(url);
+    
+    if (btnSave) {
+      btnSave.disabled = !lastDetectedFeedUrl;
+      btnSave.textContent = lastDetectedFeedUrl ? `Save Feed (${lastDetectedFeedUrl})` : "Save as Feed (no feed detected)";
+    }
 
     // Reset "Save as Feed" state per scrape
     lastScrapedInputUrl = url;
