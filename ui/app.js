@@ -5,6 +5,10 @@ const LS_EXPIRES = "myrss_expires_at";
 
 const $ = (id) => document.getElementById(id);
 
+let lastDetectedFeedUrl = "";
+let lastDetectedFeedTitle = "";
+let lastScrapedInputUrl = "";
+
 function getApiBase() {
   return (localStorage.getItem(LS_API) || "").trim().replace(/\/+$/, "");
 }
