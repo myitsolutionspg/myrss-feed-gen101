@@ -8,5 +8,10 @@
 </head>
 <body>
   <p></p>
+  <script>
+    if (location.hostname.startsWith("www.") && location.hostname.endsWith(".github.io")) {
+      location.replace(location.href.replace("://www.", "://"));
+    }
+  </script>
 </body>
 </html>
