@@ -172,6 +172,22 @@ async function initApp() {
     }
   });
 
+    $("btnSaveScrapedAsFeed")?.addEventListener("click", async () => {
+    $("feedsOut").textContent = "";
+    try {
+      if (!lastDetectedFeedUrl) throw new Error("No feed URL detected yet. Scrape first.");
+      const out = await api("/api/feeds", {
+        method: "POST",
+        body: { title: lastDetectedFeedTitle || "Saved Feed", url: lastDetectedFeedUrl },
+        auth: true
+      });
+      $("feedsOut").textContent = pretty(out);
+      await refreshFeeds();
+    } catch (e) {
+      $("feedsOut").textContent = String(e.message || e);
+    }
+  });
+
   $("btnRefreshFeeds")?.addEventListener("click", refreshFeeds);
   $("btnScrape")?.addEventListener("click", scrapeNow);
   $("btnClearResults")?.addEventListener("click", () => {
@@ -245,6 +261,23 @@ async function scrapeNow() {
     const url = $("scrapeUrl").value.trim();
     const out = await api("/api/scrape", { method:"POST", body:{ url }, auth:true });
 
+    // Reset "Save as Feed" state per scrape
+    lastScrapedInputUrl = url;
+    lastDetectedFeedUrl = "";
+    lastDetectedFeedTitle = "";
+    const btnSave = $("btnSaveScrapedAsFeed");
+    if (btnSave) { btnSave.disabled = true; btnSave.textContent = "Save as Feed"; }
+
+    // Detect a feed URL we can save
+    const detected = detectFeedUrl(url, out);
+    if (detected) {
+      lastDetectedFeedUrl = detected;
+      lastDetectedFeedTitle = guessTitleFromUrl(url);
+      if (btnSave) { btnSave.disabled = false; btnSave.textContent = "Save as Feed"; }
+    } else {
+      if (btnSave) { btnSave.disabled = true; btnSave.textContent = "Save as Feed (no feed detected)"; }
+    }
+
     // XML passthrough
     if (out.kind === "xml") {
       outEl.textContent = "Returned XML (showing first 2000 chars):\n\n" + String(out.text || "").slice(0, 2000);
@@ -300,3 +333,32 @@ function escapeAttr(s) {
   // basic safe attribute escaping
   return escapeHtml(s).replace(/"/g, "&quot;");
 }
+
+function detectFeedUrl(inputUrl, scrapeResponse) {
+  // If response is XML, user likely pasted an actual feed URL
+  if (scrapeResponse && scrapeResponse.kind === "xml") return inputUrl;
+
+  const u = String(inputUrl || "");
+  const lower = u.toLowerCase();
+
+  // If user pasted something feed-looking, accept it
+  if (lower.endsWith(".xml") || lower.includes("/feed") || lower.includes("rss")) return inputUrl;
+
+  // Otherwise try WordPress default
+  try {
+    const base = new URL(inputUrl);
+    return base.origin + "/feed/";
+  } catch {
+    return null;
+  }
+}
+
+function guessTitleFromUrl(inputUrl) {
+  try {
+    const u = new URL(inputUrl);
+    return u.hostname.replace(/^www\./, "");
+  } catch {
+    return "Saved Feed";
+  }
+}
+
