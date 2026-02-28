@@ -193,22 +193,21 @@ async function refreshFeeds() {
     for (const f of feeds) {
       const li = document.createElement("li");
       li.innerHTML = `
-li.innerHTML = `
-  <div class="feedRow">
-    <div class="feedLeft">
-      <div class="mono small muted">${escapeHtml(f.id)}</div>
-        <div><strong>${escapeHtml(f.title || "(no title)")}</strong></div>
-        <div class="mono small">
-          <a href="${escapeAttr(f.url)}" target="_blank" rel="noopener">${escapeHtml(f.url)}</a>
+        <div class="feedRow">
+          <div class="feedLeft">
+            <div class="mono small muted">${escapeHtml(f.id)}</div>
+            <div><strong>${escapeHtml(f.title || "(no title)")}</strong></div>
+            <div class="mono small">
+              <a href="${escapeAttr(f.url)}" target="_blank" rel="noopener">${escapeHtml(f.url)}</a>
+            </div>
+            <div class="muted small">${escapeHtml(f.created_at || "")}</div>
+            <div class="muted small copyHint" data-copyhint></div>
+          </div>
+          <div class="feedRight">
+            <button class="btn" data-copy="${escapeAttr(f.url)}">Copy URL</button>
+          </div>
         </div>
-        <div class="muted small">${escapeHtml(f.created_at || "")}</div>
-        <div class="muted small copyHint" data-copyhint></div>
-      </div>
-      <div class="feedRight">
-        <button class="btn" data-copy="${escapeAttr(f.url)}">Copy URL</button>
-      </div>
-    </div>
-  `;
+      `;
       list.appendChild(li);
     }
   } catch (e) {
