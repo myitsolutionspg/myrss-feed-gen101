@@ -229,10 +229,28 @@ async function refreshFeeds() {
           </div>
           <div class="feedRight">
             <button class="btn" data-copy="${escapeAttr(f.url)}">Copy URL</button>
+            <button class="btn" data-del="${escapeAttr(f.id)}">Delete</button>
           </div>
         </div>
       `;
       list.appendChild(li);
+
+      const del = li.querySelector("[data-del]");
+      del?.addEventListener("click", async () => {
+        const id = del.getAttribute("data-del") || "";
+        if (!id) return;
+      
+        // quick confirm to avoid accidents
+        if (!confirm("Delete this feed?")) return;
+      
+        try {
+          await api(`/api/feeds/${encodeURIComponent(id)}`, { method: "DELETE", auth: true });
+          await refreshFeeds();
+        } catch (e) {
+          const hint = li.querySelector("[data-copyhint]");
+          if (hint) hint.textContent = String(e.message || e);
+        }
+      });
 
       const btn = li.querySelector("[data-copy]");
       btn?.addEventListener("click", async () => {
