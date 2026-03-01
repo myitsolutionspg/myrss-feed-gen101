@@ -127,3 +127,17 @@ input{
 }
 .feedLeft{flex:1; min-width:0;}
 .feedRight{flex:0 0 auto;}
+
+/* Prevent long URLs from stretching the Results area */
+.results,
+.result,
+#scrapeOut,
+.out,
+.mono {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.out {
+  white-space: pre-wrap;   /* keep formatting but allow wrapping */
+}
