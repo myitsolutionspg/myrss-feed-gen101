@@ -342,7 +342,14 @@ async function scrapeNow() {
     // make sure generated URL reflects current dropdown state
     window.__generatedRssUrl = buildGeneratedRssUrl(url);
 
-    const out = await api("/api/scrape", { method: "POST", body: { url }, auth: true });
+    const max = parseInt(($("rssMax")?.value ?? "5"), 10) || 5;
+    const deep = ($("rssContent")?.value ?? "0") === "1"; // if you want content to influence scrape "depth"
+    
+    const out = await api("/api/scrape", {
+      method: "POST",
+      body: { url, deep: deep ? 1 : 0, deepMax: max },   // ✅ tell Worker to cap
+      auth: true
+    });
 
     // Detect a feed URL we can save
     const detected = detectFeedUrl(url, out);
@@ -371,6 +378,7 @@ async function scrapeNow() {
     }
 
     const items = out.items || [];
+    const items = (out.items || []).slice(0, max);
     if (!items.length) {
       results.innerHTML = `<div class="muted small">No items found.</div>`;
       return;
