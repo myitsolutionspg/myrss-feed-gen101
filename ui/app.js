@@ -135,6 +135,27 @@ async function initApp() {
   const baseShow = $("apiBaseShow");
   if (baseShow) baseShow.textContent = base;
 
+    // --- RSS options (SS01 controls) ---
+  const elRssContent = $("rssContent"); // <select id="rssContent">
+  const elRssMax     = $("rssMax");     // <select id="rssMax">
+
+  function refreshGeneratedRssUrl() {
+    const src = ($("scrapeUrl")?.value || "").trim();
+    const gen = buildGeneratedRssUrl(src);
+
+    // store latest (optional, but useful)
+    window.__generatedRssUrl = gen;
+
+    // show under Results for debugging (optional)
+    const out = $("scrapeOut");
+    if (out && gen) out.textContent = `Generated RSS:\n${gen}\n`;
+  }
+
+  // When the user changes max/content, update generated URL immediately
+  elRssContent?.addEventListener("change", refreshGeneratedRssUrl);
+  elRssMax?.addEventListener("change", refreshGeneratedRssUrl);
+  $("scrapeUrl")?.addEventListener("input", refreshGeneratedRssUrl);
+
   // Validate token by pinging a protected endpoint
   // If it fails, force logout and redirect to login
   try {
@@ -318,6 +339,9 @@ async function scrapeNow() {
     const url = $("scrapeUrl").value.trim();
     lastScrapedInputUrl = url;
 
+    // make sure generated URL reflects current dropdown state
+    window.__generatedRssUrl = buildGeneratedRssUrl(url);
+
     const out = await api("/api/scrape", { method: "POST", body: { url }, auth: true });
 
     // Detect a feed URL we can save
@@ -413,16 +437,20 @@ function detectFeedUrl(inputUrl, scrapeResponse) {
 }
 
 function buildGeneratedRssUrl(srcUrl) {
-  const content = (document.getElementById("rssContent")?.value || "0").trim();
-  const max = (document.getElementById("rssMax")?.value || "10").trim();
+  const base = (getApiBase() || "").replace(/\/+$/, ""); // ✅ use getApiBase()
+  const src = String(srcUrl || "").trim();
+  if (!base || !src) return "";
+
+  const content = ($("rssContent")?.value ?? "0").toString().trim(); // "0" or "1"
+  const max     = ($("rssMax")?.value ?? "10").toString().trim();    // "5","10","30"...
 
   const qs = new URLSearchParams();
-  qs.set("src", srcUrl);
+  qs.set("src", src);
   if (content === "1") qs.set("content", "1");
   if (max) qs.set("max", max);
 
-  return `${GENERATED_RSS_BASE}?${qs.toString()}`;
-}
+  return `${base}/rss?${qs.toString()}`;
+} 
 
 function guessTitleFromUrl(inputUrl) {
   try {
@@ -431,5 +459,17 @@ function guessTitleFromUrl(inputUrl) {
   } catch {
     return "Saved Feed";
   }
+}
+
+function refreshGeneratedRssUrl() {
+  const src = (document.getElementById("scrapeUrl")?.value || "").trim();
+  const gen = buildGeneratedRssUrl(src);
+
+  // Store it somewhere your Save button already uses:
+  window.__generatedRssUrl = gen;
+
+  // Optional: show it in the scrape output for easy verification
+  const out = document.getElementById("scrapeOut");
+  if (out) out.textContent = gen ? `Generated RSS:\n${gen}\n` : "";
 }
 
