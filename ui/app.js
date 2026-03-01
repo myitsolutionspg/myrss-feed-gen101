@@ -231,11 +231,33 @@ async function refreshFeeds() {
           </div>
           <div class="feedRight">
             <button class="btn" data-copy="${escapeAttr(f.url)}">Copy URL</button>
+            <button class="btn" data-rename="${escapeAttr(f.id)}" data-oldtitle="${escapeAttr(f.title || "")}">Rename</button>
             <button class="btn" data-del="${escapeAttr(f.id)}">Delete</button>
           </div>
         </div>
       `;
       list.appendChild(li);
+
+      const ren = li.querySelector("[data-rename]");
+      ren?.addEventListener("click", async () => {
+        const id = ren.getAttribute("data-rename") || "";
+        const oldTitle = ren.getAttribute("data-oldtitle") || "";
+        const newTitle = (prompt("Rename feed:", oldTitle) || "").trim();
+        if (!id) return;
+        if (!newTitle && oldTitle === "") return; // nothing to do
+      
+        try {
+          await api(`/api/feeds/${encodeURIComponent(id)}`, {
+            method: "PATCH",
+            body: { title: newTitle },
+            auth: true
+          });
+          await refreshFeeds();
+        } catch (e) {
+          const hint = li.querySelector("[data-copyhint]");
+          if (hint) hint.textContent = String(e.message || e);
+        }
+      });
 
       const del = li.querySelector("[data-del]");
       del?.addEventListener("click", async () => {
