@@ -413,7 +413,15 @@ function detectFeedUrl(inputUrl, scrapeResponse) {
 }
 
 function buildGeneratedRssUrl(srcUrl) {
-  return `${GENERATED_RSS_BASE}?src=${encodeURIComponent(srcUrl)}`;
+  const content = (document.getElementById("rssContent")?.value || "0").trim();
+  const max = (document.getElementById("rssMax")?.value || "10").trim();
+
+  const qs = new URLSearchParams();
+  qs.set("src", srcUrl);
+  if (content === "1") qs.set("content", "1");
+  if (max) qs.set("max", max);
+
+  return `${GENERATED_RSS_BASE}?${qs.toString()}`;
 }
 
 function guessTitleFromUrl(inputUrl) {
