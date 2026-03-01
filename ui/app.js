@@ -377,13 +377,17 @@ async function scrapeNow() {
       return;
     }
 
-    const items = out.items || [];
+    // Read UI values (now that the IDs exist in app.html)
+    const max = Math.max(1, parseInt($("rssMax")?.value ?? "10", 10) || 10);
+    
+    // Render only up to max
     const items = (out.items || []).slice(0, max);
+    
     if (!items.length) {
       results.innerHTML = `<div class="muted small">No items found.</div>`;
       return;
     }
-
+    
     for (const it of items) {
       const div = document.createElement("div");
       div.className = "result";
@@ -449,8 +453,8 @@ function buildGeneratedRssUrl(srcUrl) {
   const src = String(srcUrl || "").trim();
   if (!base || !src) return "";
 
-  const content = ($("rssContent")?.value ?? "0").toString().trim(); // "0" or "1"
-  const max     = ($("rssMax")?.value ?? "10").toString().trim();    // "5","10","30"...
+  const content = ($("rssContent")?.value ?? "0").trim();
+  const max     = ($("rssMax")?.value ?? "10").trim();
 
   const qs = new URLSearchParams();
   qs.set("src", src);
