@@ -5,6 +5,8 @@ const LS_EXPIRES = "myrss_expires_at";
 
 const $ = (id) => document.getElementById(id);
 
+const GENERATED_RSS_BASE = "https://myrss-api.melkyw.workers.dev/rss";
+
 let lastDetectedFeedUrl = "";
 let lastDetectedFeedTitle = "";
 let lastScrapedInputUrl = "";
@@ -304,7 +306,9 @@ async function scrapeNow() {
 
       if (btnSave) {
         btnSave.disabled = false;
-        btnSave.textContent = `Save Feed (${detected})`;
+        btnSave.textContent = detected.startsWith(GENERATED_RSS_BASE)
+          ? "Save Feed (Generated RSS)"
+          : `Save Feed (${detected})`;
       }
     } else {
       if (btnSave) {
@@ -370,22 +374,24 @@ function escapeAttr(s) {
 }
 
 function detectFeedUrl(inputUrl, scrapeResponse) {
-  // If response is XML, user likely pasted an actual feed URL
-  if (scrapeResponse && scrapeResponse.kind === "xml") return inputUrl;
+  const u = String(inputUrl || "").trim();
+  if (!u) return null;
 
-  const u = String(inputUrl || "");
+  // If response is XML, user already provided a feed URL
+  if (scrapeResponse && scrapeResponse.kind === "xml") return u;
+
   const lower = u.toLowerCase();
 
-  // If user pasted something feed-looking, accept it
-  if (lower.endsWith(".xml") || lower.includes("/feed") || lower.includes("rss")) return inputUrl;
+  // If user pasted a feed-looking URL, accept it
+  if (lower.endsWith(".xml") || lower.includes("/feed") || lower.includes("rss")) return u;
 
-  // Otherwise try WordPress default
-  try {
-    const base = new URL(inputUrl);
-    return base.origin + "/feed/";
-  } catch {
-    return null;
-  }
+  // Otherwise generate a Worker RSS URL for this source site
+  // (works for sites without RSS like nbc.com.pg)
+  return buildGeneratedRssUrl(u);
+}
+
+function buildGeneratedRssUrl(srcUrl) {
+  return `${GENERATED_RSS_BASE}?src=${encodeURIComponent(srcUrl)}`;
 }
 
 function guessTitleFromUrl(inputUrl) {
