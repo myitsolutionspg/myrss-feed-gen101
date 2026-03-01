@@ -336,18 +336,21 @@ async function scrapeNow() {
   }
 
   try {
-    const url = $("scrapeUrl").value.trim();
+    const url = $("scrapeUrl")?.value.trim() || "";
+    if (!url) throw new Error("Enter a URL to scrape.");
     lastScrapedInputUrl = url;
 
-    // make sure generated URL reflects current dropdown state
+    // Always compute the generated RSS URL based on current dropdowns
     window.__generatedRssUrl = buildGeneratedRssUrl(url);
 
-    const max = parseInt(($("rssMax")?.value ?? "5"), 10) || 5;
-    const deep = ($("rssContent")?.value ?? "0") === "1"; // if you want content to influence scrape "depth"
-    
+    // Read UI controls once
+    const max = Math.max(1, parseInt($("rssMax")?.value ?? "10", 10) || 10);
+    const includeContent = ($("rssContent")?.value ?? "0") === "1";
+
+    // Call scrape API (Worker returns up to ~40, we will slice on UI)
     const out = await api("/api/scrape", {
       method: "POST",
-      body: { url, deep: deep ? 1 : 0, deepMax: max },   // ✅ tell Worker to cap
+      body: { url, deep: includeContent ? 1 : 0, deepMax: max },
       auth: true
     });
 
@@ -377,17 +380,14 @@ async function scrapeNow() {
       return;
     }
 
-    // Read UI values (now that the IDs exist in app.html)
-    const max = Math.max(1, parseInt($("rssMax")?.value ?? "10", 10) || 10);
-    
     // Render only up to max
     const items = (out.items || []).slice(0, max);
-    
+
     if (!items.length) {
       results.innerHTML = `<div class="muted small">No items found.</div>`;
       return;
     }
-    
+
     for (const it of items) {
       const div = document.createElement("div");
       div.className = "result";
