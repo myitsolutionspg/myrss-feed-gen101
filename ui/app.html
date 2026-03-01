@@ -66,6 +66,29 @@
         <button id="btnScrape" class="btn primary">Scrape</button>
         <button id="btnSaveScrapedAsFeed" class="btn" disabled>Save as Feed</button>
 
+        <div class="flex">
+          <label class="row" style="min-width:220px">
+            <span>Include content</span>
+            <select id="rssContent">
+              <option value="0" selected>0 (titles only)</option>
+              <option value="1">1 (include content)</option>
+            </select>
+          </label>
+        
+          <label class="row" style="min-width:220px">
+            <span>Max items</span>
+            <select id="rssMax">
+              <option>5</option>
+              <option selected>10</option>
+              <option>15</option>
+              <option>20</option>
+              <option>30</option>
+              <option>50</option>
+              <option>60</option>
+            </select>
+          </label>
+        </div>
+
         <div class="divider"></div>
 
         <div class="flex">
