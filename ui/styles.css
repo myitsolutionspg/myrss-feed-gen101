@@ -43,45 +43,6 @@ body{
   gap: 18px; /* match your grid2 gap if different */
 }
 
-.results{
-  scrollbar-gutter: stable;
-}
-
-/* Saved feeds list: scrollable */
-#feedsList.list{
-  max-height: min(60vh, 560px);
-  overflow-y: auto;
-  padding-right: 8px;
-}
-
-/* Scrollbars: Results + Saved Feeds (Chrome/Edge) */
-.results::-webkit-scrollbar,
-#feedsList::-webkit-scrollbar{
-  width: 10px;
-}
-.results::-webkit-scrollbar-track,
-#feedsList::-webkit-scrollbar-track{
-  background: #0f172a;
-  border-radius: 10px;
-}
-.results::-webkit-scrollbar-thumb,
-#feedsList::-webkit-scrollbar-thumb{
-  background: #334155;
-  border-radius: 10px;
-  border: 2px solid #0f172a;
-}
-.results::-webkit-scrollbar-thumb:hover,
-#feedsList::-webkit-scrollbar-thumb:hover{
-  background: #475569;
-}
-
-/* Firefox */
-.results,
-#feedsList{
-  scrollbar-width: thin;
-  scrollbar-color: #334155 #0f172a;
-}
-
 /* Results header spacing */
 .resultsHeader{
   margin-bottom: 12px; /* increase/decrease as you like */
@@ -150,15 +111,61 @@ input{
 }
 .list a{color:#93c5fd;text-decoration:none}
 .list a:hover{text-decoration:underline}
-.results{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
 
-  max-height: min(60vh, 560px);
-    overflow-y: auto;
-    padding-right: 8px;
-  }
+/* ===== SCROLL AREAS ===== */
+
+/* Scrape results: taller + scroll */
+#results.results{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* taller scroll area (about 3–5 cards depending on screen) */
+  max-height: 560px;        /* change to 620px / 700px if you want taller */
+  overflow-y: auto;
+
+  padding-right: 10px;
+  scrollbar-gutter: stable;
+  min-height: 0;
+}
+
+/* Saved feeds: scrollable list */
+#feedsList.list{
+  max-height: 460px;        /* change to 520px / 600px if you want taller */
+  overflow-y: auto;
+
+  padding-right: 10px;
+  scrollbar-gutter: stable;
+  min-height: 0;
+}
+
+/* ===== SCROLLBAR THEME (Chrome/Edge) ===== */
+#results::-webkit-scrollbar,
+#feedsList::-webkit-scrollbar{
+  width: 12px;
+}
+#results::-webkit-scrollbar-track,
+#feedsList::-webkit-scrollbar-track{
+  background: #0f172a;
+  border-radius: 10px;
+}
+#results::-webkit-scrollbar-thumb,
+#feedsList::-webkit-scrollbar-thumb{
+  background: #334155;
+  border-radius: 10px;
+  border: 2px solid #0f172a;
+}
+#results::-webkit-scrollbar-thumb:hover,
+#feedsList::-webkit-scrollbar-thumb:hover{
+  background: #475569;
+}
+
+/* Firefox */
+#results,
+#feedsList{
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #0f172a;
+}
 
 .result{
   border:1px solid var(--line);
