@@ -53,7 +53,7 @@ body{
 
 /* centered login card */
 .card.narrow{
-  max-width: 860px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
