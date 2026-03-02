@@ -28,11 +28,14 @@ body{
   border-radius:14px;
   padding:16px;
   margin-bottom:16px;
+  display: flex;          /* ✅ add */
+  flex-direction: column; /* ✅ add */
 }
 .grid2{
   display:grid;
   grid-template-columns:1fr;
   gap:16px;
+  align-items: stretch; /* ✅ add this */
 }
 @media (min-width: 900px){
   .grid2{grid-template-columns:1fr 1fr;}
