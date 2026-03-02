@@ -47,27 +47,39 @@ body{
   scrollbar-gutter: stable;
 }
 
-/* Make Results scrollbar visible (Chrome/Edge) */
-.results::-webkit-scrollbar{
+/* Saved feeds list: scrollable */
+#feedsList.list{
+  max-height: min(60vh, 560px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Scrollbars: Results + Saved Feeds (Chrome/Edge) */
+.results::-webkit-scrollbar,
+#feedsList::-webkit-scrollbar{
   width: 10px;
 }
-.results::-webkit-scrollbar-track{
-  background: #0f172a;           /* dark track */
+.results::-webkit-scrollbar-track,
+#feedsList::-webkit-scrollbar-track{
+  background: #0f172a;
   border-radius: 10px;
 }
-.results::-webkit-scrollbar-thumb{
-  background: #334155;           /* visible thumb */
+.results::-webkit-scrollbar-thumb,
+#feedsList::-webkit-scrollbar-thumb{
+  background: #334155;
   border-radius: 10px;
-  border: 2px solid #0f172a;     /* creates spacing */
+  border: 2px solid #0f172a;
 }
-.results::-webkit-scrollbar-thumb:hover{
+.results::-webkit-scrollbar-thumb:hover,
+#feedsList::-webkit-scrollbar-thumb:hover{
   background: #475569;
 }
 
 /* Firefox */
-.results{
+.results,
+#feedsList{
   scrollbar-width: thin;
-  scrollbar-color: #334155 #0f172a;  /* thumb track */
+  scrollbar-color: #334155 #0f172a;
 }
 
 /* Results header spacing */
