@@ -100,14 +100,23 @@ function initIndex() {
     $("logOut").textContent = "";
     try {
       setApiBase(apiBase.value);
+  
       const email = $("logEmail").value.trim();
       const password = $("logPass").value;
-
-      const out = await api("/api/login", { method:"POST", body:{ email, password } });
+  
+      // ✅ NEW: read the authenticator code input
+      // Make sure your index.html has: <input id="logCode" ... >
+      const code = ($("logCode")?.value || "").trim();
+  
+      // ✅ NEW: send code (worker accepts body.code or body.otp)
+      const out = await api("/api/login", {
+        method: "POST",
+        body: { email, password, code }
+      });
+  
       setToken(out.token, out.expires_at);
       $("logOut").textContent = pretty(out);
-
-      // go to app
+  
       location.href = "./app.html";
     } catch (e) {
       $("logOut").textContent = String(e.message || e);
