@@ -124,7 +124,7 @@ input{
   gap: 10px;
 
   /* taller scroll area (about 3–5 cards depending on screen) */
-  max-height: 4600px;        /* change to 620px / 700px if you want taller */
+  max-height: 460px;        /* change to 620px / 700px if you want taller */
   overflow-y: auto;
 
   padding-right: 10px;
