@@ -25,28 +25,61 @@
     <section class="grid2">
       <div class="card">
         <h2>Register</h2>
+
         <label class="row">
           <span>Email</span>
-          <input id="regEmail" type="email" placeholder="you@example.com" />
+          <input id="regEmail" type="email" placeholder="you@example.com" autocomplete="email" />
         </label>
+
         <label class="row">
           <span>Password</span>
-          <input id="regPass" type="password" placeholder="Min 8 characters" />
+          <input id="regPass" type="password" placeholder="Create a strong password" autocomplete="new-password" />
         </label>
-        <button id="btnRegister" class="btn primary">Create account</button>
+
+        <div class="muted small" style="margin-top:8px; line-height:1.4;">
+          Password rules:
+          <ul style="margin:6px 0 0 18px;">
+            <li>At least 12 characters</li>
+            <li>Uppercase + lowercase</li>
+            <li>At least one number</li>
+            <li>At least one symbol</li>
+          </ul>
+        </div>
+
+        <button id="btnRegister" class="btn primary" style="margin-top:10px;">Create account</button>
         <pre id="regOut" class="out"></pre>
       </div>
 
       <div class="card">
         <h2>Login</h2>
+
         <label class="row">
           <span>Email</span>
-          <input id="logEmail" type="email" placeholder="you@example.com" />
+          <input id="logEmail" type="email" placeholder="you@example.com" autocomplete="email" />
         </label>
+
         <label class="row">
           <span>Password</span>
-          <input id="logPass" type="password" placeholder="Your password" />
+          <input id="logPass" type="password" placeholder="Your password" autocomplete="current-password" />
         </label>
+
+        <label class="row">
+          <span>Authenticator code</span>
+          <input
+            id="logMfa"
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="6"
+            placeholder="6-digit code (only if MFA enabled)"
+            autocomplete="one-time-code"
+          />
+        </label>
+
+        <p class="muted small" style="margin-top:6px;">
+          If your account has MFA enabled, enter the 6-digit code from Microsoft Authenticator or Google Authenticator.
+        </p>
+
         <button id="btnLogin" class="btn primary">Login</button>
         <pre id="logOut" class="out"></pre>
       </div>
@@ -60,10 +93,9 @@
   <script src="./app.js?v=20260228-1"></script>
 
   <script>
-  if (location.hostname.startsWith("www.") && location.hostname.endsWith(".github.io")) {
-    location.replace(location.href.replace("://www.", "://"));
-  }
-</script>
-  
+    if (location.hostname.startsWith("www.") && location.hostname.endsWith(".github.io")) {
+      location.replace(location.href.replace("://www.", "://"));
+    }
+  </script>
 </body>
 </html>
