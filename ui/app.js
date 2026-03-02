@@ -104,11 +104,10 @@ function initIndex() {
       const email = $("logEmail").value.trim();
       const password = $("logPass").value;
   
-      // ✅ NEW: read the authenticator code input
-      // Make sure your index.html has: <input id="logCode" ... >
-      const code = ($("logCode")?.value || "").trim();
+      // ✅ read MFA input from index.html
+      const code = ($("logMfa")?.value || "").trim();
   
-      // ✅ NEW: send code (worker accepts body.code or body.otp)
+      // ✅ send code (worker accepts body.code or body.otp)
       const out = await api("/api/login", {
         method: "POST",
         body: { email, password, code }
