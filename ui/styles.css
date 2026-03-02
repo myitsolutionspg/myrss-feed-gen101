@@ -43,6 +43,17 @@ body{
   gap: 18px; /* match your grid2 gap if different */
 }
 
+/* Results list: show ~2 cards worth, then scroll */
+.results{
+  max-height: 320px;      /* tweak until it's about 2 cards on your screen */
+  overflow-y: auto;
+  padding-right: 6px;     /* prevents scrollbar overlay feeling tight */
+}
+
+/* Optional: nicer scroll bar spacing on Windows */
+.results::-webkit-scrollbar{ width: 10px; }
+.results::-webkit-scrollbar-thumb{ border-radius: 10px; }
+
 /* Results header spacing */
 .resultsHeader{
   margin-bottom: 12px; /* increase/decrease as you like */
