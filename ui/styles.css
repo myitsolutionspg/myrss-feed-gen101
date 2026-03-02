@@ -43,6 +43,11 @@ body{
   gap: 18px; /* match your grid2 gap if different */
 }
 
+/* Results header spacing */
+.resultsHeader{
+  margin-bottom: 12px; /* increase/decrease as you like */
+}
+
 /* centered login card */
 .card.narrow{
   max-width: 860px;
