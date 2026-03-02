@@ -43,6 +43,10 @@ body{
   gap: 18px; /* match your grid2 gap if different */
 }
 
+.results{
+  scrollbar-gutter: stable;
+}
+
 /* Optional: nicer scroll bar spacing on Windows */
 .results::-webkit-scrollbar{ width: 10px; }
 .results::-webkit-scrollbar-thumb{ border-radius: 10px; }
