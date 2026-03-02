@@ -143,7 +143,7 @@ input{
   flex-direction:column;
   gap:10px;
 
-  max-height: 320px;   /* ~2 cards, tweak if needed */
+  max-height: 620px;   /* ~2 cards, tweak if needed */
   overflow-y: auto;
   padding-right: 6px;
 }
