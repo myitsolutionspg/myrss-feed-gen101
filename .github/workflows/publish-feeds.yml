@@ -31,7 +31,20 @@ jobs:
           WORKER_BASE: ${{ secrets.WORKER_BASE }}
         run: node tools/publish-feeds.mjs
 
+      - name: Stop if no feed changes
+        id: diffcheck
+        run: |
+          git status --porcelain
+          if git diff --quiet -- feeds; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+            echo "No feed changes. Exiting."
+          else
+            echo "no_changes=false" >> $GITHUB_OUTPUT
+            echo "Feed changes detected."
+          fi
+
       - name: Create Pull Request (feeds update)
+        if: steps.diffcheck.outputs.no_changes != 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
