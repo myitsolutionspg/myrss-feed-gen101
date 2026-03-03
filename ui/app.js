@@ -538,6 +538,32 @@ async function refreshFeeds() {
   }
 }
 
+function prettyTitleFromLink(link) {
+  try {
+    const u = new URL(link);
+    const last = u.pathname.split("/").filter(Boolean).pop() || "";
+    const clean = decodeURIComponent(last)
+      .replace(/\.(html|htm|php|aspx?)$/i, "")   // strip common extensions
+      .replace(/[-_]+/g, " ")                   // hyphens/underscores -> spaces
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (!clean) return link;
+
+    // Title-case lightly (optional)
+    return clean.replace(/\b\w/g, (c) => c.toUpperCase());
+  } catch {
+    return link;
+  }
+}
+
+function displayTitle(it) {
+  const t = (it?.title || "").toString().trim();
+  // If title is empty OR looks like a URL, fall back to link-based title
+  if (!t || /^https?:\/\//i.test(t)) return prettyTitleFromLink(it?.link || "");
+  return t;
+}
+
 async function scrapeNow() {
   const outEl = $("scrapeOut");
   const results = $("results");
@@ -627,7 +653,7 @@ async function scrapeNow() {
 
       const body = document.createElement("div");
       body.innerHTML = `
-        <h4>${escapeHtml(it.title || "(no title)")}</h4>
+        <h4>${escapeHtml(displayTitle(it))}</h4>
         <div><a href="${escapeAttr(it.link)}" target="_blank" rel="noopener">Open article</a></div>
         ${it.image ? `<div class="muted small mono">${escapeHtml(it.image)}</div>` : `<div class="muted small">No image detected</div>`}
       `;
@@ -705,3 +731,20 @@ function refreshGeneratedRssUrl() {
   if (out) out.textContent = gen ? `Generated RSS:\n${gen}\n` : "";
 }
 
+function looksLikeUrlText(t) {
+  const s = String(t || "").trim().toLowerCase();
+  return s.startsWith("http://") || s.startsWith("https://") || s.includes("://") || (s.includes("www.") && s.includes("/"));
+}
+
+function prettyTitleFromUrl(u) {
+  try {
+    const x = new URL(u);
+    const parts = x.pathname.split("/").filter(Boolean);
+    const last = parts[parts.length - 1] || x.hostname;
+    const nice = decodeURIComponent(last).replace(/[-_]+/g, " ").trim();
+    // Capitalize first letter
+    return nice ? (nice[0].toUpperCase() + nice.slice(1)) : x.hostname;
+  } catch {
+    return "Open article";
+  }
+}
