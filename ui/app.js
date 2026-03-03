@@ -261,6 +261,9 @@ async function refreshFeeds() {
           <div class="feedRight">
             <button class="btn" data-copy="${escapeAttr(f.url)}">Copy URL</button>
             <button class="btn" data-rename="${escapeAttr(f.id)}" data-oldtitle="${escapeAttr(f.title || "")}">Rename</button>
+            <button class="btn" data-pub="${escapeAttr(f.id)}" data-published="${escapeAttr(String(f.published||0))}" data-title="${escapeAttr(f.title||"")}" data-slug="${escapeAttr(f.slug||"")}">
+              ${f.published ? "Unpublish" : "Publish"}
+            </button>
             <button class="btn" data-del="${escapeAttr(f.id)}">Delete</button>
           </div>
         </div>
@@ -319,6 +322,51 @@ async function refreshFeeds() {
           window.prompt("Copy this URL:", u);
         }
       });
+
+      const pub = li.querySelector("[data-pub]");
+      pub?.addEventListener("click", async () => {
+        const id = pub.getAttribute("data-pub") || "";
+        const isPublished = (pub.getAttribute("data-published") || "0") === "1";
+        const title = pub.getAttribute("data-title") || "";
+        const currentSlug = pub.getAttribute("data-slug") || "";
+      
+        if (!id) return;
+      
+        // slug prompt only when publishing
+        let slug = currentSlug;
+        if (!isPublished) {
+          slug = (prompt("Publish slug (used in GitHub Pages URL):", slug || slugify(title) || "feed") || "").trim();
+          slug = slugify(slug);
+          if (!slug) return;
+      
+          // show the final URL to user
+          alert(`Will publish as:\nhttps://myitsolutionspg.github.io/myrss-feed-gen101/feeds/${slug}.xml`);
+        }
+      
+        try {
+          await api(`/api/feeds/${encodeURIComponent(id)}`, {
+            method: "PATCH",
+            body: isPublished ? { published: 0 } : { published: 1, slug },
+            auth: true
+          });
+          await refreshFeeds();
+        } catch (e) {
+          const hint = li.querySelector("[data-copyhint]");
+          if (hint) hint.textContent = String(e.message || e);
+        }
+      });
+      
+      // helper
+      function slugify(s) {
+        return String(s || "")
+          .toLowerCase()
+          .trim()
+          .replace(/^https?:\/\//, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/-+/g, "-")
+          .replace(/^-|-$/g, "")
+          .slice(0, 60);
+      }
       
     }
   } catch (e) {
