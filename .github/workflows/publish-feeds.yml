@@ -39,3 +39,5 @@ jobs:
             feeds/**
           labels: |
             automation
+          update-branch: true
+          delete-branch: true
