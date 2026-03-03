@@ -512,6 +512,12 @@ async function refreshFeeds() {
           const hint = li.querySelector("[data-copyhint]");
           if (hint) hint.textContent = String(e.message || e);
         }
+        const hint = li.querySelector("[data-copyhint]");
+        if (hint) {
+          hint.innerHTML =
+            `Published. Pages updates within 30 minutes. ` +
+            `<a href="https://github.com/myitsolutionspg/myrss-feed-gen101/actions/workflows/publish-feeds.yml" target="_blank" rel="noopener">Run now</a>`;
+        }
       });
       
       // helper
