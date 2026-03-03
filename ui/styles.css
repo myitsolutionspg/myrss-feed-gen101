@@ -293,13 +293,13 @@ input{
 .moreItem.danger{ color: #fca5a5; }
 .moreSep{ height:1px; background: var(--line); margin:6px 0; }
 
-/* Keep Generated RSS / outputs compact */
-#scrapeOut.out{
-  max-height: 110px;     /* adjust: 90–160 */
-  overflow: auto;
-  white-space: pre-wrap; /* wrap long URLs */
-  word-break: break-word;
+/* Keep Generated RSS / outputs compact + wrapped */
+#scrapeOut{
+  max-height: 110px;         /* keeps card from growing */
+  overflow: auto;            /* scroll inside if long */
+  white-space: pre-wrap;     /* wrap long URLs */
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .out{
@@ -309,3 +309,5 @@ input{
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
+
