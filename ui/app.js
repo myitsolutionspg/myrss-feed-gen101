@@ -326,6 +326,19 @@ async function refreshFeeds() {
         }
       });
 
+      const btnPages = li.querySelector("[data-copypages]");
+      btnPages?.addEventListener("click", async () => {
+        const u = btnPages.getAttribute("data-copypages") || "";
+        try {
+          await navigator.clipboard.writeText(u);
+          const hint = li.querySelector("[data-copyhint]");
+          if (hint) hint.textContent = "Pages URL copied.";
+          setTimeout(() => { if (hint) hint.textContent = ""; }, 1200);
+        } catch {
+          window.prompt("Copy this Pages URL:", u);
+        }
+      });
+
       const pub = li.querySelector("[data-pub]");
       pub?.addEventListener("click", async () => {
         const id = pub.getAttribute("data-pub") || "";
