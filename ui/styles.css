@@ -263,3 +263,32 @@ input{
 #btnSaveScrapedAsFeed{
   margin-top: 12px;
 }
+
+/* ===== More dropdown ===== */
+.moreWrap{ position:relative; display:inline-block; }
+.moreMenu{
+  position:absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  z-index: 50;
+}
+.moreMenu[hidden]{ display:none; }
+.moreItem{
+  width:100%;
+  text-align:left;
+  padding:10px 10px;
+  border-radius:10px;
+  border:0;
+  background: transparent;
+  color: var(--text);
+  cursor:pointer;
+}
+.moreItem:hover{ background:#0f172a; }
+.moreItem.danger{ color: #fca5a5; }
+.moreSep{ height:1px; background: var(--line); margin:6px 0; }
