@@ -1,15 +1,9 @@
 [
   {
     "slug": "nbc",
-    "title": "NBC",
+    "title": "nbc.com.pg",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/nbc.xml",
-    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.nbc.com.pg&content=1&max=10"
-  },
-  {
-    "slug": "the-png-sun",
-    "title": "The PNG Sun",
-    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/the-png-sun.xml",
-    "source_url": "https://www.thepngsun.com/feed"
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.nbc.com.pg&content=1&max=15"
   },
   {
     "slug": "thenational",
