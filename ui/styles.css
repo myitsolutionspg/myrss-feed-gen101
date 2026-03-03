@@ -243,3 +243,8 @@ input{
 .out {
   white-space: pre-wrap;   /* keep formatting but allow wrapping */
 }
+
+/* Gap between Scrape + Save buttons */
+#btnSaveScrapedAsFeed{
+  margin-top: 12px;
+}
