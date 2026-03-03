@@ -181,6 +181,16 @@ async function initApp() {
     return;
   }
 
+  let __moreOutsideBound = false;
+  function bindMoreOutsideCloser() {
+    if (__moreOutsideBound) return;
+    __moreOutsideBound = true;
+    document.addEventListener("click", () => {
+      document.querySelectorAll("[data-moremnu]").forEach(m => m.hidden = true);
+      document.querySelectorAll("[data-morebtn]").forEach(b => b.setAttribute("aria-expanded", "false"));
+    });
+  }
+
   // Wire UI after auth passes
   $("btnLogout")?.addEventListener("click", () => {
     clearAuth();
@@ -196,6 +206,8 @@ async function initApp() {
       $("pingOut").textContent = String(e.message || e);
     }
   });
+
+  bindMoreOutsideCloser();
 
   $("btnAddFeed")?.addEventListener("click", async () => {
     $("feedsOut").textContent = "";
@@ -258,22 +270,42 @@ async function refreshFeeds() {
         <div class="feedRow">
           <!-- TOP: buttons -->
           <div class="feedActions">
-            <button class="btn" data-copy="${escapeAttr(f.url)}">Copy URL</button>
-            <button class="btn" data-rename="${escapeAttr(f.id)}" data-oldtitle="${escapeAttr(f.title || "")}">Rename</button>
-      
-            <button class="btn"
-              data-pub="${escapeAttr(f.id)}"
-              data-published="${escapeAttr(String(f.published || 0))}"
-              data-title="${escapeAttr(f.title || "")}"
-              data-slug="${escapeAttr(f.slug || "")}">
-              ${f.published ? "Unpublish" : "Publish"}
-            </button>
-      
-            ${(f.published && f.slug) ? `
+            ${ (f.published && f.slug) ? `
               <button class="btn" data-copypages="${escapeAttr(pagesUrlFor(f.slug))}">Copy Pages URL</button>
-            ` : ""}
-      
-            <button class="btn" data-del="${escapeAttr(f.id)}">Delete</button>
+              <button class="btn"
+                data-pub="${escapeAttr(f.id)}"
+                data-published="${escapeAttr(String(f.published||0))}"
+                data-title="${escapeAttr(f.title||"")}"
+                data-slug="${escapeAttr(f.slug||"")}">Unpublish</button>
+            ` : `
+              <button class="btn"
+                data-pub="${escapeAttr(f.id)}"
+                data-published="${escapeAttr(String(f.published||0))}"
+                data-title="${escapeAttr(f.title||"")}"
+                data-slug="${escapeAttr(f.slug||"")}">Publish</button>
+            `}
+          
+            <div class="moreWrap">
+              <button class="btn" type="button"
+                data-morebtn
+                aria-haspopup="menu"
+                aria-expanded="false">
+                More ▾
+              </button>
+          
+              <div class="moreMenu" data-moremnu hidden role="menu">
+                <button class="moreItem" type="button" role="menuitem" data-rename="${escapeAttr(f.id)}" data-oldtitle="${escapeAttr(f.title || "")}">
+                  Rename
+                </button>
+                <button class="moreItem" type="button" role="menuitem" data-copy="${escapeAttr(f.url)}">
+                  Copy Worker URL
+                </button>
+                <div class="moreSep"></div>
+                <button class="moreItem danger" type="button" role="menuitem" data-del="${escapeAttr(f.id)}">
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
       
           <!-- BELOW: content -->
@@ -299,6 +331,92 @@ async function refreshFeeds() {
         </div>
       `;
       list.appendChild(li);
+
+      // ----- More dropdown wiring (per <li>) -----
+      const moreBtn = li.querySelector("[data-morebtn]");
+      const moreMenu = li.querySelector("[data-moremnu]");
+      
+      function closeMenu() {
+        if (!moreMenu || !moreBtn) return;
+        moreMenu.hidden = true;
+        moreBtn.setAttribute("aria-expanded", "false");
+      }
+      
+      function openMenu() {
+        if (!moreMenu || !moreBtn) return;
+      
+        // Close any other open menus
+        document.querySelectorAll("[data-moremnu]").forEach(m => {
+          if (m !== moreMenu) m.hidden = true;
+        });
+        document.querySelectorAll("[data-morebtn]").forEach(b => {
+          if (b !== moreBtn) b.setAttribute("aria-expanded", "false");
+        });
+      
+        moreMenu.hidden = false;
+        moreBtn.setAttribute("aria-expanded", "true");
+      
+        // Focus first menu item for keyboard use
+        const first = moreMenu.querySelector('button[role="menuitem"]');
+        first?.focus();
+      }
+      
+      // Toggle on click
+      moreBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!moreMenu) return;
+        if (moreMenu.hidden) openMenu();
+        else closeMenu();
+      });
+      
+      // Keyboard open from button
+      moreBtn?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+          e.preventDefault();
+          openMenu();
+        }
+      });
+      
+      // Close on outside click
+      document.addEventListener("click", () => closeMenu(), { once: false });
+      
+      // Close on Escape, and keyboard navigation inside menu
+      moreMenu?.addEventListener("keydown", (e) => {
+        const items = Array.from(moreMenu.querySelectorAll('button[role="menuitem"]'));
+        const idx = items.indexOf(document.activeElement);
+      
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeMenu();
+          moreBtn?.focus();
+          return;
+        }
+      
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          const next = items[Math.min(items.length - 1, idx + 1)] || items[0];
+          next?.focus();
+          return;
+        }
+      
+        if (e.key === "ArrowUp") {
+          e.preventDefault();
+          const prev = items[Math.max(0, idx - 1)] || items[items.length - 1];
+          prev?.focus();
+          return;
+        }
+      });
+
+      // Close dropdown when any menu item is clicked
+      moreMenu?.addEventListener("click", (e) => {
+        const t = e.target;
+        if (t && t.matches('button[role="menuitem"]')) {
+          closeMenu();
+        }
+      });
+      
+      // Prevent click inside menu from closing before handlers run
+      moreMenu?.addEventListener("click", (e) => e.stopPropagation());
 
       const ren = li.querySelector("[data-rename]");
       ren?.addEventListener("click", async () => {
