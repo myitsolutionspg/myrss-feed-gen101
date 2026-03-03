@@ -292,3 +292,20 @@ input{
 .moreItem:hover{ background:#0f172a; }
 .moreItem.danger{ color: #fca5a5; }
 .moreSep{ height:1px; background: var(--line); margin:6px 0; }
+
+/* Keep Generated RSS / outputs compact */
+#scrapeOut.out{
+  max-height: 110px;     /* adjust: 90–160 */
+  overflow: auto;
+  white-space: pre-wrap; /* wrap long URLs */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.out{
+  max-height: 220px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
