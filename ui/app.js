@@ -9,6 +9,11 @@ const GENERATED_RSS_BASE = "https://myrss-api.melkyw.workers.dev/rss";
 
 const PAGES_FEEDS_BASE = "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds";
 
+function pagesUrlFor(slug) {
+  const s = String(slug || "").trim();
+  return s ? `${PAGES_FEEDS_BASE}/${encodeURIComponent(s)}.xml` : "";
+}
+
 let lastDetectedFeedUrl = "";
 let lastDetectedFeedTitle = "";
 let lastScrapedInputUrl = "";
@@ -255,8 +260,16 @@ async function refreshFeeds() {
             <div class="mono small muted">${escapeHtml(f.id)}</div>
             <div><strong>${escapeHtml(f.title || "(no title)")}</strong></div>
             <div class="mono small">
-              <a href="${escapeAttr(f.url)}" target="_blank" rel="noopener">${escapeHtml(f.url)}</a>
+            <a href="${escapeAttr(f.url)}" target="_blank" rel="noopener">${escapeHtml(f.url)}</a>
+          </div>
+    
+          ${((f.published ? 1 : 0) === 1 && (f.slug || "").trim()) ? `
+            <div class="mono small">
+              <a href="${escapeAttr(pagesUrlFor(f.slug))}" target="_blank" rel="noopener">
+                ${escapeHtml(pagesUrlFor(f.slug))}
+              </a>
             </div>
+          ` : ""}
             <div class="muted small">${escapeHtml(f.created_at || "")}</div>
             <div class="muted small copyHint" data-copyhint></div>
           </div>
