@@ -376,10 +376,7 @@ async function refreshFeeds() {
           openMenu();
         }
       });
-      
-      // Close on outside click
-      document.addEventListener("click", () => closeMenu(), { once: false });
-      
+          
       // Close on Escape, and keyboard navigation inside menu
       moreMenu?.addEventListener("keydown", (e) => {
         const items = Array.from(moreMenu.querySelectorAll('button[role="menuitem"]'));
