@@ -256,31 +256,45 @@ async function refreshFeeds() {
       const li = document.createElement("li");
       li.innerHTML = `
         <div class="feedRow">
-          <div class="feedLeft">
-            <div class="mono small muted">${escapeHtml(f.id)}</div>
-            <div><strong>${escapeHtml(f.title || "(no title)")}</strong></div>
-            <div class="mono small">
-            <a href="${escapeAttr(f.url)}" target="_blank" rel="noopener">${escapeHtml(f.url)}</a>
-          </div>
-    
-          ${((f.published ? 1 : 0) === 1 && (f.slug || "").trim()) ? `
-            <div class="mono small">
-              <a href="${escapeAttr(pagesUrlFor(f.slug))}" target="_blank" rel="noopener">
-                ${escapeHtml(pagesUrlFor(f.slug))}
-              </a>
-            </div>
-          ` : ""}
-            <div class="muted small">${escapeHtml(f.created_at || "")}</div>
-            <div class="muted small copyHint" data-copyhint></div>
-          </div>
-          <div class="feedRight">
+          <!-- TOP: buttons -->
+          <div class="feedActions">
             <button class="btn" data-copy="${escapeAttr(f.url)}">Copy URL</button>
             <button class="btn" data-rename="${escapeAttr(f.id)}" data-oldtitle="${escapeAttr(f.title || "")}">Rename</button>
-            <button class="btn" data-pub="${escapeAttr(f.id)}" data-published="${escapeAttr(String(f.published||0))}" data-title="${escapeAttr(f.title||"")}" data-slug="${escapeAttr(f.slug||"")}">
+      
+            <button class="btn"
+              data-pub="${escapeAttr(f.id)}"
+              data-published="${escapeAttr(String(f.published || 0))}"
+              data-title="${escapeAttr(f.title || "")}"
+              data-slug="${escapeAttr(f.slug || "")}">
               ${f.published ? "Unpublish" : "Publish"}
             </button>
-            <button>${(f.published && f.slug) ? `<button class="btn" data-copypages="${escapeAttr(pagesUrlFor(f.slug))}">Copy Pages URL</button>` : ""}
+      
+            ${(f.published && f.slug) ? `
+              <button class="btn" data-copypages="${escapeAttr(pagesUrlFor(f.slug))}">Copy Pages URL</button>
+            ` : ""}
+      
             <button class="btn" data-del="${escapeAttr(f.id)}">Delete</button>
+          </div>
+      
+          <!-- BELOW: content -->
+          <div class="feedMeta">
+            <div class="mono small muted">${escapeHtml(f.id)}</div>
+            <div><strong>${escapeHtml(f.title || "(no title)")}</strong></div>
+      
+            <div class="mono small">
+              <a href="${escapeAttr(f.url)}" target="_blank" rel="noopener">${escapeHtml(f.url)}</a>
+            </div>
+      
+            ${((f.published ? 1 : 0) === 1 && (f.slug || "").trim()) ? `
+              <div class="mono small">
+                <a href="${escapeAttr(pagesUrlFor(f.slug))}" target="_blank" rel="noopener">
+                  ${escapeHtml(pagesUrlFor(f.slug))}
+                </a>
+              </div>
+            ` : ""}
+      
+            <div class="muted small">${escapeHtml(f.created_at || "")}</div>
+            <div class="muted small copyHint" data-copyhint></div>
           </div>
         </div>
       `;
