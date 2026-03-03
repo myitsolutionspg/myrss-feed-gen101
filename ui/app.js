@@ -507,16 +507,25 @@ async function refreshFeeds() {
             body: isPublished ? { published: 0 } : { published: 1, slug },
             auth: true
           });
+        
+          // ✅ PLACE IT HERE (right after PATCH succeeds)
+          const hint = li.querySelector("[data-copyhint]");
+          if (hint) {
+            if (!isPublished) {
+              hint.innerHTML =
+                `Published. Pages updates within 30 minutes. ` +
+                `<a href="https://github.com/myitsolutionspg/myrss-feed-gen101/actions/workflows/publish-feeds.yml" target="_blank" rel="noopener">Run now</a>`;
+            } else {
+              hint.textContent = "Unpublished.";
+            }
+            setTimeout(() => { if (hint) hint.textContent = ""; }, 4000);
+          }
+        
+          // ✅ then refresh
           await refreshFeeds();
         } catch (e) {
           const hint = li.querySelector("[data-copyhint]");
           if (hint) hint.textContent = String(e.message || e);
-        }
-        const hint = li.querySelector("[data-copyhint]");
-        if (hint) {
-          hint.innerHTML =
-            `Published. Pages updates within 30 minutes. ` +
-            `<a href="https://github.com/myitsolutionspg/myrss-feed-gen101/actions/workflows/publish-feeds.yml" target="_blank" rel="noopener">Run now</a>`;
         }
       });
       
@@ -716,35 +725,5 @@ function guessTitleFromUrl(inputUrl) {
     return u.hostname.replace(/^www\./, "");
   } catch {
     return "Saved Feed";
-  }
-}
-
-function refreshGeneratedRssUrl() {
-  const src = (document.getElementById("scrapeUrl")?.value || "").trim();
-  const gen = buildGeneratedRssUrl(src);
-
-  // Store it somewhere your Save button already uses:
-  window.__generatedRssUrl = gen;
-
-  // Optional: show it in the scrape output for easy verification
-  const out = document.getElementById("scrapeOut");
-  if (out) out.textContent = gen ? `Generated RSS:\n${gen}\n` : "";
-}
-
-function looksLikeUrlText(t) {
-  const s = String(t || "").trim().toLowerCase();
-  return s.startsWith("http://") || s.startsWith("https://") || s.includes("://") || (s.includes("www.") && s.includes("/"));
-}
-
-function prettyTitleFromUrl(u) {
-  try {
-    const x = new URL(u);
-    const parts = x.pathname.split("/").filter(Boolean);
-    const last = parts[parts.length - 1] || x.hostname;
-    const nice = decodeURIComponent(last).replace(/[-_]+/g, " ").trim();
-    // Capitalize first letter
-    return nice ? (nice[0].toUpperCase() + nice.slice(1)) : x.hostname;
-  } catch {
-    return "Open article";
   }
 }
