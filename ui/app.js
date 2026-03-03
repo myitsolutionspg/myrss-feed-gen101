@@ -278,8 +278,8 @@ async function refreshFeeds() {
             <button class="btn" data-rename="${escapeAttr(f.id)}" data-oldtitle="${escapeAttr(f.title || "")}">Rename</button>
             <button class="btn" data-pub="${escapeAttr(f.id)}" data-published="${escapeAttr(String(f.published||0))}" data-title="${escapeAttr(f.title||"")}" data-slug="${escapeAttr(f.slug||"")}">
               ${f.published ? "Unpublish" : "Publish"}
-              ${(f.published && f.slug) ? `<button class="btn" data-copypages="${escapeAttr(pagesUrlFor(f.slug))}">Copy Pages URL</button>` : ""}
             </button>
+            <button>${(f.published && f.slug) ? `<button class="btn" data-copypages="${escapeAttr(pagesUrlFor(f.slug))}">Copy Pages URL</button>` : ""}
             <button class="btn" data-del="${escapeAttr(f.id)}">Delete</button>
           </div>
         </div>
