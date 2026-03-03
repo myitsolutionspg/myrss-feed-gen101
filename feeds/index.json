@@ -1,0 +1,8 @@
+[
+  {
+    "slug": "thenational",
+    "title": "thenational.com.pg",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/thenational.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.thenational.com.pg&content=1&max=10"
+  }
+]
