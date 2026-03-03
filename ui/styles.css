@@ -248,3 +248,5 @@ input{
 #btnSaveScrapedAsFeed{
   margin-top: 12px;
 }
+
+.feedRight { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
