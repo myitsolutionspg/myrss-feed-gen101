@@ -221,45 +221,45 @@ input{
 .result a:hover{text-decoration:underline}
 .foot{margin-top:10px}
 
-/* ===== Feed card layout (buttons top, content below) ===== */
+/* ===== Feed list item layout: actions top, meta bottom ===== */
+#feedsList.list li{
+  padding: 12px;
+}
+
+/* The feedRow is inside the <li> */
 .feedRow{
   display:flex;
-  flex-direction:column;
+  flex-direction:column;   /* top -> bottom */
   gap:10px;
 }
 
+/* Buttons row */
 .feedActions{
   display:flex;
-  gap:8px;
-  flex-wrap:wrap;          /* prevents “merged-looking” buttons */
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
   justify-content:flex-start;
 }
 
+/* Make buttons consistent and not “squeeze” */
 .feedActions .btn{
   white-space:nowrap;
+  min-width: 110px;        /* tweak 96–130 if you want */
+  padding: 10px 12px;
 }
 
-.feedMeta{ 
+/* Content block underneath */
+.feedMeta{
   min-width:0;
 }
 
-/* Prevent long URLs from stretching the Results area */
-.results,
-.result,
-#scrapeOut,
-.out,
-.mono {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.out {
-  white-space: pre-wrap;   /* keep formatting but allow wrapping */
+/* Make URLs readable and not push layout */
+.feedMeta .mono{
+  overflow-wrap:anywhere;
 }
 
 /* Gap between Scrape + Save buttons */
 #btnSaveScrapedAsFeed{
   margin-top: 12px;
 }
-
-.feedRight { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
