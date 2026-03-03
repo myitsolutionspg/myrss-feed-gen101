@@ -221,14 +221,27 @@ input{
 .result a:hover{text-decoration:underline}
 .foot{margin-top:10px}
 
+/* ===== Feed card layout (buttons top, content below) ===== */
 .feedRow{
   display:flex;
-  gap:12px;
-  align-items:flex-start;
-  justify-content:space-between;
+  flex-direction:column;
+  gap:10px;
 }
-.feedLeft{flex:1; min-width:0;}
-.feedRight{flex:0 0 auto;}
+
+.feedActions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;          /* prevents “merged-looking” buttons */
+  justify-content:flex-start;
+}
+
+.feedActions .btn{
+  white-space:nowrap;
+}
+
+.feedMeta{ 
+  min-width:0;
+}
 
 /* Prevent long URLs from stretching the Results area */
 .results,
