@@ -115,6 +115,36 @@ input{
 .list a{color:#93c5fd;text-decoration:none}
 .list a:hover{text-decoration:underline}
 
+
+/* ===== Mobile layout fixes ===== */
+@media (max-width: 768px){
+
+  /* Let flex rows wrap on small screens instead of shrinking content */
+  .flex{
+    flex-wrap: wrap;
+    justify-content: flex-start; /* stop space-between squeeze */
+    align-items: flex-start;
+  }
+
+  /* Make items in flex rows take full width when wrapping */
+  .flex > *{
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  /* Buttons inside flex rows should size naturally */
+  .flex .btn{
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  /* Connection card: keep Ping button aligned nicely */
+    #btnPing{
+    width: 100%;
+  }
+}
+
+
 /* ===== SCROLL AREAS ===== */
 
 /* Scrape results: taller + scroll */
