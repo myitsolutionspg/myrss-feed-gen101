@@ -34,7 +34,7 @@ jobs:
       - name: Stop if no feed changes
         id: diffcheck
         run: |
-          if git diff --quiet -- feeds/**; then
+          if git diff --quiet -- feeds; then
             echo "no_changes=true" >> $GITHUB_OUTPUT
             echo "No feed changes. Exiting."
           else
@@ -44,6 +44,7 @@ jobs:
 
       - name: Create Pull Request (feeds update)
         if: steps.diffcheck.outputs.no_changes != 'true'
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -58,3 +59,11 @@ jobs:
             automation
           update-branch: true
           delete-branch: true
+
+      - name: Enable PR auto-merge
+        if: steps.diffcheck.outputs.no_changes != 'true' && steps.cpr.outputs.pull-request-number != ''
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash

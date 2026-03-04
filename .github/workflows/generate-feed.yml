@@ -1,4 +1,3 @@
-
 name: Generate RSS Feed
 
 on:
@@ -31,7 +30,7 @@ jobs:
       - name: Generate feed
         run: python scripts/feedgen.py
 
-      - name: Create Pull Request
+      - name: Create Pull Request (rss update)
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
@@ -40,10 +39,10 @@ jobs:
           title: "Auto update RSS feed"
           body: "Automated update of feeds/png-latest-news.xml"
           branch: bot/rss-update
+          base: main
           delete-branch: true
           add-paths: |
             feeds/png-latest-news.xml
-
 
       - name: Enable PR auto-merge
         if: steps.cpr.outputs.pull-request-number != ''
@@ -52,4 +51,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           merge-method: squash
-
