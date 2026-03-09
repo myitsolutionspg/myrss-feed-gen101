@@ -1,5 +1,11 @@
 [
   {
+    "slug": "actnowpng",
+    "title": "actnowpng.org",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/actnowpng.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Factnowpng.org&content=1&max=10"
+  },
+  {
     "slug": "nasfund",
     "title": "nasfund.com.pg",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/nasfund.xml",
