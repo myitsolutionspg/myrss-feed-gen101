@@ -6,6 +6,12 @@
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Factnowpng.org&content=1&max=10"
   },
   {
+    "slug": "governor-guam-gov",
+    "title": "governor.guam.gov",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/governor-guam-gov.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fgovernor.guam.gov%2F&content=1&max=30"
+  },
+  {
     "slug": "islapublic-org",
     "title": "islapublic.org",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/islapublic-org.xml",
@@ -34,6 +40,12 @@
     "title": "thenational.com.pg",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/thenational.xml",
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.thenational.com.pg&content=1&max=15"
+  },
+  {
+    "slug": "uog-edu",
+    "title": "uog.edu",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/uog-edu.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.uog.edu%2F&content=1&max=20"
   },
   {
     "slug": "worldbank",
