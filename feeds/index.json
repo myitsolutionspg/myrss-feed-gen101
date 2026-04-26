@@ -6,6 +6,12 @@
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Factnowpng.org&content=1&max=10"
   },
   {
+    "slug": "islapublic-org",
+    "title": "islapublic.org",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/islapublic-org.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.islapublic.org%2F&content=1&max=30"
+  },
+  {
     "slug": "mbjguam-com",
     "title": "mbjguam.com",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/mbjguam-com.xml",
