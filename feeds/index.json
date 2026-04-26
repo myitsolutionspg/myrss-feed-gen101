@@ -18,6 +18,12 @@
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.islapublic.org%2F&content=1&max=30"
   },
   {
+    "slug": "kuam-com",
+    "title": "kuam.com",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/kuam-com.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fkuam.com&content=1&max=20"
+  },
+  {
     "slug": "mbjguam-com",
     "title": "mbjguam.com",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/mbjguam-com.xml",
