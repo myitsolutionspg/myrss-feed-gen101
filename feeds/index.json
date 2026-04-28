@@ -42,6 +42,12 @@
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.nbc.com.pg&content=1&max=15"
   },
   {
+    "slug": "postguam-sports",
+    "title": "postguam.com",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/postguam-sports.xml",
+    "source_url": "https://www.postguam.com/search/?f=rss&t=article&c=sports&l=50&s=start_time&sd=desc"
+  },
+  {
     "slug": "thenational",
     "title": "thenational.com.pg",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/thenational.xml",
