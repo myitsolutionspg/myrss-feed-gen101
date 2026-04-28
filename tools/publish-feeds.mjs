@@ -18,18 +18,58 @@ function safeSlug(slug) {
     .replace(/^-|-$/g, "");
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function getPublishedFeeds() {
-  const res = await fetch(`${WORKER_BASE}/public/published-feeds`);
+  const res = await fetch(`${WORKER_BASE}/public/published-feeds`, {
+    redirect: "follow",
+    headers: {
+      "User-Agent": "GuamLatestNewsFeedBot/1.0 (+https://myitsolutionspg.github.io/myrss-feed-gen101/)",
+      "Accept": "application/json, */*"
+    }
+  });
+
   if (!res.ok) throw new Error(`Failed published list: HTTP ${res.status}`);
+
   const data = await res.json();
   if (!data.ok) throw new Error(data.error || "published list failed");
+
   return data.feeds || [];
 }
 
-async function fetchText(url) {
-  const res = await fetch(url, { redirect: "follow" });
-  if (!res.ok) throw new Error(`Fetch failed ${url}: HTTP ${res.status}`);
-  return await res.text();
+async function fetchText(url, attempts = 3) {
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const res = await fetch(url, {
+      redirect: "follow",
+      headers: {
+        "User-Agent": "GuamLatestNewsFeedBot/1.0 (+https://myitsolutionspg.github.io/myrss-feed-gen101/)",
+        "Accept": "application/rss+xml, application/xml, text/xml, */*"
+      }
+    });
+
+    if (res.ok) {
+      return await res.text();
+    }
+
+    lastError = new Error(`Fetch failed ${url}: HTTP ${res.status}`);
+
+    if (res.status === 429 && attempt < attempts) {
+      const waitMs = attempt * 15000;
+      console.warn(
+        `HTTP 429 for ${url}. Waiting ${waitMs / 1000}s before retry ${attempt + 1}/${attempts}...`
+      );
+      await sleep(waitMs);
+      continue;
+    }
+
+    throw lastError;
+  }
+
+  throw lastError;
 }
 
 (async () => {
@@ -48,20 +88,40 @@ async function fetchText(url) {
     const slug = safeSlug(f.slug);
     if (!slug) continue;
 
-    const xml = await fetchText(f.url);
-
     const outPath = path.join(FEEDS_DIR, `${slug}.xml`);
-    fs.writeFileSync(outPath, xml, "utf8");
-    console.log("Wrote", outPath);
+
+    try {
+      await sleep(8000);
+
+      const xml = await fetchText(f.url);
+
+      fs.writeFileSync(outPath, xml, "utf8");
+      console.log("Wrote", outPath);
+    } catch (err) {
+      console.warn(`Skipped ${slug}: ${err.message}`);
+      continue;
+    }
   }
 
-  // Write a small index so you can browse what’s published
-  const index = feeds.map(f => ({
-    slug: safeSlug(f.slug),
-    title: f.title || "",
-    pages_url: `https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/${safeSlug(f.slug)}.xml`,
-    source_url: f.url
-  }));
-  fs.writeFileSync(path.join(FEEDS_DIR, `index.json`), JSON.stringify(index, null, 2), "utf8");
+  // Write a small index so you can browse what’s published.
+  // Only include feeds where the XML file exists.
+  const index = feeds
+    .map(f => {
+      const slug = safeSlug(f.slug);
+      return {
+        slug,
+        title: f.title || "",
+        pages_url: `https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/${slug}.xml`,
+        source_url: f.url
+      };
+    })
+    .filter(f => f.slug && fs.existsSync(path.join(FEEDS_DIR, `${f.slug}.xml`)));
+
+  fs.writeFileSync(
+    path.join(FEEDS_DIR, "index.json"),
+    JSON.stringify(index, null, 2),
+    "utf8"
+  );
+
   console.log("Wrote feeds/index.json");
 })();
