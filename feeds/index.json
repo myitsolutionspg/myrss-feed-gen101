@@ -52,11 +52,5 @@
     "title": "uog.edu",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/uog-edu.xml",
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.uog.edu%2F&content=1&max=20"
-  },
-  {
-    "slug": "worldbank",
-    "title": "worldbank.org",
-    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/worldbank.xml",
-    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.worldbank.org%2Fen%2Fcountry%2Fpng&content=1&max=10"
   }
 ]
