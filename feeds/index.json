@@ -6,6 +6,36 @@
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Factnowpng.org&content=1&max=10"
   },
   {
+    "slug": "fijitimes-news",
+    "title": "fijitimes.com.fj",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijitimes-news.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijitimes.com.fj%2Fcategory%2Fnews%2F&content=1&max=30"
+  },
+  {
+    "slug": "fijitimes-sports",
+    "title": "fijitimes.com.fj",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijitimes-sports.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijitimes.com.fj%2Fcategory%2Fsport%2F&content=1&max=30"
+  },
+  {
+    "slug": "fijitimes-lifestyle",
+    "title": "fijitimes.com.fj",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijitimes-lifestyle.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijitimes.com.fj%2Fcategory%2Flifestyle%2F&content=1&max=30"
+  },
+  {
+    "slug": "fijitimes-features",
+    "title": "fijitimes.com.fj",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijitimes-features.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijitimes.com.fj%2Fcategory%2Ffeatures%2F&content=1&max=30"
+  },
+  {
+    "slug": "fijitimes-people",
+    "title": "fijitimes.com.fj",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijitimes-people.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijitimes.com.fj%2Fcategory%2Fpeople%2F&content=1&max=20"
+  },
+  {
     "slug": "governor-guam-gov",
     "title": "governor.guam.gov",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/governor-guam-gov.xml",
