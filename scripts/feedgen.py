@@ -94,7 +94,7 @@ RADIO_SAMOA_PROGRAMMES = [
             "Hawaii & USA report #11",
         ],
         "output": "feeds/radio-samoa-hawaii-usa-report.xml",
-        "link": RADIO_SAMOA_SOURCE_FEED,
+        "link": "https://radiosamoa.co.nz/podcast-hawaii/",
     },
     {
         "name": "TUA i le ELEELE",
