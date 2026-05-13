@@ -118,5 +118,35 @@
     "title": "Radio Samoa - Tia with Queen Poke",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tia-with-queen-poke.xml",
     "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tia-with-queen-poke.xml"
+  },
+  {
+    "slug": "radio-samoa-hawaii-usa-report",
+    "title": "Radio Samoa - Hawaii & USA Report",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-hawaii-usa-report.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-hawaii-usa-report.xml"
+  },
+  {
+    "slug": "radio-samoa-tua-i-le-eleele",
+    "title": "Radio Samoa - TUA i le ELEELE",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tua-i-le-eleele.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tua-i-le-eleele.xml"
+  },
+  {
+    "slug": "radio-samoa-autalaina-o-le-tulafono",
+    "title": "Radio Samoa - Autalaina o le Tulafono",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-autalaina-o-le-tulafono.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-autalaina-o-le-tulafono.xml"
+  },
+  {
+    "slug": "radio-samoa-interviews",
+    "title": "Radio Samoa - Interviews",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-interviews.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-interviews.xml"
+  },
+  {
+    "slug": "radio-samoa-talatalaga",
+    "title": "Radio Samoa - Talatalaga",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-talatalaga.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-talatalaga.xml"
   }
 ]
