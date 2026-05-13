@@ -15,6 +15,7 @@ from pathlib import Path
 ATOM_NS = "http://www.w3.org/2005/Atom"
 ITUNES_NS = "http://www.itunes.com/dtds/podcast-1.0.dtd"
 CONTENT_NS = "http://purl.org/rss/1.0/modules/content/"
+MEDIA_NS = "http://search.yahoo.com/mrss/"
 
 RADIO_SAMOA_SOURCE_FEED = "https://feed.podbean.com/podcastradiosamoa/feed.xml"
 
@@ -134,7 +135,8 @@ RADIO_SAMOA_PROGRAMMES = [
             "*Talatalaga*",
         ],
         "output": "feeds/radio-samoa-talatalaga.xml",
-        "link": RADIO_SAMOA_SOURCE_FEED,
+        "link": "https://radiosamoa.co.nz/podcast-talatalaga/",
+        "image_url": "https://radiosamoa.co.nz/wp-content/uploads/2025/02/Talatalaga-Podcast-Cover-630x630.png",
     },
 ]
 
@@ -279,11 +281,12 @@ def register_namespaces(namespaces: dict[str, str]) -> None:
     ET.register_namespace("atom", ATOM_NS)
     ET.register_namespace("itunes", ITUNES_NS)
     ET.register_namespace("content", CONTENT_NS)
+    ET.register_namespace("media", MEDIA_NS)
 
     for prefix, uri in namespaces.items():
         # Do not register default namespace.
         # Also skip namespaces we already register manually above.
-        if not prefix or prefix in ("xml", "xmlns", "atom", "itunes", "content"):
+        if not prefix or prefix in ("xml", "xmlns", "atom", "itunes", "content", "media"):
             continue
 
         try:
@@ -508,6 +511,77 @@ def copy_channel_value(source_channel: ET.Element, target_channel: ET.Element, t
     value = child_text_by_local(source_channel, tag_name)
     if value:
         ET.SubElement(target_channel, tag_name).text = value
+def item_has_podcast_image(item: ET.Element) -> bool:
+    """
+    Checks whether an RSS item already has a real image.
+    Audio enclosures are ignored because podcast feeds usually use enclosure for MP3 audio.
+    """
+    for ch in item.iter():
+        ln = localname(ch.tag).lower()
+
+        if ln == "image" and ch.attrib.get("href"):
+            return True
+
+        if ln in ("thumbnail", "content") and ch.attrib.get("url"):
+            return True
+
+        if ln == "enclosure":
+            enc_type = safe_text(ch.attrib.get("type")).lower()
+            enc_url = safe_text(ch.attrib.get("url")).lower()
+            if enc_type.startswith("image/") or enc_url.endswith((".png", ".jpg", ".jpeg", ".webp")):
+                return True
+
+    return False
+
+
+def append_channel_podcast_image(channel: ET.Element, title: str, link: str, image_url: str) -> None:
+    """
+    Adds podcast artwork at RSS channel level.
+    This creates:
+      <image>...</image>
+      <itunes:image href="..." />
+    """
+    image_url = safe_text(image_url)
+    if not image_url:
+        return
+
+    image = ET.SubElement(channel, "image")
+    ET.SubElement(image, "url").text = image_url
+    ET.SubElement(image, "title").text = safe_text(title)
+    ET.SubElement(image, "link").text = safe_text(link)
+
+    ET.SubElement(
+        channel,
+        f"{{{ITUNES_NS}}}image",
+        {"href": image_url},
+    )
+
+
+def append_item_podcast_image(item: ET.Element, image_url: str) -> None:
+    """
+    Adds podcast artwork to each RSS item.
+    This creates:
+      <media:thumbnail url="..." />
+      <itunes:image href="..." />
+    """
+    image_url = safe_text(image_url)
+    if not image_url:
+        return
+
+    if item_has_podcast_image(item):
+        return
+
+    ET.SubElement(
+        item,
+        f"{{{MEDIA_NS}}}thumbnail",
+        {"url": image_url},
+    )
+
+    ET.SubElement(
+        item,
+        f"{{{ITUNES_NS}}}image",
+        {"href": image_url},
+    )
 
 def build_radio_samoa_programme_feed(
     source_channel: ET.Element,
@@ -530,12 +604,24 @@ def build_radio_samoa_programme_feed(
     for tag_name in ("copyright", "managingEditor", "webMaster"):
         copy_channel_value(source_channel, channel, tag_name)
 
-    source_image = child_by_local(source_channel, "image")
-    if source_image is not None:
-        channel.append(deepcopy(source_image))
-
+    programme_image_url = safe_text(programme.get("image_url"))
+    
+    if programme_image_url:
+        append_channel_podcast_image(
+            channel=channel,
+            title=programme["name"],
+            link=programme["link"],
+            image_url=programme_image_url,
+        )
+    else:
+        source_image = child_by_local(source_channel, "image")
+        if source_image is not None:
+            channel.append(deepcopy(source_image))
+    
     for item in matching_items:
-        channel.append(deepcopy(item))
+        copied_item = deepcopy(item)
+        append_item_podcast_image(copied_item, programme_image_url)
+        channel.append(copied_item)
 
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
