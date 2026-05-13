@@ -203,8 +203,11 @@ def register_namespaces(namespaces: dict[str, str]) -> None:
     ET.register_namespace("content", CONTENT_NS)
 
     for prefix, uri in namespaces.items():
-        if prefix in ("xml", "xmlns"):
+        # Do not register default namespace.
+        # Also skip namespaces we already register manually above.
+        if not prefix or prefix in ("xml", "xmlns", "atom", "itunes", "content"):
             continue
+
         try:
             ET.register_namespace(prefix, uri)
         except ValueError:
@@ -397,14 +400,7 @@ def build_radio_samoa_programme_feed(
     programme: dict[str, str],
     matching_items: list[ET.Element],
 ) -> bytes:
-    rss = ET.Element(
-        "rss",
-        {
-            "version": "2.0",
-            "xmlns:itunes": ITUNES_NS,
-            "xmlns:content": CONTENT_NS,
-        },
-    )
+    rss = ET.Element("rss", {"version": "2.0"})
     channel = ET.SubElement(rss, "channel")
 
     ET.SubElement(channel, "title").text = programme["name"]
