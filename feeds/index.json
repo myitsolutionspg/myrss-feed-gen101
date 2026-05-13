@@ -82,5 +82,41 @@
     "title": "uog.edu",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/uog-edu.xml",
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.uog.edu%2F&content=1&max=20"
+  },
+  {
+    "slug": "radio-samoa-taimi-with-tuaman",
+    "title": "Radio Samoa - Taimi with Tuaman",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-taimi-with-tuaman.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-taimi-with-tuaman.xml"
+  },
+  {
+    "slug": "radio-samoa-malu-i-fale",
+    "title": "Radio Samoa - Malu i Fale",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-malu-i-fale.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-malu-i-fale.xml"
+  },
+  {
+    "slug": "radio-samoa-o-oe-male-tulafono",
+    "title": "Radio Samoa - O Oe Male Tulafono",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-oe-male-tulafono.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-oe-male-tulafono.xml"
+  },
+  {
+    "slug": "radio-samoa-o-le-vaofilifili-o-samoa",
+    "title": "Radio Samoa - O le Vaofilifili o Samoa",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-le-vaofilifili-o-samoa.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-le-vaofilifili-o-samoa.xml"
+  },
+  {
+    "slug": "radio-samoa-tuutuu-le-upega-ile-loloto",
+    "title": "Radio Samoa - Tu'utu'u le Upega ile Loloto",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tuutuu-le-upega-ile-loloto.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tuutuu-le-upega-ile-loloto.xml"
+  },
+  {
+    "slug": "radio-samoa-tia-with-queen-poke",
+    "title": "Radio Samoa - Tia with Queen Poke",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tia-with-queen-poke.xml",
+    "source_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tia-with-queen-poke.xml"
   }
 ]
