@@ -3,13 +3,58 @@ import sys
 import hashlib
 import datetime
 import re
+from copy import deepcopy
 from html import unescape
+from io import BytesIO
 from email.utils import format_datetime, parsedate_to_datetime
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import xml.etree.ElementTree as ET
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
+ITUNES_NS = "http://www.itunes.com/dtds/podcast-1.0.dtd"
+CONTENT_NS = "http://purl.org/rss/1.0/modules/content/"
+
+RADIO_SAMOA_SOURCE_FEED = "https://feed.podbean.com/podcastradiosamoa/feed.xml"
+
+RADIO_SAMOA_PROGRAMMES = [
+    {
+        "name": "Taimi with Tuaman",
+        "keyword": "Taimi with TUAMAN",
+        "output": "feeds/radio-samoa-taimi-with-tuaman.xml",
+        "link": "https://radiosamoa.co.nz/podcast-taimi-with-tuaman/",
+    },
+    {
+        "name": "Malu i Fale",
+        "keyword": "Malu i Fale",
+        "output": "feeds/radio-samoa-malu-i-fale.xml",
+        "link": "https://radiosamoa.co.nz/podcast-malu-i-fale/",
+    },
+    {
+        "name": "O Oe Male Tulafono",
+        "keyword": "O Oe Male Tulafono",
+        "output": "feeds/radio-samoa-o-oe-male-tulafono.xml",
+        "link": "https://radiosamoa.co.nz/podcast-polokalame-leoleo/",
+    },
+    {
+        "name": "O le Vaofilifili o Samoa",
+        "keyword": "O le Vaofilifili o Samoa",
+        "output": "feeds/radio-samoa-o-le-vaofilifili-o-samoa.xml",
+        "link": "https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/",
+    },
+    {
+        "name": "Tu'utu'u le Upega ile Loloto",
+        "keyword": "Tu'utu'u le Upega ile Loloto",
+        "output": "feeds/radio-samoa-tuutuu-le-upega-ile-loloto.xml",
+        "link": RADIO_SAMOA_SOURCE_FEED,
+    },
+    {
+        "name": "Tia with Queen Poke",
+        "keyword": "Tia with Queen Poke",
+        "output": "feeds/radio-samoa-tia-with-queen-poke.xml",
+        "link": "https://radiosamoa.co.nz/podcast-tia-with-queen-poke/",
+    },
+]
 
 # ---------------- helpers ----------------
 def utc_now_rfc2822() -> str:
@@ -36,11 +81,21 @@ def child_text_by_local(parent: ET.Element, name: str) -> str:
             return safe_text(ch.text)
     return ""
 
+def child_by_local(parent: ET.Element, name: str) -> ET.Element | None:
+    if parent is None:
+        return None
+    want = name.lower()
+    for ch in list(parent):
+        if localname(ch.tag).lower() == want:
+            return ch
+    return None
+
 def get(url: str, timeout: int = 30) -> bytes:
     req = Request(
         url,
         headers={
-            "User-Agent": "myrss-feed-gen101/1.0 (+https://myitsolutionspg.github.io/myrss-feed-gen101/)"
+            "User-Agent": "myrss-feed-gen101/1.0 (+https://myitsolutionspg.github.io/myrss-feed-gen101/)",
+            "Accept": "application/rss+xml, application/xml, text/xml, */*",
         },
     )
     with urlopen(req, timeout=timeout) as r:
@@ -126,6 +181,31 @@ def clean_html(text: str) -> tuple[str, str | None]:
 
     # keep descriptions short
     return clean[:300], image_url
+
+def extract_namespaces(xml_bytes: bytes) -> dict[str, str]:
+    namespaces: dict[str, str] = {}
+    try:
+        for _, ns in ET.iterparse(BytesIO(xml_bytes), events=("start-ns",)):
+            prefix, uri = ns
+            if prefix not in namespaces:
+                namespaces[prefix] = uri
+    except ET.ParseError:
+        return namespaces
+    return namespaces
+
+def register_namespaces(namespaces: dict[str, str]) -> None:
+    ET.register_namespace("atom", ATOM_NS)
+    ET.register_namespace("itunes", ITUNES_NS)
+    ET.register_namespace("content", CONTENT_NS)
+
+    for prefix, uri in namespaces.items():
+        if prefix in ("xml", "xmlns"):
+            continue
+        try:
+            ET.register_namespace(prefix, uri)
+        except ValueError:
+            # Ignore reserved or invalid namespace prefixes.
+            continue
 
 # ---------------- parsing ----------------
 def parse_atom(root: ET.Element, source_name: str) -> list[dict]:
@@ -281,6 +361,153 @@ def build_rss(config: dict, items: list[dict]) -> bytes:
 
     return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
 
+# ---------------- Radio Samoa filtered podcast feeds ----------------
+def find_rss_channel(root: ET.Element) -> ET.Element | None:
+    for el in root.iter():
+        if localname(el.tag).lower() == "channel":
+            return el
+    return None
+
+def get_item_search_text(item: ET.Element) -> str:
+    title = child_text_by_local(item, "title")
+    description = child_text_by_local(item, "description")
+
+    if not description:
+        for ch in list(item):
+            if localname(ch.tag).lower() == "encoded" and safe_text(ch.text):
+                description = safe_text(ch.text)
+                break
+
+    return f"{title}\n{description}"
+
+def item_matches_programme(item: ET.Element, keyword: str) -> bool:
+    return keyword.casefold() in get_item_search_text(item).casefold()
+
+def copy_channel_value(source_channel: ET.Element, target_channel: ET.Element, tag_name: str) -> None:
+    value = child_text_by_local(source_channel, tag_name)
+    if value:
+        ET.SubElement(target_channel, tag_name).text = value
+
+def build_radio_samoa_programme_feed(
+    source_channel: ET.Element,
+    programme: dict[str, str],
+    matching_items: list[ET.Element],
+) -> bytes:
+    rss = ET.Element(
+        "rss",
+        {
+            "version": "2.0",
+            "xmlns:itunes": ITUNES_NS,
+            "xmlns:content": CONTENT_NS,
+        },
+    )
+    channel = ET.SubElement(rss, "channel")
+
+    ET.SubElement(channel, "title").text = programme["name"]
+    ET.SubElement(channel, "link").text = programme["link"]
+    ET.SubElement(channel, "description").text = (
+        f"Filtered Radio Samoa podcast feed for {programme['name']}."
+    )
+    ET.SubElement(channel, "language").text = child_text_by_local(source_channel, "language") or "en"
+    ET.SubElement(channel, "lastBuildDate").text = utc_now_rfc2822()
+    ET.SubElement(channel, "generator").text = "myrss-feed-gen101 Radio Samoa filtered podcast feed generator"
+
+    # Keep useful channel-level metadata where present.
+    for tag_name in ("copyright", "managingEditor", "webMaster"):
+        copy_channel_value(source_channel, channel, tag_name)
+
+    source_image = child_by_local(source_channel, "image")
+    if source_image is not None:
+        channel.append(deepcopy(source_image))
+
+    for item in matching_items:
+        channel.append(deepcopy(item))
+
+    return ET.tostring(rss, encoding="utf-8", xml_declaration=True)
+
+def write_xml_no_bom(output_path: str, xml_bytes: bytes) -> None:
+    path = pathlib_path(output_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(xml_bytes)
+
+def pathlib_path(path: str) -> 'Path':
+    from pathlib import Path
+    return Path(path)
+
+def validate_rss_file(output_path: str) -> None:
+    path = pathlib_path(output_path)
+
+    if not path.exists():
+        raise RuntimeError(f"Missing RSS output file: {output_path}")
+
+    raw = path.read_bytes()
+
+    if raw.startswith(b"\xef\xbb\xbf"):
+        raise RuntimeError(f"RSS output contains UTF-8 BOM: {output_path}")
+
+    root = ET.fromstring(raw)
+
+    if localname(root.tag).lower() != "rss":
+        raise RuntimeError(f"Invalid RSS root element in {output_path}: {root.tag}")
+
+    if root.attrib.get("version") != "2.0":
+        raise RuntimeError(f"RSS version is not 2.0 in {output_path}")
+
+    channel = find_rss_channel(root)
+    if channel is None:
+        raise RuntimeError(f"Missing channel element in {output_path}")
+
+    title = child_text_by_local(channel, "title")
+    description = child_text_by_local(channel, "description")
+
+    if not title:
+        raise RuntimeError(f"Missing channel title in {output_path}")
+
+    if not description:
+        raise RuntimeError(f"Missing channel description in {output_path}")
+
+def generate_radio_samoa_filtered_podcast_feeds() -> None:
+    print("[INFO] Generating Radio Samoa filtered podcast feeds...")
+
+    source_xml = get(RADIO_SAMOA_SOURCE_FEED, timeout=60)
+    namespaces = extract_namespaces(source_xml)
+    register_namespaces(namespaces)
+
+    source_root = ET.fromstring(source_xml)
+    source_channel = find_rss_channel(source_root)
+
+    if source_channel is None:
+        raise RuntimeError("Radio Samoa source feed does not contain a channel element.")
+
+    source_items = [
+        item for item in list(source_channel) if localname(item.tag).lower() == "item"
+    ]
+
+    summary: list[tuple[str, int]] = []
+
+    for programme in RADIO_SAMOA_PROGRAMMES:
+        matching_items = [
+            item
+            for item in source_items
+            if item_matches_programme(item, programme["keyword"])
+        ]
+
+        xml_bytes = build_radio_samoa_programme_feed(
+            source_channel=source_channel,
+            programme=programme,
+            matching_items=matching_items,
+        )
+
+        write_xml_no_bom(programme["output"], xml_bytes)
+        validate_rss_file(programme["output"])
+
+        summary.append((programme["name"], len(matching_items)))
+
+    print("Radio Samoa filtered podcast feed summary:")
+    for programme_name, item_count in summary:
+        print(f"- {programme_name}: {item_count} items")
+
+# ---------------- main workflow ----------------
 def main() -> None:
     cfg_path = "feeds/sources.json"
     out_path = "feeds/png-latest-news.xml"
@@ -302,10 +529,10 @@ def main() -> None:
         try:
             data = get(url)
             items = parse_rss_or_atom(data, name)
-    
+
             limit = int(src.get("max_items", 15))
             items = items[:limit]
-    
+
             if items:
                 ok_sources += 1
             all_items.extend(items)
@@ -313,49 +540,52 @@ def main() -> None:
         except (HTTPError, URLError, ET.ParseError) as e:
             print(f"[WARN] Source failed: {name} {url} :: {e}", file=sys.stderr)
 
-        # De-dupe (keep first occurrence)
-        seen: set[str] = set()
-        uniq: list[dict] = []
-        for it in all_items:
-            key = hash_id(it.get("guid", ""), it.get("link", ""))
-            if key in seen:
-                continue
-            seen.add(key)
-            uniq.append(it)
-        
-        # Group by source, sort each source newest-first
-        by_source: dict[str, list[dict]] = {}
-        for it in uniq:
-            src = safe_text(it.get("source")) or "Unknown"
-            by_source.setdefault(src, []).append(it)
-        
-        for src, arr in by_source.items():
-            arr.sort(key=lambda x: parse_rfc2822_to_dt(safe_text(x.get("pubDate"))), reverse=True)
-        
-        # Round-robin merge across sources (balanced feed)
-        sources_order = sorted(by_source.keys(), key=str.lower)  # stable order
-        merged: list[dict] = []
-        idx = 0
-        while len(merged) < max_total:
-            progressed = False
-            for src in sources_order:
-                arr = by_source.get(src, [])
-                if idx < len(arr):
-                    merged.append(arr[idx])
-                    progressed = True
-                    if len(merged) >= max_total:
-                        break
-            if not progressed:
-                break
-            idx += 1
-        
-        uniq = merged
+    # De-dupe after all sources have been fetched. Keep first occurrence.
+    seen: set[str] = set()
+    uniq: list[dict] = []
+    for it in all_items:
+        key = hash_id(it.get("guid", ""), it.get("link", ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        uniq.append(it)
+
+    # Group by source, sort each source newest-first.
+    by_source: dict[str, list[dict]] = {}
+    for it in uniq:
+        src = safe_text(it.get("source")) or "Unknown"
+        by_source.setdefault(src, []).append(it)
+
+    for src, arr in by_source.items():
+        arr.sort(key=lambda x: parse_rfc2822_to_dt(safe_text(x.get("pubDate"))), reverse=True)
+
+    # Round-robin merge across sources for a balanced feed.
+    sources_order = sorted(by_source.keys(), key=str.lower)
+    merged: list[dict] = []
+    idx = 0
+    while len(merged) < max_total:
+        progressed = False
+        for src in sources_order:
+            arr = by_source.get(src, [])
+            if idx < len(arr):
+                merged.append(arr[idx])
+                progressed = True
+                if len(merged) >= max_total:
+                    break
+        if not progressed:
+            break
+        idx += 1
+
+    uniq = merged
 
     rss_bytes = build_rss(cfg, uniq)
     with open(out_path, "wb") as f:
         f.write(rss_bytes)
 
     print(f"[DONE] Generated {out_path}: {len(uniq)} items (sources ok: {ok_sources}/{len(sources)})")
+
+    # Additional additive output. This does not change the existing aggregated feed.
+    generate_radio_samoa_filtered_podcast_feeds()
 
 if __name__ == "__main__":
     main()
