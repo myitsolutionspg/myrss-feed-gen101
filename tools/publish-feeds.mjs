@@ -111,6 +111,36 @@ const RADIO_SAMOA_FEEDS = [
     title: "Radio Samoa - Tia with Queen Poke",
     url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tia-with-queen-poke.xml",
     generated: true
+  },
+  {
+    slug: "radio-samoa-hawaii-usa-report",
+    title: "Radio Samoa - Hawaii & USA Report",
+    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-hawaii-usa-report.xml",
+    generated: true
+  },
+  {
+    slug: "radio-samoa-tua-i-le-eleele",
+    title: "Radio Samoa - TUA i le ELEELE",
+    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tua-i-le-eleele.xml",
+    generated: true
+  },
+  {
+    slug: "radio-samoa-autalaina-o-le-tulafono",
+    title: "Radio Samoa - Autalaina o le Tulafono",
+    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-autalaina-o-le-tulafono.xml",
+    generated: true
+  },
+  {
+    slug: "radio-samoa-interviews",
+    title: "Radio Samoa - Interviews",
+    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-interviews.xml",
+    generated: true
+  },
+  {
+    slug: "radio-samoa-talatalaga",
+    title: "Radio Samoa - Talatalaga",
+    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-talatalaga.xml",
+    generated: true
   }
 ];
 
