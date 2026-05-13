@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Hawaii &amp; USA Report</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for Hawaii &amp; USA Report.</description><language>sm</language><lastBuildDate>Wed, 13 May 2026 11:10:47 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    <item>
+        <title>Hawaii &amp; USA report #21</title>
+        <itunes:title>Hawaii &amp; USA report #21</itunes:title>
+        <link>https://podcastradiosamoa.podbean.com/e/hawaii-usa-report-21/</link>
+                    <comments>https://podcastradiosamoa.podbean.com/e/hawaii-usa-report-21/#comments</comments>        <pubDate>Wed, 29 Oct 2025 21:20:00 +1300</pubDate>
+        <guid isPermaLink="false">podcastradiosamoa.podbean.com/c1f2658a-047d-3406-9ac7-55e70f6b4c8f</guid>
+                                    <description />
+                                                            <content:encoded />
+                                    
+        <enclosure url="https://mcdn.podbean.com/mf/web/xca2jknekinhvp3e/hawaii_Sequence_019im3b.mp3" length="27647909" type="audio/mpeg" />
+        <itunes:summary />
+        <itunes:author>Radio Samoa</itunes:author>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:block>No</itunes:block>
+        <itunes:duration>1151</itunes:duration>
+                <itunes:episode>5711</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Podcast-Cover.png" />    </item>
+    </channel></rss>
