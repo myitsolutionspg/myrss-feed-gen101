@@ -91,6 +91,7 @@ RADIO_SAMOA_PROGRAMMES = [
             "Hawaii and USA Report*",
             "*Hawaii and USA Report*",
             "*18868353&ss*",
+            "Hawaii & USA report #11",
         ],
         "output": "feeds/radio-samoa-hawaii-usa-report.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
