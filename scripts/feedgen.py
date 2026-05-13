@@ -557,31 +557,45 @@ def append_channel_podcast_image(channel: ET.Element, title: str, link: str, ima
     )
 
 
+def item_has_child_with_localname(item: ET.Element, name: str) -> bool:
+    want = safe_text(name).lower()
+    for ch in item.iter():
+        if localname(ch.tag).lower() == want:
+            return True
+    return False
+
+
 def append_item_podcast_image(item: ET.Element, image_url: str) -> None:
     """
     Adds podcast artwork to each RSS item.
-    This creates:
-      <media:thumbnail url="..." />
-      <itunes:image href="..." />
+    This ensures Android feed readers can find the image through media:thumbnail,
+    even when the original podcast item already has itunes:image.
     """
     image_url = safe_text(image_url)
     if not image_url:
         return
 
-    if item_has_podcast_image(item):
-        return
+    # Always add media:thumbnail if missing. This is useful for Android card images.
+    if not item_has_child_with_localname(item, "thumbnail"):
+        ET.SubElement(
+            item,
+            f"{{{MEDIA_NS}}}thumbnail",
+            {"url": image_url},
+        )
 
-    ET.SubElement(
-        item,
-        f"{{{MEDIA_NS}}}thumbnail",
-        {"url": image_url},
-    )
+    # Add itunes:image only if the item does not already have one.
+    has_itunes_image = False
+    for ch in item.iter():
+        if localname(ch.tag).lower() == "image" and ch.attrib.get("href"):
+            has_itunes_image = True
+            break
 
-    ET.SubElement(
-        item,
-        f"{{{ITUNES_NS}}}image",
-        {"href": image_url},
-    )
+    if not has_itunes_image:
+        ET.SubElement(
+            item,
+            f"{{{ITUNES_NS}}}image",
+            {"href": image_url},
+        )
 
 def build_radio_samoa_programme_feed(
     source_channel: ET.Element,
