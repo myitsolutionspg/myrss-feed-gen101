@@ -8,6 +8,10 @@ from email.utils import format_datetime, parsedate_to_datetime
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import xml.etree.ElementTree as ET
+from copy import deepcopy
+from io import BytesIO
+from pathlib import Path
+import urllib.request
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
 
