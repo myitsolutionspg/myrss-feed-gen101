@@ -24,39 +24,96 @@ RADIO_SAMOA_SOURCE_FEED = "https://feed.podbean.com/podcastradiosamoa/feed.xml"
 RADIO_SAMOA_PROGRAMMES = [
     {
         "name": "Taimi with Tuaman",
-        "keyword": "Taimi with TUAMAN",
+        "patterns": [
+            "Taimi with TUAMAN*",
+            "Taimi with Tuaman*",
+        ],
         "output": "feeds/radio-samoa-taimi-with-tuaman.xml",
         "link": "https://radiosamoa.co.nz/podcast-taimi-with-tuaman/",
     },
     {
         "name": "Malu i Fale",
-        "keyword": "Malu i Fale",
+        "patterns": [
+            "Malu i Fale*",
+        ],
         "output": "feeds/radio-samoa-malu-i-fale.xml",
         "link": "https://radiosamoa.co.nz/podcast-malu-i-fale/",
     },
     {
         "name": "O Oe Male Tulafono",
-        "keyword": "O Oe Male Tulafono",
+        "patterns": [
+            "O Oe Male Tulafono*",
+        ],
         "output": "feeds/radio-samoa-o-oe-male-tulafono.xml",
         "link": "https://radiosamoa.co.nz/podcast-polokalame-leoleo/",
     },
     {
         "name": "O le Vaofilifili o Samoa",
-        "keyword": "O le Vaofilifili o Samoa",
+        "patterns": [
+            "O le Vaofilifili o Samoa*",
+        ],
         "output": "feeds/radio-samoa-o-le-vaofilifili-o-samoa.xml",
         "link": "https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/",
     },
     {
         "name": "Tu'utu'u le Upega ile Loloto",
-        "keyword": "Tu'utu'u le Upega ile Loloto",
+        "patterns": [
+            "Tu'utu'u le Upega ile Loloto*",
+        ],
         "output": "feeds/radio-samoa-tuutuu-le-upega-ile-loloto.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
     },
     {
         "name": "Tia with Queen Poke",
-        "keyword": "Tia with Queen Poke",
+        "patterns": [
+            "*Queen Poke*",
+            "Tia with Queen Poke*",
+        ],
         "output": "feeds/radio-samoa-tia-with-queen-poke.xml",
         "link": "https://radiosamoa.co.nz/podcast-tia-with-queen-poke/",
+    },
+    {
+        "name": "Hawaii & USA Report",
+        "patterns": [
+            "Hawaii & USA Report*",
+            "Hawaii and USA Report*",
+        ],
+        "output": "feeds/radio-samoa-hawaii-usa-report.xml",
+        "link": RADIO_SAMOA_SOURCE_FEED,
+    },
+    {
+        "name": "TUA i le ELEELE",
+        "patterns": [
+            "TUA i le ELEELE*",
+            "Tua i le Eleele*",
+        ],
+        "output": "feeds/radio-samoa-tua-i-le-eleele.xml",
+        "link": RADIO_SAMOA_SOURCE_FEED,
+    },
+    {
+        "name": "Autalaina o le Tulafono",
+        "patterns": [
+            "Autalaina o le Tulafono*",
+        ],
+        "output": "feeds/radio-samoa-autalaina-o-le-tulafono.xml",
+        "link": RADIO_SAMOA_SOURCE_FEED,
+    },
+    {
+        "name": "Interviews",
+        "patterns": [
+            "Interviews*",
+            "Interview*",
+        ],
+        "output": "feeds/radio-samoa-interviews.xml",
+        "link": RADIO_SAMOA_SOURCE_FEED,
+    },
+    {
+        "name": "Talatalaga",
+        "patterns": [
+            "Talatalaga*",
+        ],
+        "output": "feeds/radio-samoa-talatalaga.xml",
+        "link": RADIO_SAMOA_SOURCE_FEED,
     },
 ]
 
@@ -387,8 +444,42 @@ def get_item_search_text(item: ET.Element) -> str:
 
     return f"{title}\n{description}"
 
-def item_matches_programme(item: ET.Element, keyword: str) -> bool:
-    return keyword.casefold() in get_item_search_text(item).casefold()
+def wildcard_pattern_matches(text: str, pattern: str) -> bool:
+    """
+    Supports simple '*' wildcard matching.
+    Examples:
+      "Taimi with TUAMAN*" matches "Taimi with TUAMAN - #41"
+      "*Queen Poke*" matches any title/description containing "Queen Poke"
+      "Malu i Fale" behaves like a normal case-insensitive contains match
+    """
+    text_normalized = safe_text(text).casefold()
+    pattern_normalized = safe_text(pattern).casefold()
+
+    if not pattern_normalized:
+        return False
+
+    # No wildcard means normal contains match.
+    if "*" not in pattern_normalized:
+        return pattern_normalized in text_normalized
+
+    escaped = re.escape(pattern_normalized).replace(r"\*", ".*")
+
+    # Treat wildcard patterns as "contains somewhere", not full-string only.
+    regex = re.compile(escaped, flags=re.IGNORECASE | re.DOTALL)
+    return regex.search(text_normalized) is not None
+
+
+def item_matches_programme(item: ET.Element, programme: dict) -> bool:
+    search_text = get_item_search_text(item)
+
+    patterns = programme.get("patterns")
+
+    # Backward compatibility if any old item still uses "keyword".
+    if not patterns:
+        keyword = programme.get("keyword", "")
+        patterns = [keyword]
+
+    return any(wildcard_pattern_matches(search_text, pattern) for pattern in patterns)
 
 def copy_channel_value(source_channel: ET.Element, target_channel: ET.Element, tag_name: str) -> None:
     value = child_text_by_local(source_channel, tag_name)
@@ -489,7 +580,7 @@ def generate_radio_samoa_filtered_podcast_feeds() -> None:
         matching_items = [
             item
             for item in source_items
-            if item_matches_programme(item, programme["keyword"])
+            if item_matches_programme(item, programme)
         ]
 
         xml_bytes = build_radio_samoa_programme_feed(
