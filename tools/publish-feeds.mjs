@@ -75,54 +75,84 @@ async function fetchText(url, attempts = 3) {
 (async () => {
   const feeds = await getPublishedFeeds();
 
-const RADIO_SAMOA_FEEDS = [
-  {
-    slug: "radio-samoa-taimi-with-tuaman",
-    title: "Radio Samoa - Taimi with Tuaman",
-    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-taimi-with-tuaman.xml",
-    generated: true
-  },
-  {
-    slug: "radio-samoa-malu-i-fale",
-    title: "Radio Samoa - Malu i Fale",
-    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-malu-i-fale.xml",
-    generated: true
-  },
-  {
-    slug: "radio-samoa-o-oe-male-tulafono",
-    title: "Radio Samoa - O Oe Male Tulafono",
-    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-oe-male-tulafono.xml",
-    generated: true
-  },
-  {
-    slug: "radio-samoa-o-le-vaofilifili-o-samoa",
-    title: "Radio Samoa - O le Vaofilifili o Samoa",
-    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-le-vaofilifili-o-samoa.xml",
-    generated: true
-  },
-  {
-    slug: "radio-samoa-tuutuu-le-upega-ile-loloto",
-    title: "Radio Samoa - Tu'utu'u le Upega ile Loloto",
-    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tuutuu-le-upega-ile-loloto.xml",
-    generated: true
-  },
-  {
-    slug: "radio-samoa-tia-with-queen-poke",
-    title: "Radio Samoa - Tia with Queen Poke",
-    url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tia-with-queen-poke.xml",
-    generated: true
-  }
-];
+  const RADIO_SAMOA_FEEDS = [
+    {
+      slug: "radio-samoa-taimi-with-tuaman",
+      title: "Radio Samoa - Taimi with Tuaman",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-taimi-with-tuaman.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-malu-i-fale",
+      title: "Radio Samoa - Malu i Fale",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-malu-i-fale.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-o-oe-male-tulafono",
+      title: "Radio Samoa - O Oe Male Tulafono",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-oe-male-tulafono.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-o-le-vaofilifili-o-samoa",
+      title: "Radio Samoa - O le Vaofilifili o Samoa",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-o-le-vaofilifili-o-samoa.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-tuutuu-le-upega-ile-loloto",
+      title: "Radio Samoa - Tu'utu'u le Upega ile Loloto",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tuutuu-le-upega-ile-loloto.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-tia-with-queen-poke",
+      title: "Radio Samoa - Tia with Queen Poke",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tia-with-queen-poke.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-hawaii-usa-report",
+      title: "Radio Samoa - Hawaii & USA Report",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-hawaii-usa-report.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-tua-i-le-eleele",
+      title: "Radio Samoa - TUA i le ELEELE",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-tua-i-le-eleele.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-autalaina-o-le-tulafono",
+      title: "Radio Samoa - Autalaina o le Tulafono",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-autalaina-o-le-tulafono.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-interviews",
+      title: "Radio Samoa - Interviews",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-interviews.xml",
+      generated: true
+    },
+    {
+      slug: "radio-samoa-talatalaga",
+      title: "Radio Samoa - Talatalaga",
+      url: "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/radio-samoa-talatalaga.xml",
+      generated: true
+    }
+  ];
 
-const existingSlugs = new Set(feeds.map(f => safeSlug(f.slug)));
+  const existingSlugs = new Set(feeds.map(f => safeSlug(f.slug)));
 
-for (const feed of RADIO_SAMOA_FEEDS) {
-  const slug = safeSlug(feed.slug);
-  if (!existingSlugs.has(slug)) {
-    feeds.push(feed);
-    existingSlugs.add(slug);
+  for (const feed of RADIO_SAMOA_FEEDS) {
+    const slug = safeSlug(feed.slug);
+    if (!existingSlugs.has(slug)) {
+      feeds.push(feed);
+      existingSlugs.add(slug);
+    }
   }
-}
 
   // Optional: remove files that are no longer published
   const keep = new Set(feeds.map(f => `${safeSlug(f.slug)}.xml`));
@@ -132,36 +162,36 @@ for (const feed of RADIO_SAMOA_FEEDS) {
     }
   }
 
-// Write each feed
-for (const f of feeds) {
-  const slug = safeSlug(f.slug);
-  if (!slug) continue;
+  // Write each feed
+  for (const f of feeds) {
+    const slug = safeSlug(f.slug);
+    if (!slug) continue;
 
-  const outPath = path.join(FEEDS_DIR, `${slug}.xml`);
+    const outPath = path.join(FEEDS_DIR, `${slug}.xml`);
 
-  // These feeds are generated locally by scripts/feedgen.py.
-  // Do not fetch them from GitHub Pages during the same workflow run.
-  if (f.generated === true) {
-    if (fs.existsSync(outPath)) {
-      console.log("Kept generated", outPath);
-    } else {
-      console.warn(`Generated feed missing locally: ${outPath}`);
+    // These feeds are generated locally by scripts/feedgen.py.
+    // Do not fetch them from GitHub Pages during the same workflow run.
+    if (f.generated === true) {
+      if (fs.existsSync(outPath)) {
+        console.log("Kept generated", outPath);
+      } else {
+        console.warn(`Generated feed missing locally: ${outPath}`);
+      }
+      continue;
     }
-    continue;
+
+    try {
+      await sleep(8000);
+
+      const xml = await fetchText(f.url);
+
+      fs.writeFileSync(outPath, xml, "utf8");
+      console.log("Wrote", outPath);
+    } catch (err) {
+      console.warn(`Skipped ${slug}: ${err.message}`);
+      continue;
+    }
   }
-
-  try {
-    await sleep(8000);
-
-    const xml = await fetchText(f.url);
-
-    fs.writeFileSync(outPath, xml, "utf8");
-    console.log("Wrote", outPath);
-  } catch (err) {
-    console.warn(`Skipped ${slug}: ${err.message}`);
-    continue;
-  }
-}
 
   // Write a small index so you can browse what’s published.
   // Only include feeds where the XML file exists.
