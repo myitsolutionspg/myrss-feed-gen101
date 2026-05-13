@@ -10,10 +10,7 @@ from email.utils import format_datetime, parsedate_to_datetime
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import xml.etree.ElementTree as ET
-from copy import deepcopy
-from io import BytesIO
 from pathlib import Path
-import urllib.request
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
 ITUNES_NS = "http://www.itunes.com/dtds/podcast-1.0.dtd"
@@ -29,6 +26,8 @@ RADIO_SAMOA_PROGRAMMES = [
             "Taimi with Tuaman*",
             "*Taimi with TUAMAN*",
             "*Taimi with Tuaman*",
+            "*TUAMAN*",
+            "*Tuaman*",
         ],
         "output": "feeds/radio-samoa-taimi-with-tuaman.xml",
         "link": "https://radiosamoa.co.nz/podcast-taimi-with-tuaman/",
@@ -37,6 +36,7 @@ RADIO_SAMOA_PROGRAMMES = [
         "name": "Malu i Fale",
         "patterns": [
             "Malu i Fale*",
+            "*Malu i Fale*",
         ],
         "output": "feeds/radio-samoa-malu-i-fale.xml",
         "link": "https://radiosamoa.co.nz/podcast-malu-i-fale/",
@@ -45,6 +45,7 @@ RADIO_SAMOA_PROGRAMMES = [
         "name": "O Oe Male Tulafono",
         "patterns": [
             "O Oe Male Tulafono*",
+            "*O Oe Male Tulafono*",
         ],
         "output": "feeds/radio-samoa-o-oe-male-tulafono.xml",
         "link": "https://radiosamoa.co.nz/podcast-polokalame-leoleo/",
@@ -53,6 +54,7 @@ RADIO_SAMOA_PROGRAMMES = [
         "name": "O le Vaofilifili o Samoa",
         "patterns": [
             "O le Vaofilifili o Samoa*",
+            "*O le Vaofilifili o Samoa*",
         ],
         "output": "feeds/radio-samoa-o-le-vaofilifili-o-samoa.xml",
         "link": "https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/",
@@ -61,6 +63,7 @@ RADIO_SAMOA_PROGRAMMES = [
         "name": "Tu'utu'u le Upega ile Loloto",
         "patterns": [
             "Tu'utu'u le Upega ile Loloto*",
+            "*Tu'utu'u le Upega ile Loloto*",
         ],
         "output": "feeds/radio-samoa-tuutuu-le-upega-ile-loloto.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
@@ -93,6 +96,8 @@ RADIO_SAMOA_PROGRAMMES = [
         "patterns": [
             "TUA i le ELEELE*",
             "Tua i le Eleele*",
+            "*TUA i le ELEELE*",
+            "*Tua i le Eleele*",
         ],
         "output": "feeds/radio-samoa-tua-i-le-eleele.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
@@ -101,6 +106,7 @@ RADIO_SAMOA_PROGRAMMES = [
         "name": "Autalaina o le Tulafono",
         "patterns": [
             "Autalaina o le Tulafono*",
+            "*Autalaina o le Tulafono*",
         ],
         "output": "feeds/radio-samoa-autalaina-o-le-tulafono.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
@@ -114,12 +120,13 @@ RADIO_SAMOA_PROGRAMMES = [
             "*Interview*",
         ],
         "output": "feeds/radio-samoa-interviews.xml",
-        "link": RADIO_SAMOA_SOURCE_FEED,
+        "link": "https://radiosamoa.co.nz/podcast-interviews/",
     },
     {
         "name": "Talatalaga",
         "patterns": [
             "Talatalaga*",
+            "*Talatalaga*",
         ],
         "output": "feeds/radio-samoa-talatalaga.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
@@ -444,14 +451,12 @@ def find_rss_channel(root: ET.Element) -> ET.Element | None:
 def get_item_search_text(item: ET.Element) -> str:
     """
     Build searchable text from all useful RSS / podcast item fields.
-    This helps catch programme names stored in title, description,
+    This catches programme names stored in title, description,
     content:encoded, itunes:summary, category, link, guid, or attributes.
     """
     parts: list[str] = []
 
     for ch in item.iter():
-        ln = localname(ch.tag).lower()
-
         if ch.text and safe_text(ch.text):
             parts.append(safe_text(ch.text))
 
@@ -459,35 +464,7 @@ def get_item_search_text(item: ET.Element) -> str:
             if attr_value and safe_text(attr_value):
                 parts.append(safe_text(attr_value))
 
-        if ln in ("title", "description", "encoded", "summary", "subtitle", "category", "author", "link", "guid"):
-            if ch.text and safe_text(ch.text):
-                parts.append(safe_text(ch.text))
-
     return "\n".join(parts)
-
-def wildcard_pattern_matches(text: str, pattern: str) -> bool:
-    """
-    Supports simple '*' wildcard matching.
-    Examples:
-      "Taimi with TUAMAN*" matches "Taimi with TUAMAN - #41"
-      "*Queen Poke*" matches any title/description containing "Queen Poke"
-      "Malu i Fale" behaves like a normal case-insensitive contains match
-    """
-    text_normalized = safe_text(text).casefold()
-    pattern_normalized = safe_text(pattern).casefold()
-
-    if not pattern_normalized:
-        return False
-
-    # No wildcard means normal contains match.
-    if "*" not in pattern_normalized:
-        return pattern_normalized in text_normalized
-
-    escaped = re.escape(pattern_normalized).replace(r"\*", ".*")
-
-    # Treat wildcard patterns as "contains somewhere", not full-string only.
-    regex = re.compile(escaped, flags=re.IGNORECASE | re.DOTALL)
-    return regex.search(text_normalized) is not None
 
 
 def wildcard_pattern_matches(text: str, pattern: str) -> bool:
@@ -519,15 +496,6 @@ def item_matches_programme(item: ET.Element, programme: dict) -> bool:
     if not patterns:
         old_keyword = programme.get("keyword", "")
         patterns = [old_keyword]
-
-    return any(wildcard_pattern_matches(search_text, pattern) for pattern in patterns)
-
-    patterns = programme.get("patterns")
-
-    # Backward compatibility if any old item still uses "keyword".
-    if not patterns:
-        keyword = programme.get("keyword", "")
-        patterns = [keyword]
 
     return any(wildcard_pattern_matches(search_text, pattern) for pattern in patterns)
 
