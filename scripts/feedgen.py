@@ -27,6 +27,8 @@ RADIO_SAMOA_PROGRAMMES = [
         "patterns": [
             "Taimi with TUAMAN*",
             "Taimi with Tuaman*",
+            "*Taimi with TUAMAN*",
+            "*Taimi with Tuaman*",
         ],
         "output": "feeds/radio-samoa-taimi-with-tuaman.xml",
         "link": "https://radiosamoa.co.nz/podcast-taimi-with-tuaman/",
@@ -67,7 +69,8 @@ RADIO_SAMOA_PROGRAMMES = [
         "name": "Tia with Queen Poke",
         "patterns": [
             "*Queen Poke*",
-            "Tia with Queen Poke*",
+            "*Tia with Queen Poke*",
+            "*QueenPoke*",
         ],
         "output": "feeds/radio-samoa-tia-with-queen-poke.xml",
         "link": "https://radiosamoa.co.nz/podcast-tia-with-queen-poke/",
@@ -76,7 +79,11 @@ RADIO_SAMOA_PROGRAMMES = [
         "name": "Hawaii & USA Report",
         "patterns": [
             "Hawaii & USA Report*",
+            "Hawaii & USA report*",
+            "*Hawaii & USA Report*",
+            "*Hawaii & USA report*",
             "Hawaii and USA Report*",
+            "*Hawaii and USA Report*",
         ],
         "output": "feeds/radio-samoa-hawaii-usa-report.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
@@ -103,6 +110,8 @@ RADIO_SAMOA_PROGRAMMES = [
         "patterns": [
             "Interviews*",
             "Interview*",
+            "*Interviews*",
+            "*Interview*",
         ],
         "output": "feeds/radio-samoa-interviews.xml",
         "link": RADIO_SAMOA_SOURCE_FEED,
@@ -433,16 +442,28 @@ def find_rss_channel(root: ET.Element) -> ET.Element | None:
     return None
 
 def get_item_search_text(item: ET.Element) -> str:
-    title = child_text_by_local(item, "title")
-    description = child_text_by_local(item, "description")
+    """
+    Build searchable text from all useful RSS / podcast item fields.
+    This helps catch programme names stored in title, description,
+    content:encoded, itunes:summary, category, link, guid, or attributes.
+    """
+    parts: list[str] = []
 
-    if not description:
-        for ch in list(item):
-            if localname(ch.tag).lower() == "encoded" and safe_text(ch.text):
-                description = safe_text(ch.text)
-                break
+    for ch in item.iter():
+        ln = localname(ch.tag).lower()
 
-    return f"{title}\n{description}"
+        if ch.text and safe_text(ch.text):
+            parts.append(safe_text(ch.text))
+
+        for attr_value in ch.attrib.values():
+            if attr_value and safe_text(attr_value):
+                parts.append(safe_text(attr_value))
+
+        if ln in ("title", "description", "encoded", "summary", "subtitle", "category", "author", "link", "guid"):
+            if ch.text and safe_text(ch.text):
+                parts.append(safe_text(ch.text))
+
+    return "\n".join(parts)
 
 def wildcard_pattern_matches(text: str, pattern: str) -> bool:
     """
@@ -469,8 +490,37 @@ def wildcard_pattern_matches(text: str, pattern: str) -> bool:
     return regex.search(text_normalized) is not None
 
 
+def wildcard_pattern_matches(text: str, pattern: str) -> bool:
+    """
+    Supports simple '*' wildcard matching.
+
+    Examples:
+      "Taimi with TUAMAN*" matches "Taimi with TUAMAN - #41"
+      "*Queen Poke*" matches anything containing "Queen Poke"
+      "Talatalaga*" matches titles/descriptions beginning with Talatalaga
+    """
+    text_normalized = safe_text(text).casefold()
+    pattern_normalized = safe_text(pattern).casefold()
+
+    if not pattern_normalized:
+        return False
+
+    if "*" not in pattern_normalized:
+        return pattern_normalized in text_normalized
+
+    escaped = re.escape(pattern_normalized).replace(r"\*", ".*")
+    return re.search(escaped, text_normalized, flags=re.IGNORECASE | re.DOTALL) is not None
+
+
 def item_matches_programme(item: ET.Element, programme: dict) -> bool:
     search_text = get_item_search_text(item)
+
+    patterns = programme.get("patterns")
+    if not patterns:
+        old_keyword = programme.get("keyword", "")
+        patterns = [old_keyword]
+
+    return any(wildcard_pattern_matches(search_text, pattern) for pattern in patterns)
 
     patterns = programme.get("patterns")
 
