@@ -36,6 +36,30 @@
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijitimes.com.fj%2Fcategory%2Fpeople%2F&content=1&max=20"
   },
   {
+    "slug": "fijivillage-news",
+    "title": "fijivillage.com",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijivillage-news.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijivillage.com%2Fnews%2F&content=1&max=30"
+  },
+  {
+    "slug": "fijivillage-sports",
+    "title": "fijivillage.com",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijivillage-sports.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijivillage.com%2Fsports%2F&content=1&max=30"
+  },
+  {
+    "slug": "fijivillage-indepth",
+    "title": "fijivillage.com",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijivillage-indepth.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijivillage.com%2Findepth%2F&content=1&max=30"
+  },
+  {
+    "slug": "fijivillage-business",
+    "title": "fijivillage.com",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/fijivillage-business.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.fijivillage.com%2Fbusiness%2F&content=1&max=30"
+  },
+  {
     "slug": "governor-guam-gov",
     "title": "governor.guam.gov",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/governor-guam-gov.xml",
