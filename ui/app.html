@@ -7,372 +7,251 @@
   <link rel="stylesheet" href="./styles.css" />
 
   <style>
-    /* Page container */
-    .wrap {
-      max-width: 1180px;
-      width: 100%;
-      margin: 0 auto;
-      padding-left: 16px;
-      padding-right: 16px;
-      box-sizing: border-box;
-    }
+  /* Full-width page reset */
+  html,
+  body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
 
-    /* Main two-column section */
-    .grid2 {
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
-      gap: 16px;
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
-      align-items: start;
-    }
+  body {
+    display: block !important;
+  }
 
-    /* Prevent cards from forcing overflow */
-    .grid2 > .card,
-    .card {
-      min-width: 0;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
+  /* Main page container */
+  main.wrap,
+  .wrap {
+    width: min(100vw - 64px, 1600px) !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
 
-    /* Scrape Website card */
-    .scrapeCard {
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
-    }
+  /* Main two-column layout */
+  .grid2,
+  .appMainGrid {
+    display: grid !important;
+    grid-template-columns: 400px minmax(0, 1fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    align-items: start !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
 
-    /* Rows must wrap cleanly */
-    .scrapeCard .row,
-    .scrapeOptions .row {
-      min-width: 0 !important;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
+  /* Cards */
+  .card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
 
-    .scrapeCard input,
-    .scrapeCard select,
-    .scrapeCard button {
-      max-width: 100%;
-      box-sizing: border-box;
-    }
+  .savedFeedsCard {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
 
-    /* URL row alignment */
-    .scrapeUrlRow {
-      display: grid;
-      grid-template-columns: 120px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .scrapeUrlRow input {
-      width: 100%;
-      min-width: 0;
-    }
-
-    /* Button stack */
-    .scrapeActions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .scrapeActions .btn {
-      width: 100%;
-    }
-
-    /* Options row */
-    .scrapeOptions {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 16px;
-      width: 100%;
-      max-width: 100%;
-      margin-top: 12px;
-      box-sizing: border-box;
-    }
-
-    .scrapeOptions .row {
-      display: grid;
-      grid-template-columns: 120px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
-      width: 100%;
-    }
-
-    .scrapeOptions select {
-      width: 100%;
-      min-width: 0;
-    }
-
-    /* Results area */
-    .results,
-    #results {
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-      box-sizing: border-box;
-    }
-
-    .results * {
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-
-    /* Long URLs and generated output must wrap */
-    .results a,
-    .results code,
-    .results pre,
-    .results .mono,
-    .results .url,
-    #scrapeOut,
-    #feedsOut,
-    #pingOut,
-    .out,
-    .mono {
-      overflow-wrap: anywhere;
-      word-break: break-word;
-      white-space: pre-wrap;
-    }
-
-    /* Header controls should not overflow */
-    .resultsHeader,
-    .flex {
-      min-width: 0;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-
-    /* Tablet/mobile */
-    @media (max-width: 900px) {
-      .grid2 {
-        grid-template-columns: 1fr;
-      }
-
-      .scrapeOptions {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .scrapeUrlRow,
-      .scrapeOptions .row {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-
-      .wrap {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-    }
-
-        /* HARD FIX: stop scrape results from creating horizontal overflow */
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-    
-    .wrap {
-      max-width: 1500px !important;
-      width: 100% !important;
-      margin: 0 auto !important;
-      padding-left: 32px !important;
-      padding-right: 32px !important;
-      box-sizing: border-box !important;
-    }
-    
-    .grid2 {
-      display: grid !important;
-      grid-template-columns: 330px minmax(0, 1fr) !important;
-      gap: 16px !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      box-sizing: border-box !important;
-      overflow: hidden !important;
-    }
-    
-    .grid2 > .card {
-      min-width: 0 !important;
-      max-width: 100% !important;
-      overflow: hidden !important;
-      box-sizing: border-box !important;
-    }
-    
-    .scrapeCard {
-      min-width: 0 !important;
-      max-width: 100% !important;
-      overflow: hidden !important;
-    }
-    
-    /* Force the generated results container to stay inside the card */
-    #results,
-    .results {
-      display: block !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
-      overflow-x: hidden !important;
-      box-sizing: border-box !important;
-    }
-    
-    /* Force every generated result card/row to wrap */
-    #results > *,
-    .results > * {
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
-      box-sizing: border-box !important;
-      overflow: hidden !important;
-    }
-    
-    /* Fix flex-generated result cards */
-    #results div,
-    .results div {
-      min-width: 0 !important;
-      max-width: 100% !important;
-      box-sizing: border-box !important;
-    }
-    
-    /* This is the main fix for the long image URLs */
-    #results,
-    #results *,
-    .results,
-    .results * {
-      white-space: normal !important;
-      overflow-wrap: anywhere !important;
-      word-break: break-word !important;
-    }
-    
-    /* Keep images from forcing row width */
-    #results img,
-    .results img {
-      flex: 0 0 auto !important;
-      max-width: 96px !important;
-      width: 96px !important;
-      height: 64px !important;
-      object-fit: cover !important;
-    }
-    
-    /* If app.js creates flex rows, allow the text side to shrink */
-    #results .flex,
-    .results .flex,
-    #results [style*="display:flex"],
-    .results [style*="display:flex"] {
-      min-width: 0 !important;
-      max-width: 100% !important;
-      overflow: hidden !important;
-    }
-    
-    /* Any links/URLs inside generated results must wrap */
-    #results a,
-    .results a,
-    #results code,
-    .results code,
-    #results pre,
-    .results pre,
-    #results span,
-    .results span,
-    #results p,
-    .results p {
-      max-width: 100% !important;
-      min-width: 0 !important;
-      white-space: normal !important;
-      overflow-wrap: anywhere !important;
-      word-break: break-word !important;
-    }
-    
-    /* Output boxes */
-    .out,
-    pre,
-    .mono {
-      max-width: 100% !important;
-      min-width: 0 !important;
-      white-space: pre-wrap !important;
-      overflow-wrap: anywhere !important;
-      word-break: break-word !important;
-      overflow-x: hidden !important;
-    }
-    
-    /* Mobile */
-    @media (max-width: 900px) {
-      .grid2 {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
-    .appMainGrid {
+  .scrapeCard {
+    width: 100% !important;
     min-width: 0 !important;
     overflow: hidden !important;
   }
 
-      /* Wider Saved Feeds panel */
-    .savedFeedsCard {
-      width: 100% !important;
-      min-width: 0 !important;
+  /* Saved Feeds input rows */
+  .savedFeedsCard .row {
+    display: grid !important;
+    grid-template-columns: 110px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .savedFeedsCard input,
+  .savedFeedsCard button {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Saved feed list */
+  .savedFeedsCard .list,
+  .savedFeedsCard .list * {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* Scrape URL row */
+  .scrapeUrlRow {
+    display: grid !important;
+    grid-template-columns: 120px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .scrapeUrlRow input {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Scrape buttons */
+  .scrapeActions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+  }
+
+  .scrapeActions .btn {
+    width: 100% !important;
+  }
+
+  /* Scrape options */
+  .scrapeOptions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin-top: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  .scrapeOptions .row {
+    display: grid !important;
+    grid-template-columns: 130px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    align-items: center !important;
+    min-width: 0 !important;
+  }
+
+  .scrapeOptions select {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Results */
+  #results,
+  .results {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  #results *,
+  .results * {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+  }
+
+  #results img,
+  .results img {
+    flex: 0 0 auto !important;
+    width: 96px !important;
+    max-width: 96px !important;
+    height: 64px !important;
+    object-fit: cover !important;
+  }
+
+  /* Output boxes and monospace values */
+  .out,
+  pre,
+  .mono {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    overflow-x: hidden !important;
+  }
+
+  .flex,
+  .resultsHeader {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Large screens */
+  @media (min-width: 1700px) {
+    main.wrap,
+    .wrap {
+      width: min(100vw - 96px, 1750px) !important;
     }
-    
+
+    .grid2,
+    .appMainGrid {
+      grid-template-columns: 440px minmax(0, 1fr) !important;
+      gap: 28px !important;
+    }
+  }
+
+  /* Medium screens */
+  @media (max-width: 1200px) {
+    main.wrap,
+    .wrap {
+      width: calc(100vw - 48px) !important;
+    }
+
+    .grid2,
+    .appMainGrid {
+      grid-template-columns: 340px minmax(0, 1fr) !important;
+      gap: 18px !important;
+    }
+  }
+
+  /* Tablet/mobile */
+  @media (max-width: 900px) {
+    main.wrap,
+    .wrap {
+      width: calc(100vw - 32px) !important;
+    }
+
+    .grid2,
+    .appMainGrid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .scrapeOptions {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 560px) {
+    main.wrap,
+    .wrap {
+      width: calc(100vw - 24px) !important;
+    }
+
+    .scrapeUrlRow,
+    .scrapeOptions .row,
     .savedFeedsCard .row {
-      display: grid !important;
-      grid-template-columns: 90px minmax(0, 1fr) !important;
-      gap: 12px !important;
-      align-items: center !important;
+      grid-template-columns: 1fr !important;
+      gap: 6px !important;
     }
-    
-    .savedFeedsCard input {
-      width: 100% !important;
-      min-width: 0 !important;
-      box-sizing: border-box !important;
-    }
-    
-    .savedFeedsCard .list {
-      width: 100% !important;
-      max-width: 100% !important;
-      box-sizing: border-box !important;
-    }
-    
-    .savedFeedsCard .list,
-    .savedFeedsCard .list * {
-      overflow-wrap: anywhere !important;
-      word-break: break-word !important;
-    }
-    
-    /* Give the scrape panel more useful space */
-    .scrapeCard {
-      min-width: 0 !important;
-      width: 100% !important;
-    }
-    
-    /* On large screens, use the browser width better */
-    @media (min-width: 1400px) {
-      .wrap {
-        max-width: 1600px !important;
-      }
-    
-      .grid2 {
-        grid-template-columns: 360px minmax(0, 1fr) !important;
-      }
-    }
-    
-    /* On smaller screens, reduce padding */
-    @media (max-width: 900px) {
-      .wrap {
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-      }
-    
-      .grid2 {
-        grid-template-columns: 1fr !important;
-      }
-    }  
-  </style>
+  }
+</style>
 </head>
 <body>
   <main class="wrap">
