@@ -34,16 +34,16 @@
 
   /* Fixed 50% / 50% layout */
   .grid2,
-  .appMainGrid {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
-    gap: 24px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    align-items: start !important;
-    box-sizing: border-box !important;
-  }
+.appMainGrid {
+  display: grid !important;
+  grid-template-columns: 46% 54% !important;
+  gap: 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  align-items: start !important;
+  box-sizing: border-box !important;
+}
 
   .card,
   .grid2 > .card {
@@ -219,6 +219,11 @@
       gap: 6px !important;
     }
   }
+    .savedFeedsCard {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }  
 </style>
 </head>
 <body>
