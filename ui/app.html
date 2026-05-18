@@ -74,11 +74,15 @@
     box-sizing: border-box !important;
   }
 
-  .savedFeedsCard input,
-  .savedFeedsCard button {
+  .savedFeedsCard input {
     width: 100% !important;
     min-width: 0 !important;
     box-sizing: border-box !important;
+  }
+  
+  /* Only the Add Feed button should stay full width */
+  #btnAddFeed {
+    width: 100% !important;
   }
 
   .savedFeedsCard .list,
@@ -223,7 +227,60 @@
     width: 100% !important;
     min-width: 0 !important;
     max-width: none !important;
-  }  
+  }
+
+  /* Saved feed action buttons: keep horizontal and auto-size */
+#feedsList button,
+#feedsList .btn {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 8px 8px 0 !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+  white-space: nowrap !important;
+  vertical-align: top !important;
+}
+
+/* Keep each saved feed card left-aligned */
+#feedsList,
+#feedsList li,
+#feedsList li *,
+.savedFeedsCard .list,
+.savedFeedsCard .list * {
+  text-align: left !important;
+}
+
+/* Force saved feed URLs to align left and wrap naturally */
+#feedsList a,
+#feedsList code,
+#feedsList pre,
+#feedsList .mono,
+#feedsList .url,
+#feedsList div,
+#feedsList span,
+#feedsList p {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* Make saved feed list items use full card width */
+#feedsList > li {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Keep buttons grouped at the top-left of each saved feed item */
+#feedsList > li button {
+  float: none !important;
+}
 </style>
 </head>
 <body>
