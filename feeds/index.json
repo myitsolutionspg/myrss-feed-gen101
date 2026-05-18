@@ -72,10 +72,22 @@
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fwww.islapublic.org%2F&content=1&max=30"
   },
   {
+    "slug": "kanivatonga-co-nz",
+    "title": "kanivatonga.co.nz",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/kanivatonga-co-nz.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fkanivatonga.co.nz%2F&content=1&max=30"
+  },
+  {
     "slug": "kuam-com",
     "title": "kuam.com",
     "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/kuam-com.xml",
     "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fkuam.com&content=1&max=20"
+  },
+  {
+    "slug": "matangitonga-to",
+    "title": "matangitonga.to",
+    "pages_url": "https://myitsolutionspg.github.io/myrss-feed-gen101/feeds/matangitonga-to.xml",
+    "source_url": "https://myrss-api.melkyw.workers.dev/rss?src=https%3A%2F%2Fmatangitonga.to%2F&content=1&max=30"
   },
   {
     "slug": "mbjguam-com",
