@@ -181,15 +181,17 @@
     }
     
     .wrap {
-      max-width: 1180px !important;
+      max-width: 1500px !important;
       width: 100% !important;
       margin: 0 auto !important;
+      padding-left: 32px !important;
+      padding-right: 32px !important;
       box-sizing: border-box !important;
     }
     
     .grid2 {
       display: grid !important;
-      grid-template-columns: 260px minmax(0, 1fr) !important;
+      grid-template-columns: 330px minmax(0, 1fr) !important;
       gap: 16px !important;
       width: 100% !important;
       max-width: 100% !important;
@@ -310,6 +312,66 @@
     min-width: 0 !important;
     overflow: hidden !important;
   }
+
+      /* Wider Saved Feeds panel */
+    .savedFeedsCard {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+    
+    .savedFeedsCard .row {
+      display: grid !important;
+      grid-template-columns: 90px minmax(0, 1fr) !important;
+      gap: 12px !important;
+      align-items: center !important;
+    }
+    
+    .savedFeedsCard input {
+      width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+    
+    .savedFeedsCard .list {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    
+    .savedFeedsCard .list,
+    .savedFeedsCard .list * {
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+    }
+    
+    /* Give the scrape panel more useful space */
+    .scrapeCard {
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+    
+    /* On large screens, use the browser width better */
+    @media (min-width: 1400px) {
+      .wrap {
+        max-width: 1600px !important;
+      }
+    
+      .grid2 {
+        grid-template-columns: 360px minmax(0, 1fr) !important;
+      }
+    }
+    
+    /* On smaller screens, reduce padding */
+    @media (max-width: 900px) {
+      .wrap {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+    
+      .grid2 {
+        grid-template-columns: 1fr !important;
+      }
+    }  
   </style>
 </head>
 <body>
