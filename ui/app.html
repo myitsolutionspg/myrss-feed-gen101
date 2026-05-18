@@ -171,6 +171,145 @@
         padding-right: 12px;
       }
     }
+
+        /* HARD FIX: stop scrape results from creating horizontal overflow */
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    
+    .wrap {
+      max-width: 1180px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      box-sizing: border-box !important;
+    }
+    
+    .grid2 {
+      display: grid !important;
+      grid-template-columns: 260px minmax(0, 1fr) !important;
+      gap: 16px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+    
+    .grid2 > .card {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+    
+    .scrapeCard {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+    
+    /* Force the generated results container to stay inside the card */
+    #results,
+    .results {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Force every generated result card/row to wrap */
+    #results > *,
+    .results > * {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+    
+    /* Fix flex-generated result cards */
+    #results div,
+    .results div {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* This is the main fix for the long image URLs */
+    #results,
+    #results *,
+    .results,
+    .results * {
+      white-space: normal !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+    }
+    
+    /* Keep images from forcing row width */
+    #results img,
+    .results img {
+      flex: 0 0 auto !important;
+      max-width: 96px !important;
+      width: 96px !important;
+      height: 64px !important;
+      object-fit: cover !important;
+    }
+    
+    /* If app.js creates flex rows, allow the text side to shrink */
+    #results .flex,
+    .results .flex,
+    #results [style*="display:flex"],
+    .results [style*="display:flex"] {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+    }
+    
+    /* Any links/URLs inside generated results must wrap */
+    #results a,
+    .results a,
+    #results code,
+    .results code,
+    #results pre,
+    .results pre,
+    #results span,
+    .results span,
+    #results p,
+    .results p {
+      max-width: 100% !important;
+      min-width: 0 !important;
+      white-space: normal !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+    }
+    
+    /* Output boxes */
+    .out,
+    pre,
+    .mono {
+      max-width: 100% !important;
+      min-width: 0 !important;
+      white-space: pre-wrap !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+      overflow-x: hidden !important;
+    }
+    
+    /* Mobile */
+    @media (max-width: 900px) {
+      .grid2 {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    .appMainGrid {
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
   </style>
 </head>
 <body>
@@ -197,7 +336,7 @@
       <pre id="pingOut" class="out"></pre>
     </section>
 
-    <section class="grid2">
+    <section class="grid2 appMainGrid">
       <div class="card savedFeedsCard">
         <h2>Saved Feeds</h2>
 
