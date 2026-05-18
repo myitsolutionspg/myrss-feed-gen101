@@ -7,11 +7,9 @@
   <link rel="stylesheet" href="./styles.css" />
 
   <style>
-  /* Full-width page reset */
   html,
   body {
     width: 100%;
-    min-width: 0;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -21,11 +19,12 @@
     display: block !important;
   }
 
-  /* Main page container */
+  /* Main page width */
   main.wrap,
   .wrap {
-    width: min(100vw - 64px, 1600px) !important;
-    max-width: none !important;
+    width: 92vw !important;
+    max-width: 1700px !important;
+    min-width: 1100px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     padding-left: 0 !important;
@@ -33,45 +32,46 @@
     box-sizing: border-box !important;
   }
 
-  /* Main two-column layout */
+  /* Fixed 50% / 50% layout */
   .grid2,
   .appMainGrid {
     display: grid !important;
-    grid-template-columns: 400px minmax(0, 1fr) !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
     gap: 24px !important;
     width: 100% !important;
-    max-width: none !important;
+    max-width: 100% !important;
     min-width: 0 !important;
     align-items: start !important;
-    overflow: visible !important;
     box-sizing: border-box !important;
   }
 
-  /* Cards */
-  .card {
+  .card,
+  .grid2 > .card {
     min-width: 0 !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
 
-  .savedFeedsCard {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-
+  .savedFeedsCard,
   .scrapeCard {
     width: 100% !important;
     min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .scrapeCard {
     overflow: hidden !important;
   }
 
-  /* Saved Feeds input rows */
+  /* Saved Feeds form */
   .savedFeedsCard .row {
     display: grid !important;
-    grid-template-columns: 110px minmax(0, 1fr) !important;
-    gap: 12px !important;
+    grid-template-columns: 120px minmax(0, 1fr) !important;
+    gap: 14px !important;
     align-items: center !important;
     width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .savedFeedsCard input,
@@ -81,7 +81,6 @@
     box-sizing: border-box !important;
   }
 
-  /* Saved feed list */
   .savedFeedsCard .list,
   .savedFeedsCard .list * {
     max-width: 100% !important;
@@ -95,7 +94,7 @@
   .scrapeUrlRow {
     display: grid !important;
     grid-template-columns: 120px minmax(0, 1fr) !important;
-    gap: 12px !important;
+    gap: 14px !important;
     align-items: center !important;
     width: 100% !important;
     box-sizing: border-box !important;
@@ -136,6 +135,7 @@
     gap: 12px !important;
     align-items: center !important;
     min-width: 0 !important;
+    width: 100% !important;
   }
 
   .scrapeOptions select {
@@ -174,7 +174,7 @@
     object-fit: cover !important;
   }
 
-  /* Output boxes and monospace values */
+  /* Output boxes */
   .out,
   pre,
   .mono {
@@ -193,39 +193,12 @@
     box-sizing: border-box !important;
   }
 
-  /* Large screens */
-  @media (min-width: 1700px) {
-    main.wrap,
-    .wrap {
-      width: min(100vw - 96px, 1750px) !important;
-    }
-
-    .grid2,
-    .appMainGrid {
-      grid-template-columns: 440px minmax(0, 1fr) !important;
-      gap: 28px !important;
-    }
-  }
-
-  /* Medium screens */
-  @media (max-width: 1200px) {
-    main.wrap,
-    .wrap {
-      width: calc(100vw - 48px) !important;
-    }
-
-    .grid2,
-    .appMainGrid {
-      grid-template-columns: 340px minmax(0, 1fr) !important;
-      gap: 18px !important;
-    }
-  }
-
-  /* Tablet/mobile */
-  @media (max-width: 900px) {
+  /* Keep 50/50 on normal desktop, only stack on small screens */
+  @media (max-width: 1100px) {
     main.wrap,
     .wrap {
       width: calc(100vw - 32px) !important;
+      min-width: 0 !important;
     }
 
     .grid2,
@@ -239,11 +212,6 @@
   }
 
   @media (max-width: 560px) {
-    main.wrap,
-    .wrap {
-      width: calc(100vw - 24px) !important;
-    }
-
     .scrapeUrlRow,
     .scrapeOptions .row,
     .savedFeedsCard .row {
