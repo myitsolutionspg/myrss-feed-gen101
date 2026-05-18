@@ -5,6 +5,173 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>myRSS Feed Gen | App</title>
   <link rel="stylesheet" href="./styles.css" />
+
+  <style>
+    /* Page container */
+    .wrap {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      padding-left: 16px;
+      padding-right: 16px;
+      box-sizing: border-box;
+    }
+
+    /* Main two-column section */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      align-items: start;
+    }
+
+    /* Prevent cards from forcing overflow */
+    .grid2 > .card,
+    .card {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Scrape Website card */
+    .scrapeCard {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    /* Rows must wrap cleanly */
+    .scrapeCard .row,
+    .scrapeOptions .row {
+      min-width: 0 !important;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .scrapeCard input,
+    .scrapeCard select,
+    .scrapeCard button {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* URL row alignment */
+    .scrapeUrlRow {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .scrapeUrlRow input {
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* Button stack */
+    .scrapeActions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .scrapeActions .btn {
+      width: 100%;
+    }
+
+    /* Options row */
+    .scrapeOptions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 12px;
+      box-sizing: border-box;
+    }
+
+    .scrapeOptions .row {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .scrapeOptions select {
+      width: 100%;
+      min-width: 0;
+    }
+
+    /* Results area */
+    .results,
+    #results {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    .results * {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Long URLs and generated output must wrap */
+    .results a,
+    .results code,
+    .results pre,
+    .results .mono,
+    .results .url,
+    #scrapeOut,
+    #feedsOut,
+    #pingOut,
+    .out,
+    .mono {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    /* Header controls should not overflow */
+    .resultsHeader,
+    .flex {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Tablet/mobile */
+    @media (max-width: 900px) {
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+
+      .scrapeOptions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .scrapeUrlRow,
+      .scrapeOptions .row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .wrap {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="wrap">
@@ -31,7 +198,7 @@
     </section>
 
     <section class="grid2">
-      <div class="card">
+      <div class="card savedFeedsCard">
         <h2>Saved Feeds</h2>
 
         <div class="stack">
@@ -56,26 +223,29 @@
         <pre id="feedsOut" class="out"></pre>
       </div>
 
-      <div class="card">
+      <div class="card scrapeCard">
         <h2>Scrape Website</h2>
 
-        <label class="row">
+        <label class="scrapeUrlRow">
           <span>URL</span>
           <input id="scrapeUrl" type="url" placeholder="https://thepngbulletin.com/" />
         </label>
-        <button id="btnScrape" class="btn primary">Scrape</button>
-        <button id="btnSaveScrapedAsFeed" class="btn" disabled>Save as Feed</button>
 
-        <div class="flex">
-          <label class="row" style="min-width:220px">
+        <div class="scrapeActions">
+          <button id="btnScrape" class="btn primary">Scrape</button>
+          <button id="btnSaveScrapedAsFeed" class="btn" disabled>Save as Feed</button>
+        </div>
+
+        <div class="scrapeOptions">
+          <label class="row">
             <span>Include content</span>
             <select id="rssContent">
               <option value="0" selected>0 (titles only)</option>
               <option value="1">1 (include content)</option>
             </select>
           </label>
-        
-          <label class="row" style="min-width:220px">
+
+          <label class="row">
             <span>Max items</span>
             <select id="rssMax">
               <option>0</option>
@@ -114,6 +284,5 @@
       location.replace(location.href.replace("://www.", "://"));
     }
   </script>
-  
 </body>
 </html>
