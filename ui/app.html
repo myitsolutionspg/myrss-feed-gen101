@@ -32,18 +32,17 @@
     box-sizing: border-box !important;
   }
 
-  /* Fixed 50% / 50% layout */
   .grid2,
-.appMainGrid {
-  display: grid !important;
-  grid-template-columns: 35% 65% !important;
-  gap: 24px !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  align-items: start !important;
-  box-sizing: border-box !important;
-}
+  .appMainGrid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 35fr) minmax(0, 65fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    align-items: start !important;
+    box-sizing: border-box !important;
+  }
 
   .card,
   .grid2 > .card {
@@ -280,6 +279,52 @@
 /* Keep buttons grouped at the top-left of each saved feed item */
 #feedsList > li button {
   float: none !important;
+}
+
+/* FINAL FIX: saved feed buttons and URLs */
+#feedsList li {
+  text-align: left !important;
+}
+
+/* Keep saved feed buttons horizontal and auto-sized */
+#feedsList li button,
+#feedsList li .btn {
+  width: auto !important;
+  min-width: auto !important;
+  max-width: max-content !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 10px 10px 0 !important;
+  padding: 10px 16px !important;
+  white-space: nowrap !important;
+  float: none !important;
+}
+
+/* Override global mono/pre formatting inside Saved Feeds only */
+#feedsList li pre,
+#feedsList li .mono,
+#feedsList li code,
+#feedsList li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
+/* Force all saved feed content to start from the left */
+#feedsList li div,
+#feedsList li span,
+#feedsList li p {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
 }
 </style>
 </head>
