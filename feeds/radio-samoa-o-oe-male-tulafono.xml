@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O Oe Male Tulafono</title><link>https://radiosamoa.co.nz/podcast-polokalame-leoleo/</link><description>Filtered Radio Samoa podcast feed for O Oe Male Tulafono.</description><language>sm</language><lastBuildDate>Thu, 04 Jun 2026 06:36:51 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O Oe Male Tulafono</title><link>https://radiosamoa.co.nz/podcast-polokalame-leoleo/</link><description>Filtered Radio Samoa podcast feed for O Oe Male Tulafono.</description><language>sm</language><lastBuildDate>Thu, 04 Jun 2026 10:34:57 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    <item>
+        <title>O Oe Male Tulafono - #53</title>
+        <itunes:title>O Oe Male Tulafono - #53</itunes:title>
+        <link>https://podcastradiosamoa.podbean.com/e/o-oe-male-tulafono-53/</link>
+                    <comments>https://podcastradiosamoa.podbean.com/e/o-oe-male-tulafono-53/#comments</comments>        <pubDate>Thu, 04 Jun 2026 21:06:00 +1200</pubDate>
+        <guid isPermaLink="false">podcastradiosamoa.podbean.com/508f8c55-a83d-34f8-a16a-7c0556c4739f</guid>
+                                    <description />
+                                                            <content:encoded />
+                                    
+        <enclosure url="https://mcdn.podbean.com/mf/web/bki3eyf438ncnmtr/Tulafono_24Aprb27d2.mp3" length="69445910" type="audio/mpeg" />
+        <itunes:summary />
+        <itunes:author>Radio Samoa</itunes:author>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:block>No</itunes:block>
+        <itunes:duration>2893</itunes:duration>
+                <itunes:episode>5971</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/O_oe_male_tulafono.jpg" />    </item>
     <item>
         <title>O Oe Male Tulafono - #52</title>
         <itunes:title>O Oe Male Tulafono - #52</itunes:title>
@@ -160,24 +178,6 @@
         <itunes:block>No</itunes:block>
         <itunes:duration>1576</itunes:duration>
                 <itunes:episode>5719</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/O_oe_male_tulafono.jpg" />    </item>
-    <item>
-        <title>O Oe Male Tulafono - #43</title>
-        <itunes:title>O Oe Male Tulafono - #43</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/o-oe-male-tulafono-43/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/o-oe-male-tulafono-43/#comments</comments>        <pubDate>Wed, 29 Oct 2025 19:19:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/39fc05e2-3b97-3699-bec1-4c7e24e37bcc</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/c36hd54bavzcj94x/Tulafono_Sequence_01ban2e.mp3" length="66929374" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>2788</itunes:duration>
-                <itunes:episode>5710</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/O_oe_male_tulafono.jpg" />    </item>
     </channel></rss>
