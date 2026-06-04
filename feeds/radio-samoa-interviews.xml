@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Interviews</title><link>https://radiosamoa.co.nz/podcast-interviews/</link><description>Filtered Radio Samoa podcast feed for Interviews.</description><language>sm</language><lastBuildDate>Thu, 04 Jun 2026 01:44:35 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Interviews</title><link>https://radiosamoa.co.nz/podcast-interviews/</link><description>Filtered Radio Samoa podcast feed for Interviews.</description><language>sm</language><lastBuildDate>Thu, 04 Jun 2026 06:36:52 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    <item>
+        <title>Anae Arthur Anae in Samoa - 03 JUN 2026</title>
+        <itunes:title>Anae Arthur Anae in Samoa - 03 JUN 2026</itunes:title>
+        <link>https://podcastradiosamoa.podbean.com/e/anae-arthur-anae-in-samoa-03-jun-2026/</link>
+                    <comments>https://podcastradiosamoa.podbean.com/e/anae-arthur-anae-in-samoa-03-jun-2026/#comments</comments>        <pubDate>Thu, 04 Jun 2026 13:59:13 +1200</pubDate>
+        <guid isPermaLink="false">podcastradiosamoa.podbean.com/35c98c7e-7fef-30cb-8432-f5d311fb421e</guid>
+                                    <description />
+                                                            <content:encoded />
+                                    
+        <enclosure url="https://mcdn.podbean.com/mf/web/865jmne9q7bgkzy5/Arthur1.mp3" length="39125285" type="audio/mpeg" />
+        <itunes:summary />
+        <itunes:author>Radio Samoa</itunes:author>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:block>No</itunes:block>
+        <itunes:duration>1629</itunes:duration>
+                <itunes:episode>5970</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Interviews.jpg" />    </item>
     <item>
         <title>Daniella Belford - World Ranked Disabled Golfer - 17 APR 2026</title>
         <itunes:title>Daniella Belford - World Ranked Disabled Golfer - 17 APR 2026</itunes:title>
@@ -72,22 +90,4 @@
                 <itunes:episode>5731</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Interviews.jpg" />    </item>
-    <item>
-        <title>Hon. Aiono Dr Alec Ekeroma - 21 OCT 2025</title>
-        <itunes:title>Hon. Aiono Dr Alec Ekeroma - 21 OCT 2025</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/hon-aiono-dr-alec-ekeroma-21-oct-2025/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/hon-aiono-dr-alec-ekeroma-21-oct-2025/#comments</comments>        <pubDate>Wed, 22 Oct 2025 19:24:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/855479bd-3b22-368c-a871-0f4f3ba9bfb6</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/zf6guwt45sq4z37b/Sequence_01aqsv8.mp3" length="54436347" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>2267</itunes:duration>
-                <itunes:episode>5699</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Interviews.jpg" />    </item>
-</channel></rss>
+    </channel></rss>
