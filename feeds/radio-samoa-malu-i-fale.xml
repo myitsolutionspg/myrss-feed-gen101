@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Malu i Fale</title><link>https://radiosamoa.co.nz/podcast-malu-i-fale/</link><description>Filtered Radio Samoa podcast feed for Malu i Fale.</description><language>sm</language><lastBuildDate>Fri, 05 Jun 2026 04:53:54 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Malu i Fale</title><link>https://radiosamoa.co.nz/podcast-malu-i-fale/</link><description>Filtered Radio Samoa podcast feed for Malu i Fale.</description><language>sm</language><lastBuildDate>Fri, 05 Jun 2026 08:39:21 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>Malu i Fale - #86</title>
         <itunes:title>Malu i Fale - #86</itunes:title>
@@ -216,22 +216,4 @@
                 <itunes:episode>5718</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Podcast-Maluifale.jpg" />    </item>
-    <item>
-        <title>Malu i Fale - #74</title>
-        <itunes:title>Malu i Fale - #74</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/malu-i-fale-74/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/malu-i-fale-74/#comments</comments>        <pubDate>Thu, 30 Oct 2025 07:13:48 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/047ec7b2-dff3-3a50-ab56-7b1d403db158</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/w8rngdnzwiceynii/Sequence_018yne7.mp3" length="41463679" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>1727</itunes:duration>
-                <itunes:episode>5712</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Podcast-Maluifale.jpg" />    </item>
-</channel></rss>
+    </channel></rss>
