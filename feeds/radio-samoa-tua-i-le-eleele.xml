@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>TUA i le ELEELE</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for TUA i le ELEELE.</description><language>sm</language><lastBuildDate>Sat, 06 Jun 2026 09:57:13 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>TUA i le ELEELE</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for TUA i le ELEELE.</description><language>sm</language><lastBuildDate>Sat, 06 Jun 2026 11:24:54 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>TUA i le ELEELE #33</title>
         <itunes:title>TUA i le ELEELE #33</itunes:title>
@@ -198,22 +198,4 @@
                 <itunes:episode>5843</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Tua-i-le-eleele.jpg" />    </item>
-    <item>
-        <title>TUA i le ELEELE #22</title>
-        <itunes:title>TUA i le ELEELE #22</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/tua-i-le-eleele-22/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/tua-i-le-eleele-22/#comments</comments>        <pubDate>Tue, 04 Nov 2025 17:19:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/9aae271a-7df8-3316-adaf-2566ae5e427c</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/7kimuev5jgj53cx9/Tua_i_le_Eleele_-_30_OCT_2025b2jvp.mp3" length="11494843" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>478</itunes:duration>
-                <itunes:episode>5715</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Tua-i-le-eleele.jpg" />    </item>
-</channel></rss>
+    </channel></rss>
