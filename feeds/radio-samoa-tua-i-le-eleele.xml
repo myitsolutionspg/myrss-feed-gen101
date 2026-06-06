@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>TUA i le ELEELE</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for TUA i le ELEELE.</description><language>sm</language><lastBuildDate>Fri, 05 Jun 2026 17:09:45 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>TUA i le ELEELE</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for TUA i le ELEELE.</description><language>sm</language><lastBuildDate>Sat, 06 Jun 2026 09:57:13 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>TUA i le ELEELE #33</title>
         <itunes:title>TUA i le ELEELE #33</itunes:title>
@@ -214,42 +214,6 @@
         <itunes:block>No</itunes:block>
         <itunes:duration>478</itunes:duration>
                 <itunes:episode>5715</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Tua-i-le-eleele.jpg" />    </item>
-    <item>
-        <title>TUA i le ELEELE #21</title>
-        <itunes:title>TUA i le ELEELE #21</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/tua-i-le-eleele-21/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/tua-i-le-eleele-21/#comments</comments>        <pubDate>Mon, 03 Nov 2025 22:18:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/cbdd26a8-d49d-3c10-b3cb-890d6ba65d12</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/ajydjdt2en7uikit/Tua_i_le_Eleele_23_OCT81kii.mp3" length="11058130" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>460</itunes:duration>
-                <itunes:episode>5714</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Tua-i-le-eleele.jpg" />    </item>
-    <item>
-        <title>TUA i le ELEELE #20</title>
-        <itunes:title>TUA i le ELEELE #20</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/tua-i-le-eleele-20/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/tua-i-le-eleele-20/#comments</comments>        <pubDate>Mon, 03 Nov 2025 20:17:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/fda60ded-2dc0-3e37-8c72-8919048a038e</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/s74nmmdazu74tv9n/Tua_i_le_Eleele_-_16_OCTamnjb.mp3" length="10043846" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>418</itunes:duration>
-                <itunes:episode>5714</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Tua-i-le-eleele.jpg" />    </item>
 </channel></rss>
