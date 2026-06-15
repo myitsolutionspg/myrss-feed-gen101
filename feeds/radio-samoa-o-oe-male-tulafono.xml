@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O Oe Male Tulafono</title><link>https://radiosamoa.co.nz/podcast-polokalame-leoleo/</link><description>Filtered Radio Samoa podcast feed for O Oe Male Tulafono.</description><language>sm</language><lastBuildDate>Mon, 15 Jun 2026 09:43:59 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O Oe Male Tulafono</title><link>https://radiosamoa.co.nz/podcast-polokalame-leoleo/</link><description>Filtered Radio Samoa podcast feed for O Oe Male Tulafono.</description><language>sm</language><lastBuildDate>Mon, 15 Jun 2026 15:39:08 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>O Oe Male Tulafono - #57</title>
         <itunes:title>O Oe Male Tulafono - #57</itunes:title>
@@ -232,24 +232,6 @@
         <itunes:block>No</itunes:block>
         <itunes:duration>2695</itunes:duration>
                 <itunes:episode>5740</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/O_oe_male_tulafono.jpg" />    </item>
-    <item>
-        <title>O Oe Male Tulafono - #44</title>
-        <itunes:title>O Oe Male Tulafono - #44</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/o-oe-male-tulafono-44/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/o-oe-male-tulafono-44/#comments</comments>        <pubDate>Tue, 04 Nov 2025 22:32:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/39ce711b-af5d-30f7-abf7-5d69ef14375b</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/xtu4nait8geid6zb/siki-Sequence_01a88g1.mp3" length="37850018" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>1576</itunes:duration>
-                <itunes:episode>5719</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/O_oe_male_tulafono.jpg" />    </item>
     </channel></rss>
