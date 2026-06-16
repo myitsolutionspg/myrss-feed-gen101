@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O le Vaofilifili o Samoa</title><link>https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/</link><description>Filtered Radio Samoa podcast feed for O le Vaofilifili o Samoa.</description><language>sm</language><lastBuildDate>Tue, 16 Jun 2026 05:42:50 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O le Vaofilifili o Samoa</title><link>https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/</link><description>Filtered Radio Samoa podcast feed for O le Vaofilifili o Samoa.</description><language>sm</language><lastBuildDate>Tue, 16 Jun 2026 10:58:41 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    <item>
+        <title>O le Vaofilifili o Samoa - #91</title>
+        <itunes:title>O le Vaofilifili o Samoa - #91</itunes:title>
+        <link>https://podcastradiosamoa.podbean.com/e/o-le-vaofilifili-o-samoa-91/</link>
+                    <comments>https://podcastradiosamoa.podbean.com/e/o-le-vaofilifili-o-samoa-91/#comments</comments>        <pubDate>Tue, 16 Jun 2026 22:37:00 +1200</pubDate>
+        <guid isPermaLink="false">podcastradiosamoa.podbean.com/3a3b5def-6c6b-3e54-9931-855e24ca8c4d</guid>
+                                    <description />
+                                                            <content:encoded />
+                                    
+        <enclosure url="https://mcdn.podbean.com/mf/web/da9ww9qbqeys5qip/Sequence_01613jg.mp3" length="119925098" type="audio/mpeg" />
+        <itunes:summary />
+        <itunes:author>Radio Samoa</itunes:author>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:block>No</itunes:block>
+        <itunes:duration>4996</itunes:duration>
+                <itunes:episode>5996</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Vaofilifili-25-2.jpg" />    </item>
     <item>
         <title>O le Vaofilifili o Samoa - #90</title>
         <itunes:title>O le Vaofilifili o Samoa - #90</itunes:title>
@@ -342,22 +360,4 @@
                 <itunes:episode>5732</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Vaofilifili-25.jpg" />    </item>
-    <item>
-        <title>O le Vaofilifili o Samoa - #73</title>
-        <itunes:title>O le Vaofilifili o Samoa - #73</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/o-le-vaofilifili-o-samoa-73/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/o-le-vaofilifili-o-samoa-73/#comments</comments>        <pubDate>Thu, 06 Nov 2025 19:02:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/4ab0913b-fd2a-3e3c-b63a-f624c50d837f</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/8u68gd8k5pnchtfp/Sequence_01a2nec.mp3" length="104020287" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>4333</itunes:duration>
-                <itunes:episode>5723</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/vaofilifili.jpg" />    </item>
-</channel></rss>
+    </channel></rss>
