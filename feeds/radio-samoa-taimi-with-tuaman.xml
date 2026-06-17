@@ -1,21 +1,3 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Taimi with Tuaman</title><link>https://radiosamoa.co.nz/podcast-taimi-with-tuaman/</link><description>Filtered Radio Samoa podcast feed for Taimi with Tuaman.</description><language>sm</language><lastBuildDate>Wed, 17 Jun 2026 08:29:38 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
-    <item>
-        <title>Taimi with TUAMAN - #41</title>
-        <itunes:title>Taimi with TUAMAN - #41</itunes:title>
-        <link>https://podcastradiosamoa.podbean.com/e/taimi-with-tuaman-41/</link>
-                    <comments>https://podcastradiosamoa.podbean.com/e/taimi-with-tuaman-41/#comments</comments>        <pubDate>Tue, 18 Nov 2025 14:55:00 +1300</pubDate>
-        <guid isPermaLink="false">podcastradiosamoa.podbean.com/9abde7ea-15af-3c01-a900-7b730d3b52c5</guid>
-                                    <description />
-                                                            <content:encoded />
-                                    
-        <enclosure url="https://mcdn.podbean.com/mf/web/xv2kd6ama3wtz8xj/taimiSequence_0192ghg.mp3" length="23493173" type="audio/mpeg" />
-        <itunes:summary />
-        <itunes:author>Radio Samoa</itunes:author>
-        <itunes:explicit>false</itunes:explicit>
-        <itunes:block>No</itunes:block>
-        <itunes:duration>978</itunes:duration>
-                <itunes:episode>5734</itunes:episode>
-        <itunes:episodeType>full</itunes:episodeType>
-        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/TuamanCover.jpg" />    </item>
-</channel></rss>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Taimi with Tuaman</title><link>https://radiosamoa.co.nz/podcast-taimi-with-tuaman/</link><description>Filtered Radio Samoa podcast feed for Taimi with Tuaman.</description><language>sm</language><lastBuildDate>Wed, 17 Jun 2026 12:36:24 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    </channel></rss>
