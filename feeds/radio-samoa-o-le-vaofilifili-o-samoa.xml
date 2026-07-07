@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O le Vaofilifili o Samoa</title><link>https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/</link><description>Filtered Radio Samoa podcast feed for O le Vaofilifili o Samoa.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 20:47:04 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O le Vaofilifili o Samoa</title><link>https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/</link><description>Filtered Radio Samoa podcast feed for O le Vaofilifili o Samoa.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 22:06:13 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>O le Vaofilifili o Samoa - #91</title>
         <itunes:title>O le Vaofilifili o Samoa - #91</itunes:title>
@@ -10,7 +10,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/da9ww9qbqeys5qip/Sequence_01613jg.mp3" length="119925098" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -28,7 +28,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/93dcqc7ia56syuj8/Sequence_2June6aqxm.mp3" length="128181939" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -46,7 +46,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/wk68n72766p7frmv/Sequence_26May807i1.mp3" length="123930039" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -64,7 +64,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/akgb8t45mp797n4m/Sequence_019Maya9c2o.mp3" length="126958098" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -82,7 +82,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/t8y2y8g9uri3zin3/Vao_12May9skoc.mp3" length="127627725" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -100,7 +100,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/ujt3ciki4293336m/vaofilifili_1.mp3" length="129432680" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -118,7 +118,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/d5qw63fbma98cpz2/vaofilifili_019c5ln.mp3" length="125272257" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -136,7 +136,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/neeheuvsn9c9si94/Vaofilifili_24675k9.mp3" length="125913044" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -154,7 +154,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/xvvmu82zwt7q5dsf/Vao_1784xl2.mp3" length="126684179" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -172,7 +172,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/8z349ajiqkupvrk9/Sequence_01aw2m5.mp3" length="131320962" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -190,7 +190,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/tpjs5kasz2x8wumm/VaoSequence_018czv7.mp3" length="125906719" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -208,7 +208,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/r59s3gzsw283n88a/Sequence_01a7eah.mp3" length="118454297" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -226,7 +226,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/9bnd3g5ye7jxt34r/Sequence_027s2dp.mp3" length="110335497" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -244,7 +244,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/vmizcx3a9ggzjw2t/Sequence_016wiau.mp3" length="106707347" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -262,7 +262,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/hb8tx9ifnuabg3cn/Sequence_018tqqb.mp3" length="133166670" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -280,7 +280,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/6cqibdijq7w9s6mm/vao_Sequence_01bdt76.mp3" length="249009051" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -298,7 +298,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/h7bpxibpnh9rp865/Vaofili_Sequence_01apqnr.mp3" length="125727470" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -316,7 +316,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/vdmjzd56rjnyr5fb/Vao_Sequence_01_19w8ml.mp3" length="128990060" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -334,7 +334,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/yfb2jrpn4ec2gk7e/vao_Sequence_0194ojv.mp3" length="105971377" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -352,7 +352,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/5r9pa4cuw23pbdz2/Sequence_01_19n1j3.mp3" length="116050667" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
