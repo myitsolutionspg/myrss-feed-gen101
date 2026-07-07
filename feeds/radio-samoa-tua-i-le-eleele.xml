@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>TUA i le ELEELE</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for TUA i le ELEELE.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 20:47:06 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>TUA i le ELEELE</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for TUA i le ELEELE.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 22:06:14 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>TUA i le ELEELE #37</title>
         <itunes:title>TUA i le ELEELE #37</itunes:title>
@@ -10,7 +10,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/5umrtat3xruqjh7b/Tua_i_le_Eleele_11_JUN_2026_-_Radio_Samoa7vfik.mp3" length="15500441" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -28,7 +28,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/2kfqxczf3q8yzej7/Tua_i_le_Eleele_4_JUN_2026_-_Radio_Samoaa26zq.mp3" length="11605214" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -46,7 +46,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/q6eaz68mtestv3sj/Tua_i_le_Eleele_-_28_MAY_20267jvht.mp3" length="16475468" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -64,7 +64,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/x9rx8nntx34nqczf/Tua_i_le_Eleele_21_MAY_2026_-_Radio_Samoa9vgbb.mp3" length="12476659" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -82,7 +82,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/t9z736ufgafhdm2j/Tua_i_le_Eleele_14_MAY_2026_-_Radio_Samoa7kwdy.mp3" length="16997515" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -100,7 +100,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/rjmmvegyiw66k2jp/Tua_i_le_Eleele_16_APR_2026_8ow3x.mp3" length="11478039" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -118,7 +118,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/q3hzbfm78wqu6qpj/Tua_i_le_Eleele_-_09_APR_20269xozt.mp3" length="12119702" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -136,7 +136,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/v9ait486kgstqj82/Tua_i_le_Eleele_-_26_MAR_2026bwize.mp3" length="13949924" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -154,7 +154,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/cyvy3n5s66shxn6d/Tua_i_le_Eleele_-_19_MAR_20267l7z5.mp3" length="12440327" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -172,7 +172,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/qea8ebqu53ip8igy/Tua_i_le_Eleele_-_12_MAR_20266cqhp.mp3" length="21225566" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -190,7 +190,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/d6viccqgapap5tye/Tua_i_le_Eleele_05_MAR_20269ty9d.mp3" length="13616150" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -208,7 +208,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/dh8av5qhsud3je77/Tua_i_le_Eleele_26_FEB_2026_bn8e9.mp3" length="12850340" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -226,7 +226,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/6yffn5maxj978n3e/Tua_i_le_Eleele_-_19_FEB_2026861ix.mp3" length="13682238" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -244,7 +244,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/j72kkaq6535vxdrj/Tua_i_le_Eleele_12_FEB_2026_a4ls9.mp3" length="11523236" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -262,7 +262,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/cpd9ww9tgfrtejas/Tua_i_le_Eleele_-_05_FEB_20268i9a2.mp3" length="9785187" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>

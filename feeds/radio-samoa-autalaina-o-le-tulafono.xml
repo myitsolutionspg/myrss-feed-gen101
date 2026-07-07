@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Autalaina o le Tulafono</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for Autalaina o le Tulafono.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 20:47:06 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Autalaina o le Tulafono</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for Autalaina o le Tulafono.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 22:06:14 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>Autalaina o le Tulafono #2603</title>
         <itunes:title>Autalaina o le Tulafono #2603</itunes:title>
@@ -10,7 +10,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/zb3fhjhdfnvznzer/Olinda_22_FEB_2026_-_Radio_Samoa7mwhu.mp3" length="36154874" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -28,7 +28,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/zsdygrsgjad54cyj/Olinda_15_FEB_2026_-_Radio_Samoa6b1v0.mp3" length="44373414" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -46,7 +46,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/9rgy66qq4gjj9a25/Olinda_9_FEB_2026_-_Radio_Samoabnryp.mp3" length="41613001" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -64,7 +64,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/mqwyc2hgxat4d3a7/Olinda_07_DEC_2025_-_Radio_Samoa951y3.mp3" length="39173580" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -82,7 +82,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/28dubjpatv68f8hs/Olinda_30_NOV_2025_-_Radio_Samoa9px2b.mp3" length="38276435" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Malu i Fale</title><link>https://radiosamoa.co.nz/podcast-malu-i-fale/</link><description>Filtered Radio Samoa podcast feed for Malu i Fale.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 20:47:03 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Malu i Fale</title><link>https://radiosamoa.co.nz/podcast-malu-i-fale/</link><description>Filtered Radio Samoa podcast feed for Malu i Fale.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 22:06:13 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
     <item>
         <title>Malu i Fale - #86</title>
         <itunes:title>Malu i Fale - #86</itunes:title>
@@ -10,7 +10,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/pavcwrkpwx3ukdtc/01_APRa5nwr.mp3" length="49462478" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -28,7 +28,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/kb8zd9vuwmkghn9n/25_MAR_6h10z.mp3" length="49515867" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -46,7 +46,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/efykuahz6nkvkzw9/11_MAR67xe7.mp3" length="29652467" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -64,7 +64,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/ph68amu4hk76rqjz/04_MAR6lft0.mp3" length="23076602" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -82,7 +82,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/23cczrphgwtit7qh/25_FEB786l5.mp3" length="56600175" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -100,7 +100,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/a6wgukrywkss7phe/18_FEB_9ra3q.mp3" length="42809402" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -118,7 +118,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/gpq4zbkrxkysatf2/malu_10_dec_Sequence_02ad2u8.mp3" length="50071605" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -136,7 +136,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/z93xxr242nj6gbat/malu_3_dec_Sequence_029u0by.mp3" length="54258301" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -154,7 +154,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/6nyfnhfay46txct3/malu_26_Nov_Sequence_02bm7d5.mp3" length="53383719" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -172,7 +172,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/285jnj3dysf56yb7/Malu_19_Nov_Sequence_027u9rn.mp3" length="48674729" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>

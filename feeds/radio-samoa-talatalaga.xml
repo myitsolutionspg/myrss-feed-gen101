@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Talatalaga</title><link>https://radiosamoa.co.nz/podcast-talatalaga/</link><description>Filtered Radio Samoa podcast feed for Talatalaga.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 20:47:06 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><image><url>https://radiosamoa.co.nz/wp-content/uploads/2025/02/Talatalaga-Podcast-Cover-630x630.png</url><title>Talatalaga</title><link>https://radiosamoa.co.nz/podcast-talatalaga/</link></image><itunes:image href="https://radiosamoa.co.nz/wp-content/uploads/2025/02/Talatalaga-Podcast-Cover-630x630.png" /><item>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Talatalaga</title><link>https://radiosamoa.co.nz/podcast-talatalaga/</link><description>Filtered Radio Samoa podcast feed for Talatalaga.</description><language>sm</language><lastBuildDate>Tue, 07 Jul 2026 22:06:15 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><image><url>https://radiosamoa.co.nz/wp-content/uploads/2025/02/Talatalaga-Podcast-Cover-630x630.png</url><title>Talatalaga</title><link>https://radiosamoa.co.nz/podcast-talatalaga/</link></image><itunes:image href="https://radiosamoa.co.nz/wp-content/uploads/2025/02/Talatalaga-Podcast-Cover-630x630.png" /><item>
         <title>Talatalaga EP27 - Faauuga Iunivesite Samoa ma Tala Tuu Maua Mai Le Sami</title>
         <itunes:title>Talatalaga EP27 - Faauuga Iunivesite Samoa ma Tala Tuu Maua Mai Le Sami</itunes:title>
         <link>https://podcastradiosamoa.podbean.com/e/talatalaga-ep27-faauuga-iunivesite-samoa-ma-tala-tuu-maua-mai-le-sami/</link>
@@ -9,7 +9,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/jpuhdcc5tp2byxn5/talatalaga27.mp3" length="58789287" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -27,7 +27,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/4736vjq8rzr8p933/tala26.mp3" length="64389058" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -45,7 +45,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/qn8rk7thcme3hpb9/tala25.mp3" length="69109864" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -63,7 +63,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/qnpq5gbqypys8i7r/talatalaga_24_Sequence_016lzmx.mp3" length="64928219" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -81,7 +81,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/ht45s5i6r6f72ium/tala_23Sequence_01_17ky45.mp3" length="57395603" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -99,7 +99,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/yagbvbvqhueqh2ja/tala22_Sequence_017rl7m.mp3" length="63318222" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -117,7 +117,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/bik776ppu9d6qzvk/talatala_Sequence_01bukn0.mp3" length="114115002" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -135,7 +135,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/rjqgsxnpqu7vytrz/tala_19_Sequence_019u0jj.mp3" length="45507476" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -153,7 +153,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/qduhnq96n8ft5cz4/tala_18_Sequence_01avwrl.mp3" length="39628672" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -171,7 +171,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/qypv9pc2py9z4i83/tala_15_Sequence_016c70d.mp3" length="41634247" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -189,7 +189,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/s5e6mhgjnqsxyia9/tala_16_Sequence_01af7uk.mp3" length="56016225" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
@@ -207,7 +207,7 @@
                                                             <content:encoded />
                                     
         <enclosure url="https://mcdn.podbean.com/mf/web/exnmbwdx22d2ksx5/tala_14_Sequence_01bwint.mp3" length="43492439" type="audio/mpeg" />
-        <itunes:summary />
+                <itunes:summary />
         <itunes:author>Radio Samoa</itunes:author>
         <itunes:explicit>false</itunes:explicit>
         <itunes:block>No</itunes:block>
