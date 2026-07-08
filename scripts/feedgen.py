@@ -11,6 +11,8 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import xml.etree.ElementTree as ET
 from pathlib import Path
+import time
+import socket
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
 ITUNES_NS = "http://www.itunes.com/dtds/podcast-1.0.dtd"
@@ -174,19 +176,52 @@ def child_by_local(parent: ET.Element, name: str) -> ET.Element | None:
             return ch
     return None
 
-def get(url: str, timeout: int = 30) -> bytes:
-    req = Request(
-        url,
-        headers={
-            "User-Agent": "myrss-feed-gen101/1.0 (+https://myitsolutionspg.github.io/myrss-feed-gen101/)",
-            "Accept": "application/rss+xml, application/xml, text/xml, */*",
-        },
-    )
-    with urlopen(req, timeout=timeout) as r:
-        ct = r.headers.get("Content-Type", "")
-        data = r.read()
-        print(f"[FETCH] {url} :: status={getattr(r,'status','n/a')} ct={ct} bytes={len(data)} head={data[:60]!r}")
-        return data
+def get(url: str, timeout: int = 30, retries: int = 3) -> bytes | None:
+    headers = {
+        "User-Agent": "myrss-feed-gen101/1.0 (+https://myitsolutionspg.github.io/myrss-feed-gen101/)",
+        "Accept": "application/rss+xml, application/xml, text/xml, */*",
+    }
+
+    last_error = None
+
+    for attempt in range(1, retries + 1):
+        try:
+            print(f"[FETCH] attempt {attempt}/{retries}: {url}")
+
+            req = Request(url, headers=headers)
+
+            with urlopen(req, timeout=timeout) as r:
+                ct = r.headers.get("Content-Type", "")
+                data = r.read()
+
+                print(
+                    f"[FETCH OK] {url} :: "
+                    f"status={getattr(r, 'status', 'n/a')} "
+                    f"ct={ct} bytes={len(data)} head={data[:60]!r}"
+                )
+
+                return data
+
+        except HTTPError as e:
+            last_error = e
+            print(f"[WARN] HTTP error for {url}: {e.code} {e.reason}", file=sys.stderr)
+
+            # These usually won't succeed on retry.
+            if e.code in (400, 401, 403, 404, 410):
+                return None
+
+        except (URLError, TimeoutError, socket.timeout) as e:
+            last_error = e
+            print(f"[WARN] Network/timeout error for {url}: {e}", file=sys.stderr)
+
+        if attempt < retries:
+            wait_seconds = attempt * 5
+            print(f"[INFO] Retrying in {wait_seconds}s: {url}")
+            time.sleep(wait_seconds)
+
+    print(f"[ERROR] Failed after {retries} attempts: {url}", file=sys.stderr)
+    print(f"[ERROR] Last error: {last_error}", file=sys.stderr)
+    return None
 
 def hash_id(*parts: str) -> str:
     h = hashlib.sha256()
@@ -683,43 +718,67 @@ def validate_rss_file(output_path: str) -> None:
 def generate_radio_samoa_filtered_podcast_feeds() -> None:
     print("[INFO] Generating Radio Samoa filtered podcast feeds...")
 
-    source_xml = get(RADIO_SAMOA_SOURCE_FEED, timeout=60)
-    namespaces = extract_namespaces(source_xml)
-    register_namespaces(namespaces)
+    try:
+        source_xml = get(RADIO_SAMOA_SOURCE_FEED, timeout=60, retries=3)
 
-    source_root = ET.fromstring(source_xml)
-    source_channel = find_rss_channel(source_root)
+        if not source_xml:
+            print(
+                f"[WARN] Skipping Radio Samoa filtered podcast feeds. "
+                f"Source feed returned no data: {RADIO_SAMOA_SOURCE_FEED}",
+                file=sys.stderr,
+            )
+            return
 
-    if source_channel is None:
-        raise RuntimeError("Radio Samoa source feed does not contain a channel element.")
+        namespaces = extract_namespaces(source_xml)
+        register_namespaces(namespaces)
 
-    source_items = [
-        item for item in list(source_channel) if localname(item.tag).lower() == "item"
-    ]
+        source_root = ET.fromstring(source_xml)
+        source_channel = find_rss_channel(source_root)
 
-    summary: list[tuple[str, int]] = []
+        if source_channel is None:
+            print(
+                "[WARN] Skipping Radio Samoa filtered podcast feeds. "
+                "Source feed does not contain a channel element.",
+                file=sys.stderr,
+            )
+            return
 
-    for programme in RADIO_SAMOA_PROGRAMMES:
-        matching_items = [
-            item
-            for item in source_items
-            if item_matches_programme(item, programme)
+        source_items = [
+            item for item in list(source_channel)
+            if localname(item.tag).lower() == "item"
         ]
 
-        xml_bytes = build_radio_samoa_programme_feed(
-            source_channel=source_channel,
-            programme=programme,
-            matching_items=matching_items,
+        summary: list[tuple[str, int]] = []
+
+        for programme in RADIO_SAMOA_PROGRAMMES:
+            matching_items = [
+                item
+                for item in source_items
+                if item_matches_programme(item, programme)
+            ]
+
+            xml_bytes = build_radio_samoa_programme_feed(
+                source_channel=source_channel,
+                programme=programme,
+                matching_items=matching_items,
+            )
+
+            write_xml_no_bom(programme["output"], xml_bytes)
+            validate_rss_file(programme["output"])
+
+            summary.append((programme["name"], len(matching_items)))
+
+        print("Radio Samoa filtered podcast feed summary:")
+        for programme_name, item_count in summary:
+            print(f"- {programme_name}: {item_count} items")
+
+    except Exception as e:
+        print(
+            f"[WARN] Radio Samoa filtered podcast feed generation failed: "
+            f"{type(e).__name__}: {e}",
+            file=sys.stderr,
         )
-
-        write_xml_no_bom(programme["output"], xml_bytes)
-        validate_rss_file(programme["output"])
-
-        summary.append((programme["name"], len(matching_items)))
-
-    print("Radio Samoa filtered podcast feed summary:")
-    for programme_name, item_count in summary:
-        print(f"- {programme_name}: {item_count} items")
+        return
 
 # ---------------- main workflow ----------------
 def main() -> None:
@@ -742,6 +801,11 @@ def main() -> None:
             continue
         try:
             data = get(url)
+        
+            if not data:
+                print(f"[SKIP] No data returned for source: {name} {url}", file=sys.stderr)
+                continue
+        
             items = parse_rss_or_atom(data, name)
 
             limit = int(src.get("max_items", 15))
@@ -751,8 +815,8 @@ def main() -> None:
                 ok_sources += 1
             all_items.extend(items)
             print(f"[INFO] {name}: {len(items)} items")
-        except (HTTPError, URLError, ET.ParseError) as e:
-            print(f"[WARN] Source failed: {name} {url} :: {e}", file=sys.stderr)
+        except Exception as e:
+            print(f"[WARN] Source failed: {name} {url} :: {type(e).__name__}: {e}", file=sys.stderr)
 
     # De-dupe after all sources have been fetched. Keep first occurrence.
     seen: set[str] = set()
