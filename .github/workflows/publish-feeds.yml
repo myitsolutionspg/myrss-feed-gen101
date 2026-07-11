@@ -68,10 +68,19 @@ jobs:
             automation
           delete-branch: true
 
-      - name: Enable PR auto-merge
+      - name: Merge Pull Request
         if: steps.diffcheck.outputs.no_changes != 'true' && steps.cpr.outputs.pull-request-number != ''
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          set -e
+      
+          echo "Merging PR #$PR_NUMBER"
+      
+          if gh pr merge "$PR_NUMBER" --squash --delete-branch; then
+            echo "PR #$PR_NUMBER merged successfully."
+          else
+            echo "Direct merge failed. Trying auto-merge as fallback..."
+            gh pr merge "$PR_NUMBER" --auto --squash --delete-branch
+          fi
