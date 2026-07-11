@@ -44,9 +44,19 @@ jobs:
           add-paths: |
             feeds/png-latest-news.xml
 
-      - name: Enable PR auto-merge
+      - name: Merge Pull Request
         if: steps.cpr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.cpr.outputs.pull-request-number }}
         run: |
-          gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --auto --squash --delete-branch
+          set -e
+      
+          echo "Merging PR #$PR_NUMBER"
+      
+          if gh pr merge "$PR_NUMBER" --squash --delete-branch; then
+            echo "PR #$PR_NUMBER merged successfully."
+          else
+            echo "Direct merge failed. Trying auto-merge as fallback..."
+            gh pr merge "$PR_NUMBER" --auto --squash --delete-branch
+          fi
