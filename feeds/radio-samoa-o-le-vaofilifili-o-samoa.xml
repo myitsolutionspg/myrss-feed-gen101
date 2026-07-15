@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O le Vaofilifili o Samoa</title><link>https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/</link><description>Filtered Radio Samoa podcast feed for O le Vaofilifili o Samoa.</description><language>sm</language><lastBuildDate>Wed, 15 Jul 2026 07:09:46 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>O le Vaofilifili o Samoa</title><link>https://radiosamoa.co.nz/podcast-o-le-vaofilifili-o-samoa/</link><description>Filtered Radio Samoa podcast feed for O le Vaofilifili o Samoa.</description><language>sm</language><lastBuildDate>Wed, 15 Jul 2026 09:26:39 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    <item>
+        <title>O le Vaofilifili o Samoa - #92</title>
+        <itunes:title>O le Vaofilifili o Samoa - #92</itunes:title>
+        <link>https://podcastradiosamoa.podbean.com/e/o-le-vaofilifili-o-samoa-92/</link>
+                    <comments>https://podcastradiosamoa.podbean.com/e/o-le-vaofilifili-o-samoa-92/#comments</comments>        <pubDate>Wed, 15 Jul 2026 20:41:00 +1200</pubDate>
+        <guid isPermaLink="false">podcastradiosamoa.podbean.com/bdecba8f-d5e7-3ede-850b-f7d1ec999ca8</guid>
+                                    <description />
+                                                            <content:encoded />
+                                    
+        <enclosure url="https://mcdn.podbean.com/mf/web/6s3mv66ffmxa2gxt/O_le_Vaofilifili_o_Samoa_23_JUN_2026_1bpy4x.mp3" length="119138920" type="audio/mpeg" />
+                <itunes:summary />
+        <itunes:author>Radio Samoa</itunes:author>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:block>No</itunes:block>
+        <itunes:duration>4963</itunes:duration>
+                <itunes:episode>6016</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Vaofilifili-25-2.jpg" />    </item>
     <item>
         <title>O le Vaofilifili o Samoa - #91</title>
         <itunes:title>O le Vaofilifili o Samoa - #91</itunes:title>
@@ -360,4 +378,4 @@
                 <itunes:episode>5732</itunes:episode>
         <itunes:episodeType>full</itunes:episodeType>
         <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Vaofilifili-25.jpg" />    </item>
-    </channel></rss>
+</channel></rss>
