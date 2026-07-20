@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Autalaina o le Tulafono</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for Autalaina o le Tulafono.</description><language>sm</language><lastBuildDate>Mon, 20 Jul 2026 08:22:05 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Autalaina o le Tulafono</title><link>https://feed.podbean.com/podcastradiosamoa/feed.xml</link><description>Filtered Radio Samoa podcast feed for Autalaina o le Tulafono.</description><language>sm</language><lastBuildDate>Mon, 20 Jul 2026 11:19:30 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    <item>
+        <title>Autalaina o le Tulafono #2604</title>
+        <itunes:title>Autalaina o le Tulafono #2604</itunes:title>
+        <link>https://podcastradiosamoa.podbean.com/e/autalaina-o-le-tulafono-2604/</link>
+                    <comments>https://podcastradiosamoa.podbean.com/e/autalaina-o-le-tulafono-2604/#comments</comments>        <pubDate>Mon, 20 Jul 2026 22:08:00 +1200</pubDate>
+        <guid isPermaLink="false">podcastradiosamoa.podbean.com/543cc619-d47d-30fd-b876-79586d5ce1c7</guid>
+                                    <description />
+                                                            <content:encoded />
+                                    
+        <enclosure url="https://mcdn.podbean.com/mf/web/zuh8zt42qdykpqt4/Olinda_22_FEB_2026_-_Radio_Samoabfslz.mp3" length="36154874" type="audio/mpeg" />
+                <itunes:summary />
+        <itunes:author>Radio Samoa</itunes:author>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:block>No</itunes:block>
+        <itunes:duration>1506</itunes:duration>
+                <itunes:episode>6021</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Olinda.png" />    </item>
     <item>
         <title>Autalaina o le Tulafono #2603</title>
         <itunes:title>Autalaina o le Tulafono #2603</itunes:title>
