@@ -219,8 +219,8 @@ def get(url: str, timeout: int = 30, retries: int = 3) -> bytes | None:
             print(f"[INFO] Retrying in {wait_seconds}s: {url}")
             time.sleep(wait_seconds)
 
-    print(f"[ERROR] Failed after {retries} attempts: {url}", file=sys.stderr)
-    print(f"[ERROR] Last error: {last_error}", file=sys.stderr)
+    print(f"[WARN] Failed after {retries} attempts, skipping source: {url}", file=sys.stderr)
+    print(f"[WARN] Last error: {last_error}", file=sys.stderr)
     return None
 
 def hash_id(*parts: str) -> str:
