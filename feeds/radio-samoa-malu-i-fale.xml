@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Malu i Fale</title><link>https://radiosamoa.co.nz/podcast-malu-i-fale/</link><description>Filtered Radio Samoa podcast feed for Malu i Fale.</description><language>sm</language><lastBuildDate>Tue, 15 Sep 2026 11:57:20 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0"><channel><title>Malu i Fale</title><link>https://radiosamoa.co.nz/podcast-malu-i-fale/</link><description>Filtered Radio Samoa podcast feed for Malu i Fale.</description><language>sm</language><lastBuildDate>Tue, 15 Sep 2026 16:18:28 +0000</lastBuildDate><generator>myrss-feed-gen101 Radio Samoa filtered podcast feed generator</generator><copyright>Copyright 2024 All rights reserved.</copyright><itunes:image href="https://pbcdn1.podbean.com/imglogo/image-logo/14642642/Podcast-Radio-Samoa2.jpg" />
+    <item>
+        <title>Malu i Fale - #92</title>
+        <itunes:title>Malu i Fale - #92</itunes:title>
+        <link>https://podcastradiosamoa.podbean.com/e/malu-i-fale-92/</link>
+                    <comments>https://podcastradiosamoa.podbean.com/e/malu-i-fale-92/#comments</comments>        <pubDate>Wed, 16 Sep 2026 02:12:00 +1200</pubDate>
+        <guid isPermaLink="false">podcastradiosamoa.podbean.com/84918be1-4cfb-3820-a89c-b6214b6e05ef</guid>
+                                    <description />
+                                                            <content:encoded />
+                                    
+        <enclosure url="https://mcdn.podbean.com/mf/web/3bqubc3ktz25595k/Sequence_01_Jul6pg0v.mp3" length="23655038" type="audio/mpeg" />
+        <itunes:summary />
+        <itunes:author>Radio Samoa</itunes:author>
+        <itunes:explicit>false</itunes:explicit>
+        <itunes:block>No</itunes:block>
+        <itunes:duration>985</itunes:duration>
+                <itunes:episode>6064</itunes:episode>
+        <itunes:episodeType>full</itunes:episodeType>
+        <itunes:image href="https://pbcdn1.podbean.com/imglogo/ep-logo/pbblog14642642/Podcast-Maluifale.jpg" />    </item>
     <item>
         <title>Malu i Fale - #91</title>
         <itunes:title>Malu i Fale - #91</itunes:title>
